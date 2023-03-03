@@ -1,11 +1,9 @@
 .label {
     display: flex;
     align-items: center;
-
     cursor: pointer;
 }
 
-/*input[type="checkbox"] - no*/
 
 .checkbox {
     appearance: none;
@@ -29,7 +27,6 @@
 
 .checkbox:checked {
     appearance: none;
-
     background-image: url('checked.svg');
     /*background: #99ff99;*/
 }
