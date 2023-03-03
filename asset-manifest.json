@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/fridayproject/static/css/main.f69af365.css",
+    "main.js": "/fridayproject/static/js/main.4d1180c0.js",
+    "static/media/checked.svg": "/fridayproject/static/media/checked.b75ca55e8759862b4083.svg",
+    "index.html": "/fridayproject/index.html",
+    "main.f69af365.css.map": "/fridayproject/static/css/main.f69af365.css.map",
+    "main.4d1180c0.js.map": "/fridayproject/static/js/main.4d1180c0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f69af365.css",
+    "static/js/main.4d1180c0.js"
+  ]
+}
