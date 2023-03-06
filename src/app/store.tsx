@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+import axios from 'axios'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AnyAction, combineReducers } from 'redux'
 import { ThunkAction } from 'redux-thunk'
@@ -22,3 +23,11 @@ export type AppDispatch = typeof store.dispatch
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, AnyAction>
 export type AppActionTypes = AnyAction
 export type RootState = ReturnType<typeof store.getState>
+
+export const instance = axios.create({
+  baseURL:
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:7542/2.0/'
+      : 'https://neko-back.herokuapp.com/2.0/',
+  withCredentials: true,
+})

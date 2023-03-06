@@ -22,6 +22,7 @@ type SuperInputTextPropsType = Omit<DefaultInputPropsType, 'type'> & {
   onEnter?: () => void
   error?: ReactNode
   spanClassName?: string
+  type?: string
 }
 
 export const SuperInputText: React.FC<SuperInputTextPropsType> = ({
@@ -33,12 +34,14 @@ export const SuperInputText: React.FC<SuperInputTextPropsType> = ({
   className,
   spanClassName,
   id,
-
+  name,
+  type,
   ...restProps // все остальные пропсы попадут в объект restProps
 }) => {
   const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-    onChange?.(e) // если есть пропс onChange, то передать ему е (поскольку onChange не обязателен)
-
+    if (onChange) {
+      onChange(e)
+    }
     onChangeText?.(e.currentTarget.value)
   }
   const onKeyPressCallback = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -59,10 +62,11 @@ export const SuperInputText: React.FC<SuperInputTextPropsType> = ({
     <div className={s.inputWrapper}>
       <input
         id={id}
-        type={'text'}
         onChange={onChangeCallback}
+        type={type}
         onKeyPress={onKeyPressCallback}
         className={finalInputClassName}
+        name={name}
         {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
       />
       <span id={id ? id + '-span' : undefined} className={finalSpanClassName}>

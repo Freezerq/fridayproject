@@ -1,4 +1,7 @@
 .button {
+    box-shadow: 0 4px 18px rgba(54, 110, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    color: white;
 
 }
 
@@ -9,23 +12,22 @@
 
 .secondary {
     background-color: white;
-    color: #0066CC;
-    border: #0066CC 1px solid;
-    width: 170px;
-    height: 30px;
+
+
+
 }
 
 .default {
-    width: 132px;
-    height: 30px;
-    border-radius: 3px;
+    width: 85%;
+    height: 36px;
+    font-family: 'Montserrat';
+    line-height: 23px;
     font-style: normal;
-    font-weight: 555;
-    font-size: 14px;
-    line-height: 20px;
+    font-weight: 500;
+    font-size: 16px;
     color: white;
     border: none;
-    background-color: blue;
+    background: #366EFF;
 }
 
 .red {
@@ -34,9 +36,7 @@
 }
 
 .default:hover {
-    background-color: #0080FF;
-
-
+    background: #325dd3;
 }
 
 .red:hover {
@@ -49,12 +49,10 @@
 
 
 .default:active {
-
-    background: #0059B3;
+    background: #366EFF;
 }
 
 .secondary:active {
-
     background: #C9E5FF;
 }
 
