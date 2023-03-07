@@ -1,0 +1,93 @@
+.title{
+    font-family: 'Montserrat', sans-serif ;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 32px;
+
+    color: #000000;
+    margin-top: 35px;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 33px;
+}
+.rememberMe {
+    font-family: 'Montserrat',sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+
+    text-align: center;
+
+    color: #000000;
+    margin-top: 24px;
+    align-self: flex-start;
+}
+.forgot{
+    align-self: flex-end;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+
+    text-align: center;
+
+    color: #000000;
+    margin-right: 5px;
+    margin-top: 29px;
+    text-decoration: none;
+}
+.signIn{
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+
+    text-align: center;
+    letter-spacing: 0.01em;
+
+    color: #FFFFFF;
+}
+.already{
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+
+    text-align: center;
+
+    color: #000000;
+
+    opacity: 0.5;
+    margin-top: 31px;
+}
+.singUp{
+    margin-top: 11px;
+    margin-bottom: 42px;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+
+
+    text-align: center;
+    text-decoration-line: underline;
+
+    color: #366EFF;
+
+}
+.error {
+    margin-top: 3px;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.66;
+    color: #d32f2f;
+}

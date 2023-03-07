@@ -3,10 +3,12 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AnyAction, combineReducers } from 'redux'
 import { ThunkAction } from 'redux-thunk'
 
+import { authReducer } from '../features/Login/authReducer'
 import { profileReducer } from '../features/Profile/profileReducer'
 
 export const rootReducer = combineReducers({
   profile: profileReducer,
+  auth: authReducer,
 })
 
 export const store = configureStore({
