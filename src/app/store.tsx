@@ -1,13 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AnyAction, combineReducers } from 'redux'
-import { ThunkAction } from 'redux-thunk'
+import thunkMiddleware, { ThunkAction } from 'redux-thunk'
 
-export const rootReducer = combineReducers({})
+import { authReducer } from '../features/Profile/auth-reducer'
+
+export const rootReducer = combineReducers({
+  auth: authReducer,
+})
 
 export const store = configureStore({
-  //сюда надо класть profile: import profileReducer
   reducer: rootReducer,
+  middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware),
 })
 
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
