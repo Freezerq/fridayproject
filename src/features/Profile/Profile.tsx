@@ -1,5 +1,11 @@
 import React from 'react'
 
+import PersonalInfo from './PersonalInfo/PersonalInfo'
+
 export const Profile = () => {
-  return <div>Profile Page</div>
+  return (
+    <div>
+      <PersonalInfo />
+    </div>
+  )
 }
