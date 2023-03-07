@@ -1,0 +1,56 @@
+.segment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  .infoContainer {
+    width: 400px;
+    height: 400px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    .image {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      .avatar{
+        height: 100%;
+        width: 100%;
+        border-radius: 40px;
+      }
+      .camera{
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        bottom: 0;
+        right: 0;
+        border-radius: 40%;
+        background-color: grey;
+        img {
+          height: 90%;
+        }
+      }
+
+    }
+
+    .name {
+      width: 100%;
+      height: 20px;
+      padding: 10px;
+    }
+
+    .email {
+      width: 100%;
+      padding: 10px;
+      height: 20px;
+    }
+
+    .changeButton {
+      width: 100%;
+    }
+  }
+}

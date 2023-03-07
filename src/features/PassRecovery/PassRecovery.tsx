@@ -1,71 +1,71 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
-import { useForm, Controller } from 'react-hook-form'
+import { Paper } from '@material-ui/core'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { NavLink } from 'react-router-dom'
 
 import { useAppDispatch } from '../../app/store'
-import { CommonInput } from '../../components/common/CommonInput/CommonInput'
-import { SuperButton } from '../../components/common/SuperButton/SuperButton'
-import { emailCheck } from '../Registration/Registration'
-import style from '../Registration/registration.module.scss'
+import { getNewToken } from '../Profile/auth-reducer'
 
-type FormValues = {
-  email: string
-}
+import s from './PassRecovery.module.scss'
+// import { PATH } from '../../s1-main/m1-ui/routes/Pages'
 
 export const PassRecovery = () => {
   const dispatch = useAppDispatch()
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<FormValues>()
 
-  const submitFunc = (data: FormValues) => {
-    console.log(data)
-    // dispatch(registrationThunk({ email: data.email, password: data.password }))
+  const {
+    register,
+    handleSubmit,
+    resetField,
+    formState: { errors },
+  } = useForm<IFormInput>({
+    defaultValues: {
+      restoreEmail: '',
+    },
+  })
+  const onSubmit: SubmitHandler<IFormInput> = data => {
+    debugger
+    dispatch(getNewToken(data.restoreEmail))
+    resetField('restoreEmail')
   }
 
   return (
-    <div className={style.container}>
-      <form className={style.form} onSubmit={handleSubmit(submitFunc)} style={{ height: '456px' }}>
-        <h1 className={style.Title}>Sign Up</h1>
-        <Controller
-          rules={{
-            pattern: {
-              value: emailCheck,
-              message: 'Email is not valid',
-            },
-            required: 'Field is required',
-            maxLength: { value: 30, message: 'Maximum length of email is 30 symbols' },
-          }}
-          control={control}
-          name="email"
-          render={({ field: { onChange } }) => (
-            <div className={style.item}>
-              <CommonInput
-                autoComplete={'email'}
-                onChange={onChange} // send value to hook form
-                error={errors.email?.message}
-                fieldname={'Email'}
+    <div>
+      <div className={s.segment}>
+        <Paper style={{ padding: '10px' }}>
+          <div className={s.infoContainer}>
+            <h2>Forgot your password?</h2>
+
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <label>Email</label>
+              <input
+                {...register('restoreEmail', {
+                  required: 'Email is required',
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: 'invalid email address',
+                  },
+                })}
               />
+              <p>{errors.restoreEmail?.message}</p>
+
+              <div className={s.instructions}>
+                Enter you email adress and we will send you further instructions
+              </div>
+              <input type={'submit'} />
+            </form>
+            <div className={s.instructions}>Did you remember you password?</div>
+            <div>
+              <NavLink to={'/login'}>Try logging in</NavLink>
             </div>
-          )}
-        />
-        <div className={style.emailRecoveryText}>
-          Enter your email address and we will send you further instructions
-        </div>
-        <SuperButton
-          style={{ marginTop: '65px', letterSpacing: '0.01em', fontSize: '1.3rem' }}
-          type="submit"
-        >
-          Send Instructions
-        </SuperButton>
-        <div className={style.rememberPasswordText}>Did you remember your password?</div>
-        <NavLink className={style.navLinkSignIn} to={'/login'} style={{ marginTop: '11px' }}>
-          Try logging in
-        </NavLink>
-      </form>
+          </div>
+        </Paper>
+      </div>
     </div>
   )
+}
+
+//types
+interface IFormInput {
+  restoreEmail: string
 }

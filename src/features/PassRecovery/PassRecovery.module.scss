@@ -1,0 +1,48 @@
+.segment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  .infoContainer {
+    width: 400px;
+    height: 400px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      height: 50%;
+      justify-content: space-around;
+
+      label {
+        font-size: 12px;
+      }
+
+      input {
+        width: 100%;
+        padding: 5px;
+      }
+
+      p {
+        margin: 0;
+        height: 30px;
+        font-size: 15px;
+        color: #a40505;
+      }
+    }
+
+    .instructions {
+      width: 100%;
+      font-size: 10px;
+      padding: 10px 0;
+    }
+
+
+  }
+}
