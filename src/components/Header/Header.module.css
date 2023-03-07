@@ -1,0 +1,21 @@
+.nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.nav a {
+    padding: 0 2rem;
+    font-size: 1rem;
+    color: #041e21;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    color: #12852b;
+    cursor: pointer;
+}
+
+.nav a.active {
+    text-decoration: underline;
+}

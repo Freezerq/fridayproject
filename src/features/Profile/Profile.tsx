@@ -4,7 +4,7 @@ import { Paper } from '@material-ui/core'
 import { Navigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../app/store'
-// import { PATH } from '../../s1-main/m1-ui/routes/Pages'
+import { PATH } from '../Routes/AppRoutes'
 
 import { changeProfileName, getAuthUserData } from './auth-reducer'
 import PersonalInfo from './PersonalInfo/PersonalInfo'
@@ -30,7 +30,7 @@ export const Profile = React.memo(() => {
   }, [])
 
   //checking if user is authenticated
-  if (!isLoggedIn) return <Navigate to={'/login'} />
+  if (!isLoggedIn) return <Navigate to={PATH.LOGIN} />
 
   return (
     <div>

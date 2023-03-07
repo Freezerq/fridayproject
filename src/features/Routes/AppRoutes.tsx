@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { ComponentTest } from '../ComponentTest/ComponentTest'
 import { CreateNewPassword } from '../CreateNewPassword/CreateNewPassword'
@@ -10,17 +10,31 @@ import { PassRecovery } from '../PassRecovery/PassRecovery'
 import { Profile } from '../Profile/Profile'
 import { Registration } from '../Registration/Registration'
 
+export const PATH = {
+  LOGIN: '/login',
+  REGISTRATION: '/registration',
+  PROFILE: '/profile',
+  ERROR404: '/errorPage',
+  PASSWORD_RESTORE: '/passRecovery',
+  NEW_PASSWORD: '/createNewPassword',
+  TEST_SUPER_COMPONENTS: '/componentTest',
+}
+
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<div>Start page </div>} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/registration" element={<Registration />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/errorPage" element={<ErrorPage />} />
-      <Route path="/passRecovery" element={<PassRecovery />} />
-      <Route path="/createNewPassword" element={<CreateNewPassword />} />
-      <Route path="/componentTest" element={<ComponentTest />} />
+      <Route path={'/'} element={<Navigate to={PATH.LOGIN} />} />
+
+      <Route path={PATH.LOGIN} element={<Login />} />
+      <Route path={PATH.REGISTRATION} element={<Registration />} />
+      <Route path={PATH.PROFILE} element={<Profile />} />
+      <Route path={PATH.ERROR404} element={<ErrorPage />} />
+      <Route path={PATH.PASSWORD_RESTORE} element={<PassRecovery />} />
+      <Route path={PATH.NEW_PASSWORD} element={<CreateNewPassword />} />
+
+      <Route path={PATH.TEST_SUPER_COMPONENTS} element={<ComponentTest />} />
+
+      <Route path={'/*'} element={<ErrorPage />} />
     </Routes>
   )
 }
