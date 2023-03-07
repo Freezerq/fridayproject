@@ -28,10 +28,6 @@
         top: 35px;
         right: 5px;
       }
-
-      .eyeIcon:hover {
-        color: #9b9b9b;
-      }
     }
 
     .navLinkHaveAnAcc {
@@ -54,5 +50,30 @@
       margin-top: 30px;
     }
 
+    .emailRecoveryText {
+      font-family: 'Montserrat';
+      width: 85%;
+      margin-top: 26px;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      opacity: 50%;
+    }
+
+    .rememberPasswordText {
+      margin-top: 31px;
+      width: 254px;
+      height: 24px;
+      left: 513px;
+      top: 475px;
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 24px;
+      opacity: 0.5;
+      text-align: center;
+    }
   }
 }

@@ -9,7 +9,7 @@ $gray: #9b9b9b;
   width: 100%;
 }
 
-.form__field {
+.inputField {
   font-family: inherit;
   width: 100%;
   border: 0;
@@ -32,6 +32,10 @@ $gray: #9b9b9b;
   }
 }
 
+.error {
+  border-bottom: 1px solid red;
+}
+
 .form__label {
   position: absolute;
   top: 0;
@@ -40,21 +44,36 @@ $gray: #9b9b9b;
   font-size: 1rem;
   color: #000000;
   opacity: 50%;
+  z-index: -1;
 }
 
-.form__field:focus {
+.inputField:focus {
   ~ .form__label {
     position: absolute;
     top: 0;
     display: block;
     transition: 0.2s;
     font-size: 1rem;
-    font-weight:500;
+    font-weight: 500;
   }
+
   padding-bottom: 6px;
   font-weight: 500;
   border-width: 2px;
 }
+
+
+.errorMessageBox {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  .errorMessage {
+    color: red;
+    position: absolute;
+  }
+}
+
 /* reset input */
 //.form__field{
 //  &:required,&:invalid { box-shadow:none; }

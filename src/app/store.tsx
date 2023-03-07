@@ -5,13 +5,17 @@ import { AnyAction, combineReducers } from 'redux'
 import { ThunkAction } from 'redux-thunk'
 
 import { profileReducer } from '../features/Profile/profileReducer'
+import { registrationReducer } from '../features/Registration/registrationSlice'
+
+import { appReducer } from './appSlice'
 
 export const rootReducer = combineReducers({
   profile: profileReducer,
+  app: appReducer,
+  registration: registrationReducer,
 })
 
 export const store = configureStore({
-  //сюда надо класть profile: import profileReducer
   reducer: rootReducer,
 })
 

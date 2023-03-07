@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useForm, Controller } from 'react-hook-form'
-import { NavLink } from 'react-router-dom'
+import { NavLink, redirect, useNavigate } from 'react-router-dom'
 
-import { useAppDispatch } from '../../app/store'
+import { useAppDispatch, useAppSelector } from '../../app/store'
+import { CommonInput } from '../../components/common/CommonInput/CommonInput'
 import eye from '../../components/common/image/eyeIcon.svg'
 import { SuperButton } from '../../components/common/SuperButton/SuperButton'
 
-import { CommonInput } from './CommonInput'
 import style from './registration.module.scss'
 import { registrationThunk } from './registrationSlice'
 
-const emailCheck =
+export const emailCheck =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 type FormValues = {
@@ -20,18 +20,24 @@ type FormValues = {
   confirmPassword: string
 }
 
-export function Registration() {
+export const Registration = () => {
   const dispatch = useAppDispatch()
+  const isRegistered = useAppSelector(state => state.registration.isRegistered)
+  const navigate = useNavigate()
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = useForm<FormValues>()
 
-  const submitFunc = (data: FormValues) => {
-    if (data.password === data.confirmPassword) {
-      dispatch(registrationThunk({ email: data.email, password: data.password }))
+  useEffect(() => {
+    if (isRegistered) {
+      navigate('login')
     }
+  }, [isRegistered])
+
+  const submitFunc = (data: FormValues) => {
+    dispatch(registrationThunk({ email: data.email, password: data.password }))
   }
 
   const [isPass1Visible, setIsPass1Visible] = useState('password')

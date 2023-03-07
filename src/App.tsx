@@ -3,11 +3,16 @@ import React from 'react'
 import './App.css'
 import { NavLink } from 'react-router-dom'
 
+import { useAppSelector } from './app/store'
+import { LinearProgress } from './components/common/LinearProgress/LinearProgress'
 import AppRoutes from './features/Routes/AppRoutes'
 
 const App = () => {
+  const isLoading = useAppSelector(state => state.app.status)
+
   return (
     <div className="App">
+      {isLoading === 'loading' ? <LinearProgress /> : null}
       <NavLink style={{ marginRight: '20px' }} to={'/login'}>
         LoginPage
       </NavLink>
