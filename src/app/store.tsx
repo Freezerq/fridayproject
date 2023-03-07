@@ -7,11 +7,15 @@ import { authReducer } from '../features/Profile/auth-reducer'
 import { registrationReducer } from '../features/Registration/registrationSlice'
 
 import { appReducer } from './appSlice'
+import { loginReducer } from '../features/Login/loginReducer'
+import { profileReducer } from '../features/Profile/profileReducer'
 
 export const rootReducer = combineReducers({
   app: appReducer,
   registration: registrationReducer,
   auth: authReducer,
+  profile: profileReducer,
+  login: loginReducer,
 })
 
 export const store = configureStore({
