@@ -1,9 +1,7 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit'
-import axios, { AxiosError } from 'axios'
 
 import { authAPI, LoginResponseType, LoginType } from './authAPI'
 
-// @ts-ignore
 const initialState = {
   isLoggedIn: false,
   profile: {} as LoginResponseType,
@@ -22,7 +20,7 @@ export const authSlice = createSlice({
   },
 })
 
-export const authReducer = authSlice.reducer
+export const loginReducer = authSlice.reducer
 
 export const { setIsLoggedInAC, testProfileAC } = authSlice.actions
 //thunk

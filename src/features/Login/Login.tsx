@@ -18,8 +18,8 @@ import { Navigate, NavLink } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../app/store'
 
 import { LoginType } from './authAPI'
-import { loginTC } from './authReducer'
 import s from './Login.module.css'
+import { loginTC } from './loginReducer'
 
 export const Login: FC = () => {
   const [showPassword, setShowPassword] = React.useState(false)
@@ -30,7 +30,7 @@ export const Login: FC = () => {
     event.preventDefault()
   }
   const dispatch = useAppDispatch()
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+  const isLoggedIn = useAppSelector(state => state.login.isLoggedIn)
   const {
     register,
     handleSubmit,
