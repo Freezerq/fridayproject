@@ -2,6 +2,8 @@ import React, { ChangeEvent, useState } from 'react'
 
 import { TextField } from '@material-ui/core'
 
+import pencil from '../image/pencil.svg'
+
 import s from './EditableSpan.module.scss'
 
 type EditableSpanPropsType = {
@@ -31,7 +33,7 @@ export const EditableSpan = React.memo(function (props: EditableSpanPropsType) {
   ) : (
     <span onDoubleClick={activateEditMode}>
       {props.value}
-      <img src={'../image/pencil.svg'} className={s.pen} alt={'change name'} />
+      <img src={pencil} className={s.pen} alt={'change name'} />
     </span>
   )
 })

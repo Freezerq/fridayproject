@@ -6,9 +6,9 @@ import { NavLink } from 'react-router-dom'
 
 import { useAppDispatch } from '../../app/store'
 import { getNewToken } from '../Profile/auth-reducer'
+import { PATH } from '../Routes/AppRoutes'
 
-import s from './PassRecovery.module.scss'
-// import { PATH } from '../../s1-main/m1-ui/routes/Pages'
+import s from './PassRecovery.module.css'
 
 export const PassRecovery = () => {
   const dispatch = useAppDispatch()
@@ -56,7 +56,7 @@ export const PassRecovery = () => {
             </form>
             <div className={s.instructions}>Did you remember you password?</div>
             <div>
-              <NavLink to={'/login'}>Try logging in</NavLink>
+              <NavLink to={PATH.LOGIN}>Try logging in</NavLink>
             </div>
           </div>
         </Paper>
