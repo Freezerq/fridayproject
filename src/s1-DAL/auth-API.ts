@@ -52,15 +52,3 @@ export type UserType = {
   token: string
   tokenDeathTime: number
 }
-type AddedUserType = {
-  created: string
-  email: string
-  isAdmin: boolean
-  name: string
-  publicCardPacksCount: number
-  rememberMe: boolean
-  updated: string
-  verified: boolean
-  __v: number
-  _id: string
-}

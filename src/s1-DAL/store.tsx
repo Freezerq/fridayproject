@@ -3,11 +3,10 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AnyAction, combineReducers } from 'redux'
 import thunkMiddleware, { ThunkAction } from 'redux-thunk'
 
-import { loginReducer } from '../features/Login/loginReducer'
-import { authReducer } from '../features/Profile/auth-reducer'
-import { registrationReducer } from '../features/Registration/registrationSlice'
-
-import { appReducer } from './appSlice'
+import { appReducer } from '../s2-BLL/appSlice'
+import { authReducer } from '../s2-BLL/authSlice'
+import { loginReducer } from '../s2-BLL/loginSlice'
+import { registrationReducer } from '../s2-BLL/registrationSlice'
 
 export const rootReducer = combineReducers({
   app: appReducer,

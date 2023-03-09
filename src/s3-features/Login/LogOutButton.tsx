@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { useAppDispatch } from '../../app/store'
-import logOutIcon from '../../components/common/image/logout.svg'
-import { SuperButton } from '../../components/common/SuperButton/SuperButton'
+import { useAppDispatch } from '../../s1-DAL/store'
+import { logOutTC } from '../../s2-BLL/loginSlice'
+import logOutIcon from '../../s4-components/common/image/logout.svg'
+import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
 
-import { logOutTC } from './loginReducer'
 import style from './LogOutButton.module.scss'
 
 export const LogOutButton = () => {

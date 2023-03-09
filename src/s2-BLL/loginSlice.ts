@@ -1,17 +1,17 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit'
 
-import { setAppError, setAppStatus } from '../../app/appSlice'
-import { errorUtils } from '../../utils/errorUtils'
-import { setAuthUserData } from '../Profile/auth-reducer'
+import { loginAPI, LoginType } from '../s1-DAL/loginAPI'
+import { errorUtils } from '../utils/errorUtils'
 
-import { loginAPI, LoginType } from './loginAPI'
+import { setAppError, setAppStatus } from './appSlice'
+import { setAuthUserData } from './authSlice'
 
 const initialState = {
   isLoggedIn: false,
 }
 
-export const authSlice = createSlice({
-  name: 'auth',
+export const loginSlice = createSlice({
+  name: 'login',
   initialState,
   reducers: {
     setIsLoggedInAC(state, action: PayloadAction<{ value: boolean }>) {
@@ -20,9 +20,9 @@ export const authSlice = createSlice({
   },
 })
 
-export const loginReducer = authSlice.reducer
+export const loginReducer = loginSlice.reducer
 
-export const { setIsLoggedInAC } = authSlice.actions
+export const { setIsLoggedInAC } = loginSlice.actions
 
 //thunk
 export const loginTC = (data: LoginType) => async (dispatch: Dispatch) => {

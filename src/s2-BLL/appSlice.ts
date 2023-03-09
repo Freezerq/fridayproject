@@ -1,10 +1,10 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit'
 
-import { setIsLoggedInAC } from '../features/Login/loginReducer'
-import { setAuthUserData } from '../features/Profile/auth-reducer'
+import { appAPI } from '../s1-DAL/appAPI'
 import { errorUtils } from '../utils/errorUtils'
 
-import { appAPI } from './appAPI'
+import { setAuthUserData } from './authSlice'
+import { setIsLoggedInAC } from './loginSlice'
 
 const initialState: InitialStateType = {
   error: null,

@@ -15,12 +15,12 @@ import TextField from '@mui/material/TextField'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Navigate, NavLink } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '../../app/store'
+import { LoginType } from '../../s1-DAL/loginAPI'
+import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
+import { loginTC } from '../../s2-BLL/loginSlice'
 import { PATH } from '../Routes/AppRoutes'
 
 import s from './Login.module.css'
-import { LoginType } from './loginAPI'
-import { loginTC } from './loginReducer'
 
 export const Login: FC = () => {
   const [showPassword, setShowPassword] = useState(false)

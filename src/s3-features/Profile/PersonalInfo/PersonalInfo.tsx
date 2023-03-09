@@ -1,8 +1,8 @@
 import React from 'react'
 
-import changePhotoIcon from '../../../components/common/image/camera.svg'
-import { SuperButton } from '../../../components/common/SuperButton/SuperButton'
-import { UserType } from '../auth-API'
+import { UserType } from '../../../s1-DAL/auth-API'
+import changePhotoIcon from '../../../s4-components/common/image/camera.svg'
+import { SuperButton } from '../../../s4-components/common/SuperButton/SuperButton'
 import { EditableSpan } from '../EditableSpan/EditableSpan'
 import style from '../Profile.module.scss'
 const PersonalInfo = ({ profile, onChangeHandler, logoutHandler }: PersonalInfoPropsTypes) => {

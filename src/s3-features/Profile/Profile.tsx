@@ -4,11 +4,11 @@ import React, { useCallback, useEffect } from 'react'
 
 import { Navigate } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '../../app/store'
-import { logOutTC } from '../Login/loginReducer'
+import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
+import { changeProfileName, getAuthUserData } from '../../s2-BLL/authSlice'
+import { logOutTC } from '../../s2-BLL/loginSlice'
 import { PATH } from '../Routes/AppRoutes'
 
-import { changeProfileName, getAuthUserData } from './auth-reducer'
 import PersonalInfo from './PersonalInfo/PersonalInfo'
 import style from './Profile.module.scss'
 

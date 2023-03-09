@@ -3,13 +3,13 @@ import React, { useEffect, useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { Navigate, NavLink, useNavigate } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '../../app/store'
-import { CommonInput } from '../../components/common/CommonInput/CommonInput'
-import eye from '../../components/common/image/eyeIcon.svg'
-import { SuperButton } from '../../components/common/SuperButton/SuperButton'
+import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
+import { registrationThunk } from '../../s2-BLL/registrationSlice'
+import { CommonInput } from '../../s4-components/common/CommonInput/CommonInput'
+import eye from '../../s4-components/common/image/eyeIcon.svg'
+import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
 
 import style from './registration.module.scss'
-import { registrationThunk } from './registrationSlice'
 
 export const emailCheck =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/

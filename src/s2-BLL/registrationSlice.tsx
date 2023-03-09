@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-import { setAppError, setAppStatus } from '../../app/appSlice'
-import { instance } from '../Profile/auth-API'
+import { instance } from '../s1-DAL/auth-API'
+
+import { setAppError, setAppStatus } from './appSlice'
 
 const initialState = {
   isRegistered: false,

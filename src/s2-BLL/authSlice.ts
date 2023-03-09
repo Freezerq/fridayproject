@@ -2,9 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios, { AxiosError } from 'axios'
 import { Dispatch } from 'redux'
 
-import { setIsLoggedInAC } from '../Login/loginReducer'
+import { authAPI, UserType } from '../s1-DAL/auth-API'
+import { errorUtils } from '../utils/errorUtils'
 
-import { authAPI, UserType } from './auth-API'
+import { setAppError, setAppStatus, setIsInitializedAC } from './appSlice'
+import { setIsLoggedInAC } from './loginSlice'
 
 const initialState = {
   profile: {} as UserType,
@@ -33,22 +35,19 @@ export const { setAuthUserData, changeName, changeAvatar } = slice.actions
 
 //thunk creators
 export const getAuthUserData = () => async (dispatch: Dispatch) => {
+  dispatch(setAppStatus({ status: 'loading' }))
   try {
     const result = await authAPI.authMe()
 
     if (result.data) {
       dispatch(setAuthUserData({ data: result.data }))
-      dispatch(setIsLoggedInAC({ value: true }))
     }
+    dispatch(setIsLoggedInAC({ value: true }))
+    dispatch(setAppStatus({ status: 'succeeded' }))
   } catch (e) {
-    const err = e as Error | AxiosError<{ error: string }>
-
-    if (axios.isAxiosError(err)) {
-      const error = err.response?.data ? err.response.data.error : err.message
-      //dispatch(setError(error))
-    } else {
-      //dispatch(setError(`Native error ${err.message}`))
-    }
+    errorUtils(dispatch, e)
+  } finally {
+    dispatch(setIsInitializedAC({ value: true }))
   }
 }
 export const changeProfileName = (name: string) => async (dispatch: Dispatch) => {

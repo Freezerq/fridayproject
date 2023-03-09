@@ -1,10 +1,10 @@
 import { AppBar, Button, Toolbar, Typography } from '@material-ui/core'
 import { NavLink } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '../../app/store'
-import { logOutTC } from '../../features/Login/loginReducer'
-import { LogOutButton } from '../../features/Login/LogOutButton'
-import { PATH } from '../../features/Routes/AppRoutes'
+import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
+import { logOutTC } from '../../s2-BLL/loginSlice'
+import { LogOutButton } from '../../s3-features/Login/LogOutButton'
+import { PATH } from '../../s3-features/Routes/AppRoutes'
 
 import s from './Header.module.css'
 
