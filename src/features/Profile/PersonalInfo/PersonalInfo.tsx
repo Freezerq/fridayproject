@@ -1,28 +1,27 @@
 import React from 'react'
 
-import { LogOutButton } from '../../Login/LogOutButton'
+import changePhotoIcon from '../../../components/common/image/camera.svg'
+import { SuperButton } from '../../../components/common/SuperButton/SuperButton'
+import { UserType } from '../auth-API'
 import { EditableSpan } from '../EditableSpan/EditableSpan'
-import cameraPhoto from '../image/camera.svg'
-import s from '../Profile.module.css'
+import style from '../Profile.module.scss'
+const PersonalInfo = ({ profile, onChangeHandler, logoutHandler }: PersonalInfoPropsTypes) => {
+  const avaImage = 'https://vjoy.cc/wp-content/uploads/2019/06/9-29.jpg'
 
-const PersonalInfo = ({ avatar, name, email, onChangeHandler }: PersonalInfoPropsTypes) => {
   return (
-    <div className={s.infoContainer}>
-      <h2>Personal Information</h2>
-      <div className={s.image}>
-        {/*<img src={userAvatar ? userAvatar : avaImage}/>*/}
-        <img src={avatar} className={s.avatar} />
-        <div className={s.camera}>
-          <img className={s.img} src={cameraPhoto} alt={'change profile picture'} />
+    <div className={style.form}>
+      <h2 className={style.title}>Personal Information</h2>
+      <div className={style.image}>
+        <img src={avaImage} className={style.avatar} />
+        <div className={style.camera}>
+          <img src={changePhotoIcon} alt={'change profile picture'} />
         </div>
       </div>
-      <div className={s.name}>
-        <EditableSpan value={name} onChange={onChangeHandler} />
+      <div className={style.name}>
+        <EditableSpan value={profile.name} onChange={onChangeHandler} />
       </div>
-      <div className={s.email}>{email}</div>
-      <div>
-        <LogOutButton />
-      </div>
+      <div className={style.email}>{profile.email}</div>
+      <SuperButton onClick={logoutHandler}>Log out</SuperButton>
     </div>
   )
 }
@@ -31,8 +30,7 @@ export default PersonalInfo
 
 //types
 type PersonalInfoPropsTypes = {
-  avatar: string
-  name: string
-  email: string
+  profile: UserType
   onChangeHandler: (newName: string) => void
+  logoutHandler: () => void
 }

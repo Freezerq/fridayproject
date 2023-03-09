@@ -1,49 +1,45 @@
+import { userInfo } from 'os'
+
 import React, { useCallback, useEffect } from 'react'
 
-import Paper from '@mui/material/Paper'
 import { Navigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../app/store'
+import { logOutTC } from '../Login/loginReducer'
 import { PATH } from '../Routes/AppRoutes'
 
-import { changeProfileName } from './auth-reducer'
+import { changeProfileName, getAuthUserData } from './auth-reducer'
 import PersonalInfo from './PersonalInfo/PersonalInfo'
-import s from './Profile.module.css'
+import style from './Profile.module.scss'
 
-export const Profile = React.memo(() => {
-  const avaImage = 'https://vjoy.cc/wp-content/uploads/2019/06/9-29.jpg'
-
-  const dispatch = useAppDispatch()
+export const Profile = () => {
+  const userInfo = useAppSelector(state => state.auth.profile)
   const isLoggedIn = useAppSelector<boolean>(state => state.login.isLoggedIn)
-  const userName = useAppSelector<string>(state => state.auth.name)
-  const userEmail = useAppSelector<string>(state => state.auth.email)
-  const userAvatar = useAppSelector<string | undefined>(state => state.auth.avatar)
+  const dispatch = useAppDispatch()
 
-  // useEffect(() => {
-  //   if (!isLoggedIn) {
-  //     dispatch(getAuthUserData())
-  //   }
-  // }, [])
+  const logoutHandler = () => {
+    dispatch(logOutTC())
+  }
+
+  useEffect(() => {
+    dispatch(getAuthUserData())
+  }, [])
 
   const onNameChangeHandler = useCallback((newName: string) => {
     dispatch(changeProfileName(newName))
   }, [])
 
-  //checking if user is authenticated
   if (!isLoggedIn) return <Navigate to={PATH.LOGIN} />
 
   return (
     <div>
-      <div className={s.segment}>
-        <Paper style={{ padding: '10px' }}>
-          <PersonalInfo
-            avatar={avaImage}
-            name={userName}
-            email={userEmail}
-            onChangeHandler={onNameChangeHandler}
-          />
-        </Paper>
+      <div className={style.container}>
+        <PersonalInfo
+          profile={userInfo}
+          onChangeHandler={onNameChangeHandler}
+          logoutHandler={logoutHandler}
+        />
       </div>
     </div>
   )
-})
+}
