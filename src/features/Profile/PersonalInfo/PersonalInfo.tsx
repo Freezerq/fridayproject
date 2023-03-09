@@ -12,7 +12,7 @@ const PersonalInfo = ({ avatar, name, email, onChangeHandler }: PersonalInfoProp
         {/*<img src={userAvatar ? userAvatar : avaImage}/>*/}
         <img src={avatar} className={s.avatar} />
         <div className={s.camera}>
-          <img src={cameraPhoto} alt={'change profile picture'} />
+          <img className={s.img} src={cameraPhoto} alt={'change profile picture'} />
         </div>
       </div>
       <div className={s.name}>
