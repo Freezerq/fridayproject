@@ -18,7 +18,6 @@ export const rootReducer = combineReducers({
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware),
 })
 
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector

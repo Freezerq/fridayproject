@@ -19,7 +19,7 @@ const registrationSlice = createSlice({
 
 export const registrationThunk = createAsyncThunk(
   'registration',
-  async function (data: { email: string; password: string }, { rejectWithValue, dispatch }) {
+  async function (data: { email: string; password: string }, { dispatch }) {
     dispatch(setAppStatus({ status: 'loading' }))
     try {
       await instance.post('/auth/register', { ...data })

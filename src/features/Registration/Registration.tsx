@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import { useForm, Controller } from 'react-hook-form'
-import { NavLink, redirect, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../app/store'
 import { CommonInput } from '../../components/common/CommonInput/CommonInput'
@@ -144,9 +144,7 @@ export const Registration = () => {
         >
           Sign Up
         </SuperButton>
-        <NavLink className={style.navLinkHaveAnAcc} to={'/passRecovery'}>
-          Already have an account?
-        </NavLink>
+        <div className={style.divHaveAnAcc}>Already have an account?</div>
         <NavLink className={style.navLinkSignIn} to={'/login'}>
           Sign In
         </NavLink>

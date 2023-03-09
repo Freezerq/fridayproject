@@ -1,7 +1,9 @@
 import { AppBar, Button, IconButton, LinearProgress, Toolbar, Typography } from '@material-ui/core'
 import { NavLink } from 'react-router-dom'
 
-import { useAppSelector } from '../../app/store'
+import { useAppDispatch, useAppSelector } from '../../app/store'
+import { logOutTC } from '../../features/Login/loginReducer'
+import { LogOutButton } from '../../features/Login/LogOutButton'
 import { PATH } from '../../features/Routes/AppRoutes'
 
 import s from './Header.module.css'
@@ -22,7 +24,7 @@ const Header = () => {
             <NavLink to={PATH.NEW_PASSWORD}>NEW_PASSWORD</NavLink>
             <NavLink to={PATH.TEST_SUPER_COMPONENTS}>TEST_SUPER_COMPONENTS</NavLink>
           </Typography>
-          {isLoggedIn && <Button color="primary">Log out</Button>}
+          {isLoggedIn && <LogOutButton />}
         </Toolbar>
       </AppBar>
     </div>
