@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import { useForm, Controller } from 'react-hook-form'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Navigate, NavLink, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../app/store'
 import { CommonInput } from '../../components/common/CommonInput/CommonInput'
@@ -58,6 +58,10 @@ export const Registration = () => {
     } else {
       setIsPass2Visible('password')
     }
+  }
+
+  if (isRegistered) {
+    return <Navigate to={'/profile'} />
   }
 
   return (
