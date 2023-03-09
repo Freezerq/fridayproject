@@ -4,6 +4,7 @@ import './App.css'
 
 import { useAppSelector } from './app/store'
 import { LinearProgress } from './components/common/LinearProgress/LinearProgress'
+import { ErrorSnackbar } from './components/ErrorSnackBar/ErrorSnackBar'
 import { Layout } from './components/Header/Layout'
 import AppRoutes from './features/Routes/AppRoutes'
 
@@ -37,6 +38,7 @@ const App = () => {
     //   <AppRoutes />
     // </div>
     <div className="App">
+      <ErrorSnackbar />
       <Layout>
         <AppRoutes />
       </Layout>

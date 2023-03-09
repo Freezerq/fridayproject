@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import { UserType } from '../Profile/auth-API'
+
 export const instance = axios.create({
   // baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',
   baseURL:
@@ -10,7 +12,7 @@ export const instance = axios.create({
 })
 export const authAPI = {
   login(data: LoginType) {
-    return instance.post<LoginResponseType>('auth/login', data)
+    return instance.post<UserType>('auth/login', data)
   },
   logout() {
     return instance.delete('auth/me')
@@ -20,18 +22,4 @@ export type LoginType = {
   email: string
   password: string
   rememberMe: false
-}
-export type LoginResponseType = {
-  _id: string
-  email: string
-  name: string
-  avatar?: string
-  publicCardPacksCount: number
-
-  created: Date
-  updated: Date
-  isAdmin: boolean
-  verified: boolean
-
-  error?: string
 }

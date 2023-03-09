@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
@@ -22,7 +22,7 @@ import s from './Login.module.css'
 import { loginTC } from './loginReducer'
 
 export const Login: FC = () => {
-  const [showPassword, setShowPassword] = React.useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
   const handleClickShowPassword = () => setShowPassword(show => !show)
 

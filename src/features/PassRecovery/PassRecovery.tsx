@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Paper } from '@material-ui/core'
+import Paper from '@mui/material/Paper'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { NavLink } from 'react-router-dom'
 

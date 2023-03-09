@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react'
 
-import { TextField } from '@material-ui/core'
+import TextField from '@mui/material/TextField'
 
 import s from './EditableSpan.module.scss'
 

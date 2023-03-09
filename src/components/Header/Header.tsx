@@ -1,4 +1,4 @@
-import { AppBar, Button, IconButton, LinearProgress, Toolbar, Typography } from '@material-ui/core'
+import { AppBar, Button, Toolbar, Typography } from '@material-ui/core'
 import { NavLink } from 'react-router-dom'
 
 import { useAppSelector } from '../../app/store'

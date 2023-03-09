@@ -1,10 +1,13 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit'
 
-import { authAPI, LoginResponseType, LoginType } from './authAPI'
+import { setAppStatus } from '../../app/appSlice'
+import { errorUtils } from '../../utils/errorUtils'
+import { setAuthUserData } from '../Profile/auth-reducer'
+
+import { authAPI, LoginType } from './authAPI'
 
 const initialState = {
   isLoggedIn: false,
-  profile: {} as LoginResponseType,
 }
 
 export const authSlice = createSlice({
@@ -14,26 +17,22 @@ export const authSlice = createSlice({
     setIsLoggedInAC(state, action: PayloadAction<{ value: boolean }>) {
       state.isLoggedIn = action.payload.value
     },
-    testProfileAC(state, action: PayloadAction<LoginResponseType>) {
-      state.profile = action.payload
-    },
   },
 })
 
 export const loginReducer = authSlice.reducer
 
-export const { setIsLoggedInAC, testProfileAC } = authSlice.actions
+export const { setIsLoggedInAC } = authSlice.actions
 //thunk
 export const loginTC = (data: LoginType) => async (dispatch: Dispatch) => {
+  dispatch(setAppStatus({ status: 'loading' }))
   try {
     const response = await authAPI.login(data)
 
     dispatch(setIsLoggedInAC({ value: true }))
-    dispatch(testProfileAC(response.data))
-    //отправить данные response.data в профайл
+    dispatch(setAuthUserData({ data: response.data, isAuth: true }))
+    dispatch(setAppStatus({ status: 'succeeded' }))
   } catch (e: any) {
-    const error = e.response ? e.response.data.error : e.message + ', more details in the console'
-
-    console.log('Error: ', error)
+    errorUtils(dispatch, e)
   }
 }
