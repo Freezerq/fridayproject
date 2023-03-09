@@ -16,9 +16,10 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { Navigate, NavLink } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../app/store'
+import { PATH } from '../Routes/AppRoutes'
 
-import { LoginType } from './authAPI'
 import s from './Login.module.css'
+import { LoginType } from './loginAPI'
 import { loginTC } from './loginReducer'
 
 export const Login: FC = () => {
@@ -97,7 +98,7 @@ export const Login: FC = () => {
               <Checkbox id="rememberMe" {...register('rememberMe')} />
               <span>Remember me</span>
             </div>
-            <NavLink to={'./passRecovery'} className={s.forgot}>
+            <NavLink to={PATH.PASSWORD_RESTORE} className={s.forgot}>
               Forgot Password?
             </NavLink>
             <Button

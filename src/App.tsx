@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import './App.css'
 
-import { useAppSelector } from './app/store'
+import { me } from './app/appSlice'
+import { useAppDispatch, useAppSelector } from './app/store'
 import { LinearProgress } from './components/common/LinearProgress/LinearProgress'
 import { ErrorSnackbar } from './components/ErrorSnackBar/ErrorSnackBar'
 import { Layout } from './components/Header/Layout'
@@ -10,6 +11,11 @@ import AppRoutes from './features/Routes/AppRoutes'
 
 const App = () => {
   const isLoading = useAppSelector(state => state.app.status)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(me())
+  }, [])
 
   return (
     // <div className="App">
@@ -40,9 +46,9 @@ const App = () => {
     <div className="App">
       <ErrorSnackbar />
       <Layout>
+        {isLoading === 'loading' ? <LinearProgress /> : null}
         <AppRoutes />
       </Layout>
-      {isLoading === 'loading' ? <LinearProgress /> : null}
     </div>
   )
 }

@@ -10,7 +10,7 @@ export const instance = axios.create({
       : 'https://neko-back.herokuapp.com/2.0/',
   withCredentials: true,
 })
-export const authAPI = {
+export const loginAPI = {
   login(data: LoginType) {
     return instance.post<UserType>('auth/login', data)
   },

@@ -7,7 +7,7 @@ import { PATH } from '../../features/Routes/AppRoutes'
 import s from './Header.module.css'
 
 const Header = () => {
-  const isLoggedIn = useAppSelector<boolean>(state => state.auth.isAuth)
+  const isLoggedIn = useAppSelector<boolean>(state => state.login.isLoggedIn)
 
   return (
     <div className={s.nav}>

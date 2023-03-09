@@ -13,6 +13,5 @@ export const errorUtils = (dispatch: Dispatch, e: any) => {
   } else {
     dispatch(setAppError({ error: `native error ${err.message}` }))
   }
-
   dispatch(setAppStatus({ status: 'failed' }))
 }
