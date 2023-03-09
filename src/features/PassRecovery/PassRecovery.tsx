@@ -1,71 +1,77 @@
 import React from 'react'
 
-import Paper from '@mui/material/Paper'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { NavLink } from 'react-router-dom'
 
 import { useAppDispatch } from '../../app/store'
+import { CommonInput } from '../../components/common/CommonInput/CommonInput'
+import { SuperButton } from '../../components/common/SuperButton/SuperButton'
 import { getNewToken } from '../Profile/auth-reducer'
+import { emailCheck } from '../Registration/Registration'
 import { PATH } from '../Routes/AppRoutes'
 
-import s from './PassRecovery.module.css'
+import style from './PassRecovery.module.scss'
 
 export const PassRecovery = () => {
   const dispatch = useAppDispatch()
 
   const {
-    register,
+    control,
     handleSubmit,
-    resetField,
     formState: { errors },
-  } = useForm<IFormInput>({
-    defaultValues: {
-      restoreEmail: '',
-    },
-  })
-  const onSubmit: SubmitHandler<IFormInput> = data => {
-    debugger
-    dispatch(getNewToken(data.restoreEmail))
-    resetField('restoreEmail')
+  } = useForm<FormValues>()
+
+  const onSubmit: SubmitHandler<FormValues> = data => {
+    dispatch(getNewToken(data.email))
   }
 
   return (
-    <div>
-      <div className={s.segment}>
-        <Paper style={{ padding: '10px' }}>
-          <div className={s.infoContainer}>
-            <h2>Forgot your password?</h2>
-
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <label>Email</label>
-              <input
-                {...register('restoreEmail', {
-                  required: 'Email is required',
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'invalid email address',
-                  },
-                })}
+    <div className={style.container}>
+      <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+        <h1 className={style.title}>Forgot your password?</h1>
+        <Controller
+          rules={{
+            pattern: {
+              value: emailCheck,
+              message: 'Email is not valid',
+            },
+            required: 'Field is required',
+            maxLength: { value: 30, message: 'Maximum length of email is 30 symbols' },
+          }}
+          control={control}
+          name="email"
+          render={({ field: { onChange } }) => (
+            <div className={style.item}>
+              <CommonInput
+                autoComplete={'email'}
+                onChange={onChange} // send value to hook form
+                error={errors.email?.message}
+                fieldname={'Email'}
               />
-              <p>{errors.restoreEmail?.message}</p>
-
-              <div className={s.instructions}>
-                Enter you email adress and we will send you further instructions
-              </div>
-              <input type={'submit'} />
-            </form>
-            <div className={s.instructions}>Did you remember you password?</div>
-            <div>
-              <NavLink to={PATH.LOGIN}>Try logging in</NavLink>
             </div>
-          </div>
-        </Paper>
-      </div>
+          )}
+        />
+
+        <p className={style.item}>
+          Enter you email adress and we will send you further instructions
+        </p>
+        <SuperButton
+          style={{ marginTop: '60px', letterSpacing: '0.01em', fontSize: '1.3rem' }}
+          type="submit"
+        >
+          Submit
+        </SuperButton>
+        <p>Did you remember you password?</p>
+
+        <NavLink className={style.navLinkSignIn} to={PATH.LOGIN}>
+          Try logging in
+        </NavLink>
+      </form>
     </div>
   )
 }
 
 //types
-interface IFormInput {
-  restoreEmail: string
+interface FormValues {
+  email: string
 }

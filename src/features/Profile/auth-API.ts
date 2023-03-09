@@ -7,9 +7,6 @@ export const instance = axios.create({
 })
 
 export const authAPI = {
-  // login(email: string, password: string, rememberMe: boolean) {
-  //   return instance.post<AxiosResponse<UserType>>('auth/login', { email, password, rememberMe })
-  // },
   authMe() {
     return instance.post<UserType>('auth/me', {})
   },
