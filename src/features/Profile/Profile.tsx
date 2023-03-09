@@ -8,7 +8,7 @@ import { PATH } from '../Routes/AppRoutes'
 
 import { changeProfileName } from './auth-reducer'
 import PersonalInfo from './PersonalInfo/PersonalInfo'
-import s from './Profile.module.scss'
+import s from './Profile.module.css'
 
 export const Profile = React.memo(() => {
   const avaImage = 'https://vjoy.cc/wp-content/uploads/2019/06/9-29.jpg'
