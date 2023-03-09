@@ -24,7 +24,7 @@ const Header = () => {
             <NavLink to={PATH.NEW_PASSWORD}>NEW_PASSWORD</NavLink>
             <NavLink to={PATH.TEST_SUPER_COMPONENTS}>TEST_SUPER_COMPONENTS</NavLink>
           </Typography>
-          {isLoggedIn && <LogOutButton />}
+          {/*{isLoggedIn && <LogOutButton />}*/}
         </Toolbar>
       </AppBar>
     </div>
