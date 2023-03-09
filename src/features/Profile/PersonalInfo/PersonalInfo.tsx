@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { LogOutButton } from '../../Login/LogOutButton'
 import { EditableSpan } from '../EditableSpan/EditableSpan'
 import cameraPhoto from '../image/camera.svg'
 import s from '../Profile.module.css'
@@ -19,8 +20,8 @@ const PersonalInfo = ({ avatar, name, email, onChangeHandler }: PersonalInfoProp
         <EditableSpan value={name} onChange={onChangeHandler} />
       </div>
       <div className={s.email}>{email}</div>
-      <div className={s.changeButton}>
-        <button>Log out</button>
+      <div>
+        <LogOutButton />
       </div>
     </div>
   )

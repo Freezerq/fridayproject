@@ -1,6 +1,6 @@
-// @ts-ignore
-
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit'
+
+import { setAppError, setAppStatus } from '../../app/appSlice'
 
 import { setAppStatus } from '../../app/appSlice'
 import { errorUtils } from '../../utils/errorUtils'
@@ -37,5 +37,20 @@ export const loginTC = (data: LoginType) => async (dispatch: Dispatch) => {
     dispatch(setAppStatus({ status: 'succeeded' }))
   } catch (e: any) {
     errorUtils(dispatch, e)
+  }
+}
+
+export const logOutTC = () => async (dispatch: Dispatch) => {
+  dispatch(setAppStatus({ status: 'loading' }))
+  try {
+    const result = await authAPI.logout()
+
+    dispatch(setIsLoggedInAC({ value: false }))
+
+    return result
+  } catch (e: any) {
+    console.log('e')
+    dispatch(setAppError(e.response.data.error))
+    dispatch(setAppStatus({ status: 'idle' }))
   }
 }
