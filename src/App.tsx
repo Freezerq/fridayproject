@@ -13,9 +13,9 @@ const App = () => {
   const isLoading = useAppSelector(state => state.app.status)
   const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    dispatch(me())
-  }, [])
+  // useEffect(() => {
+  //   dispatch(me())
+  // }, [])
 
   return (
     // <div className="App">

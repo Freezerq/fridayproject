@@ -6,7 +6,7 @@ import { Navigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../app/store'
 import { PATH } from '../Routes/AppRoutes'
 
-import { changeProfileName } from './auth-reducer'
+import { changeProfileName, getAuthUserData } from './auth-reducer'
 import PersonalInfo from './PersonalInfo/PersonalInfo'
 import s from './Profile.module.scss'
 
@@ -19,11 +19,11 @@ export const Profile = React.memo(() => {
   const userEmail = useAppSelector<string>(state => state.auth.email)
   const userAvatar = useAppSelector<string | undefined>(state => state.auth.avatar)
 
-  // useEffect(() => {
-  //   if (!isLoggedIn) {
-  //     dispatch(getAuthUserData())
-  //   }
-  // }, [])
+  useEffect(() => {
+    if (!isLoggedIn) {
+      dispatch(getAuthUserData())
+    }
+  }, [])
 
   const onNameChangeHandler = useCallback((newName: string) => {
     dispatch(changeProfileName(newName))
