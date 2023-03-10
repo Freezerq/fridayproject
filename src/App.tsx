@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 
 import './App.css'
 
-import { me } from './app/appSlice'
-import { useAppDispatch, useAppSelector } from './app/store'
-import { LinearProgress } from './components/common/LinearProgress/LinearProgress'
-import { ErrorSnackbar } from './components/ErrorSnackBar/ErrorSnackBar'
-import { Layout } from './components/Header/Layout'
-import AppRoutes from './features/Routes/AppRoutes'
+import { useAppDispatch, useAppSelector } from './s1-DAL/store'
+import { me } from './s2-BLL/appSlice'
+import AppRoutes from './s3-features/Routes/AppRoutes'
+import { LinearProgress } from './s4-components/common/LinearProgress/LinearProgress'
+import { ErrorSnackbar } from './s4-components/ErrorSnackBar/ErrorSnackBar'
+import { Layout } from './s4-components/Header/Layout'
 
 const App = () => {
   const isLoading = useAppSelector(state => state.app.status)
