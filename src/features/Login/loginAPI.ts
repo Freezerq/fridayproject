@@ -17,9 +17,20 @@ export const loginAPI = {
   logout() {
     return instance.delete('auth/me')
   },
+  createNewPassword(data: NewPasswordRequestType) {
+    return instance.post<NewPasswordResponseType>('auth/set-new-password', data)
+  },
 }
 export type LoginType = {
   email: string
   password: string
   rememberMe: false
+}
+export type NewPasswordRequestType = {
+  password: string
+  resetPasswordToken: string
+}
+export type NewPasswordResponseType = {
+  info: string
+  error?: string
 }
