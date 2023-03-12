@@ -44,7 +44,7 @@ export const getPacksTC = createAsyncThunk('pack', async function (_, { dispatch
 })
 //types
 
-export type PackTypeFromServer = {
+type PackTypeFromServer = {
   _id: string
   user_id: string
   user_name: string
