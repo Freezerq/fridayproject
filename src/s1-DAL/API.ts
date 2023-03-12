@@ -50,6 +50,21 @@ link</a>
   },
 }
 
+export const cardsAPI = {
+  getAllCards() {
+    return instance.get<UserType>('/cards/card')
+  },
+  addNewCard() {
+    return instance.post('/cards/card')
+  },
+  deleteCard() {
+    return instance.delete('cards/card')
+  },
+  updateCard() {
+    return instance.put('cards/card')
+  },
+}
+
 //types
 type UpdateUserResponseType = {
   updatedUser: UserType
