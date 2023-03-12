@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios, { AxiosError } from 'axios'
 import { Dispatch } from 'redux'
 
-import { instance, UserType, LoginType, NewPasswordRequestType, authAPI } from '../s1-DAL/API'
+import { instance, UserType, LoginType, NewPasswordType, authAPI, packsAPI } from '../s1-DAL/API'
 import { errorUtils } from '../utils/errorUtils'
 
 import { setAppError, setAppStatus, setIsInitializedAC } from './appSlice'
@@ -144,7 +144,7 @@ export const logOutTC = () => async (dispatch: Dispatch) => {
     dispatch(setAppStatus({ status: 'idle' }))
   }
 }
-export const createNewPassword = (data: NewPasswordRequestType) => async (dispatch: Dispatch) => {
+export const createNewPassword = (data: NewPasswordType) => async (dispatch: Dispatch) => {
   dispatch(setAppStatus({ status: 'loading' }))
   try {
     await authAPI.createNewPassword(data)
