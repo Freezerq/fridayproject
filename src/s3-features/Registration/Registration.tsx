@@ -20,7 +20,6 @@ type FormValues = {
 
 export const Registration = () => {
   const dispatch = useAppDispatch()
-  const isRegistered = useAppSelector(state => state.registration.isRegistered)
   const navigate = useNavigate()
   const {
     handleSubmit,
@@ -28,14 +27,9 @@ export const Registration = () => {
     formState: { errors },
   } = useForm<FormValues>()
 
-  useEffect(() => {
-    if (isRegistered) {
-      navigate('login')
-    }
-  }, [isRegistered])
-
   const submitFunc = (data: FormValues) => {
     dispatch(registrationThunk({ email: data.email, password: data.password }))
+    navigate('/login')
   }
 
   const [isPass1Visible, setIsPass1Visible] = useState('password')
@@ -56,10 +50,6 @@ export const Registration = () => {
     } else {
       setIsPass2Visible('password')
     }
-  }
-
-  if (isRegistered) {
-    return <Navigate to={'/profile'} />
   }
 
   return (

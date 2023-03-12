@@ -10,6 +10,8 @@ import { PassRecovery } from '../PassRecovery/PassRecovery'
 import { Profile } from '../Profile/Profile'
 import { Registration } from '../Registration/Registration'
 
+import { PrivateRoutes } from './PrivateRoutes'
+
 export const PATH = {
   LOGIN: '/login',
   REGISTRATION: '/registration',
@@ -25,9 +27,11 @@ const AppRoutes = () => {
     <Routes>
       <Route path={'/'} element={<Navigate to={PATH.LOGIN} />} />
 
+      <Route element={<PrivateRoutes />}>
+        <Route path={PATH.PROFILE} element={<Profile />} />
+      </Route>
       <Route path={PATH.LOGIN} element={<Login />} />
       <Route path={PATH.REGISTRATION} element={<Registration />} />
-      <Route path={PATH.PROFILE} element={<Profile />} />
       <Route path={PATH.ERROR404} element={<ErrorPage />} />
       <Route path={PATH.PASSWORD_RESTORE} element={<PassRecovery />} />
       <Route path={PATH.NEW_PASSWORD} element={<CreateNewPassword />} />
