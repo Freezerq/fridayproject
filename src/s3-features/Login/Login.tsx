@@ -1,15 +1,8 @@
 import React, { FC, useState } from 'react'
 
-import Visibility from '@mui/icons-material/Visibility'
-import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
-import FormControl from '@mui/material/FormControl'
-import IconButton from '@mui/material/IconButton'
-import Input from '@mui/material/Input'
-import InputAdornment from '@mui/material/InputAdornment'
-import InputLabel from '@mui/material/InputLabel'
 import Paper from '@mui/material/Paper'
 import TextField from '@mui/material/TextField'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -17,7 +10,7 @@ import { Navigate, NavLink } from 'react-router-dom'
 
 import { LoginType } from '../../s1-DAL/loginAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { loginTC } from '../../s2-BLL/loginSlice'
+import { login } from '../../s2-BLL/authSlice'
 import { PasswordInput } from '../../s4-components/common/PasswordInput/PasswordInput'
 import { PATH } from '../Routes/AppRoutes'
 
@@ -25,7 +18,7 @@ import s from './Login.module.css'
 
 export const Login: FC = () => {
   const dispatch = useAppDispatch()
-  const isLoggedIn = useAppSelector(state => state.login.isLoggedIn)
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
   const {
     register,
     handleSubmit,
@@ -33,7 +26,7 @@ export const Login: FC = () => {
   } = useForm<LoginType>({ mode: 'onTouched' })
 
   const onSubmit: SubmitHandler<LoginType> = (data: LoginType) => {
-    dispatch(loginTC(data))
+    dispatch(login(data))
   }
 
   if (isLoggedIn) {

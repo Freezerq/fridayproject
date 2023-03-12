@@ -7,7 +7,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { Navigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { createNewPasswordTC } from '../../s2-BLL/loginSlice'
+import { createNewPassword } from '../../s2-BLL/authSlice'
 import { PasswordInput } from '../../s4-components/common/PasswordInput/PasswordInput'
 import { PATH } from '../Routes/AppRoutes'
 
@@ -19,7 +19,7 @@ type NewPasswordType = {
 
 export const CreateNewPassword = () => {
   const dispatch = useAppDispatch()
-  const isCreateNewPassword = useAppSelector(state => state.login.isCreateNewPassword)
+  const isCreateNewPassword = useAppSelector(state => state.auth.isCreateNewPassword)
 
   const {
     register,
@@ -31,7 +31,7 @@ export const CreateNewPassword = () => {
 
   const onSubmit: SubmitHandler<NewPasswordType> = data => {
     if (token) {
-      dispatch(createNewPasswordTC({ password: data.password, resetPasswordToken: token }))
+      dispatch(createNewPassword({ password: data.password, resetPasswordToken: token }))
     }
   }
 

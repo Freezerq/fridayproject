@@ -5,8 +5,7 @@ import React, { useCallback, useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { changeProfileName, getAuthUserData } from '../../s2-BLL/authSlice'
-import { logOutTC } from '../../s2-BLL/loginSlice'
+import { changeProfileName, logOutTC } from '../../s2-BLL/authSlice'
 import { PATH } from '../Routes/AppRoutes'
 
 import PersonalInfo from './PersonalInfo/PersonalInfo'
@@ -14,7 +13,7 @@ import style from './Profile.module.scss'
 
 export const Profile = () => {
   const userInfo = useAppSelector(state => state.auth.profile)
-  const isLoggedIn = useAppSelector<boolean>(state => state.login.isLoggedIn)
+  const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
   const dispatch = useAppDispatch()
 
   const logoutHandler = () => {

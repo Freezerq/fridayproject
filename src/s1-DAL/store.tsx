@@ -1,18 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AnyAction, combineReducers } from 'redux'
-import thunkMiddleware, { ThunkAction } from 'redux-thunk'
+import { ThunkAction } from 'redux-thunk'
 
 import { appReducer } from '../s2-BLL/appSlice'
 import { authReducer } from '../s2-BLL/authSlice'
-import { loginReducer } from '../s2-BLL/loginSlice'
-import { registrationReducer } from '../s2-BLL/registrationSlice'
+import { cardsReducer } from '../s2-BLL/cardsSlice'
+import { packReducer } from '../s2-BLL/packSlice'
 
 export const rootReducer = combineReducers({
   app: appReducer,
-  registration: registrationReducer,
   auth: authReducer,
-  login: loginReducer,
+  cards: cardsReducer,
+  packs: packReducer,
 })
 
 export const store = configureStore({
