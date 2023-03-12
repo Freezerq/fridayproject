@@ -2,8 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios, { AxiosError } from 'axios'
 import { Dispatch } from 'redux'
 
-import { authAPI, instance, UserType } from '../s1-DAL/auth-API'
-import { loginAPI, LoginType, NewPasswordRequestType } from '../s1-DAL/loginAPI'
+import { instance, UserType, LoginType, NewPasswordType, authAPI, packsAPI } from '../s1-DAL/API'
 import { errorUtils } from '../utils/errorUtils'
 
 import { setAppError, setAppStatus, setIsInitializedAC } from './appSlice'
@@ -120,7 +119,7 @@ export const getNewToken = (email: string) => async (dispatch: Dispatch) => {
 export const login = (data: LoginType) => async (dispatch: Dispatch) => {
   dispatch(setAppStatus({ status: 'loading' }))
   try {
-    const response = await loginAPI.login(data)
+    const response = await authAPI.login(data)
 
     dispatch(setIsLoggedIn({ value: true }))
     dispatch(setAuthUserData({ data: response.data }))
@@ -133,7 +132,7 @@ export const login = (data: LoginType) => async (dispatch: Dispatch) => {
 export const logOutTC = () => async (dispatch: Dispatch) => {
   dispatch(setAppStatus({ status: 'loading' }))
   try {
-    const result = await loginAPI.logout()
+    const result = await authAPI.logout()
 
     dispatch(setIsLoggedIn({ value: false }))
     dispatch(setAppStatus({ status: 'idle' }))
@@ -145,10 +144,10 @@ export const logOutTC = () => async (dispatch: Dispatch) => {
     dispatch(setAppStatus({ status: 'idle' }))
   }
 }
-export const createNewPassword = (data: NewPasswordRequestType) => async (dispatch: Dispatch) => {
+export const createNewPassword = (data: NewPasswordType) => async (dispatch: Dispatch) => {
   dispatch(setAppStatus({ status: 'loading' }))
   try {
-    await loginAPI.createNewPassword(data)
+    await authAPI.createNewPassword(data)
     dispatch(createNewPasswordAC({ value: true }))
 
     dispatch(setAppStatus({ status: 'succeeded' }))
@@ -162,7 +161,7 @@ export const registrationThunk = createAsyncThunk(
   async function (data: { email: string; password: string }, { dispatch }) {
     dispatch(setAppStatus({ status: 'loading' }))
     try {
-      await instance.post('/auth/register', { email: data.email, password: data.password })
+      await authAPI.register({ email: data.email, password: data.password })
       dispatch(setAppStatus({ status: 'idle' }))
       dispatch(login({ email: data.email, password: data.password, rememberMe: true }))
     } catch (e: any) {
