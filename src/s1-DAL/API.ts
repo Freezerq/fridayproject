@@ -52,7 +52,7 @@ link</a>
 
 export const cardsAPI = {
   getAllCards() {
-    return instance.get<UserType>('/cards/card')
+    return instance.get('/cards/card')
   },
   addNewCard() {
     return instance.post('/cards/card')
@@ -62,6 +62,21 @@ export const cardsAPI = {
   },
   updateCard() {
     return instance.put('cards/card')
+  },
+}
+
+export const packsAPI = {
+  getAllPacks() {
+    return instance.get('/cards/pack')
+  },
+  addNewPack() {
+    return instance.post('/cards/pack')
+  },
+  deletePack() {
+    return instance.delete('cards/pack')
+  },
+  updatePack() {
+    return instance.put('cards/pack')
   },
 }
 
