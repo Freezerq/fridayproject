@@ -2,6 +2,7 @@ import { AppBar, Button, Toolbar, Typography } from '@material-ui/core'
 import { NavLink } from 'react-router-dom'
 
 import { useAppSelector } from '../../s1-DAL/store'
+import { LogOutButton } from '../../s3-features/Login/LogOutButton'
 import { PATH } from '../../s3-features/Routes/AppRoutes'
 
 import s from './Header.module.css'
@@ -21,8 +22,10 @@ const Header = () => {
             <NavLink to={PATH.PASSWORD_RESTORE}>PASSWORD_RESTORE</NavLink>
             <NavLink to={PATH.NEW_PASSWORD}>NEW_PASSWORD</NavLink>
             <NavLink to={PATH.TEST_SUPER_COMPONENTS}>TEST_SUPER_COMPONENTS</NavLink>
+            <NavLink to={PATH.CARDS}>Cards</NavLink>
+            <NavLink to={PATH.PACKS}>Packs</NavLink>
           </Typography>
-          {/*{isLoggedIn && <LogOutButton />}*/}
+          {isLoggedIn && <LogOutButton />}
         </Toolbar>
       </AppBar>
     </div>
