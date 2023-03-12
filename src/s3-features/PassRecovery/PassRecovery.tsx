@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
-import { useAppDispatch } from '../../s1-DAL/store'
+import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getNewToken } from '../../s2-BLL/authSlice'
 import { CommonInput } from '../../s4-components/common/CommonInput/CommonInput'
 import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
@@ -13,7 +13,10 @@ import { PATH } from '../Routes/AppRoutes'
 import style from './PassRecovery.module.scss'
 
 export const PassRecovery = () => {
+  const [email, setEmail] = useState('')
   const dispatch = useAppDispatch()
+  const isSendedEmail = useAppSelector(state => state.auth.isSendedEmail)
+  const navigate = useNavigate()
 
   const {
     control,
@@ -22,7 +25,12 @@ export const PassRecovery = () => {
   } = useForm<FormValues>()
 
   const onSubmit: SubmitHandler<FormValues> = data => {
+    setEmail(data.email)
     dispatch(getNewToken(data.email))
+  }
+
+  if (isSendedEmail) {
+    navigate(`${PATH.CHECK_EMAIL}/${email}`)
   }
 
   return (

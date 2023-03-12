@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Paper from '@mui/material/Paper'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import emailImg from '../../../assets/img/emailImg.svg'
 
@@ -14,6 +14,8 @@ export const CheckEmail: FC = () => {
   const onClickHandler = () => {
     return navigate('/login')
   }
+  const location = useLocation()
+  const email = location.pathname.split('/').pop()
 
   return (
     <Box
@@ -27,7 +29,7 @@ export const CheckEmail: FC = () => {
         <div className={s.containerPaper}>
           <div className={s.title}>Check Email</div>
           <img className={s.img} src={emailImg} alt="emailImg" />
-          <p className={s.text}>{`We’ve sent an Email with instructions to `}</p>
+          <p className={s.text}>{`We’ve sent an Email with instructions to ${email}`}</p>
           <Button
             sx={{
               width: '347px',

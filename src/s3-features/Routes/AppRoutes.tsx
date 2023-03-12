@@ -24,6 +24,7 @@ export const PATH = {
   TEST_SUPER_COMPONENTS: '/componentTest',
   CARDS: '/cards',
   PACKS: '/packs',
+  CHECK_EMAIL: '/check-email',
 }
 
 const AppRoutes = () => {

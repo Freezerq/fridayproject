@@ -12,6 +12,7 @@ const initialState = {
   isLoggedIn: false,
   isCreateNewPassword: false,
   isRegistered: false,
+  isSendedEmail: false,
 }
 
 const slice = createSlice({
@@ -33,6 +34,9 @@ const slice = createSlice({
     createNewPasswordAC(state, action: PayloadAction<{ value: boolean }>) {
       state.isCreateNewPassword = action.payload.value
     },
+    setIsSendedEmailAC(state, action: PayloadAction<{ value: boolean }>) {
+      state.isSendedEmail = action.payload.value
+    },
   },
   extraReducers: builder => {
     builder.addCase(registrationThunk.fulfilled, (state, action) => {
@@ -44,8 +48,14 @@ const slice = createSlice({
 export const authReducer = slice.reducer
 
 //action creators
-export const { setAuthUserData, changeName, changeAvatar, setIsLoggedIn, createNewPasswordAC } =
-  slice.actions
+export const {
+  setAuthUserData,
+  changeName,
+  changeAvatar,
+  setIsLoggedIn,
+  createNewPasswordAC,
+  setIsSendedEmailAC,
+} = slice.actions
 
 //thunk creators
 export const getAuthUserData = () => async (dispatch: Dispatch) => {
@@ -98,21 +108,13 @@ export const changeProfileImage = (avatar: string) => async (dispatch: Dispatch)
 }
 
 export const getNewToken = (email: string) => async (dispatch: Dispatch) => {
-  const res = await authAPI.getToken(email)
-
+  dispatch(setAppStatus({ status: 'loading' }))
   try {
-    if (res.data.error) {
-      //dispath(status successful)
-    }
-  } catch (e) {
-    const err = e as Error | AxiosError<{ error: string }>
-
-    if (axios.isAxiosError(err)) {
-      const error = err.response?.data ? err.response.data.error : err.message
-      // dispatch(setError(error))
-    } else {
-      //dispatch(setError(`Native error ${err.message}`))
-    }
+    await authAPI.getToken(email)
+    dispatch(setIsSendedEmailAC({ value: true }))
+    dispatch(setAppStatus({ status: 'succeeded' }))
+  } catch (e: any) {
+    errorUtils(dispatch, e)
   }
 }
 
