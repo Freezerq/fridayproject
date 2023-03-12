@@ -2,10 +2,12 @@ import React from 'react'
 
 import { Navigate, Route, Routes } from 'react-router-dom'
 
+import { Cards } from '../Cards/Cards'
 import { ComponentTest } from '../ComponentTest/ComponentTest'
 import { CreateNewPassword } from '../CreateNewPassword/CreateNewPassword'
 import { ErrorPage } from '../ErrorPage/ErrorPage'
 import { Login } from '../Login/Login'
+import { Packs } from '../Packs/Packs'
 import { PassRecovery } from '../PassRecovery/PassRecovery'
 import { Profile } from '../Profile/Profile'
 import { Registration } from '../Registration/Registration'
