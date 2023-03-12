@@ -162,7 +162,7 @@ export const registrationThunk = createAsyncThunk(
     console.log(data)
     dispatch(setAppStatus({ status: 'loading' }))
     try {
-      await instance.post('/auth/register', { email: data.email, password: data.password })
+      await authAPI.register({ email: data.email, password: data.password })
       dispatch(setAppStatus({ status: 'idle' }))
     } catch (e: any) {
       console.log(e)

@@ -13,6 +13,15 @@ export const authAPI = {
   authMe() {
     return instance.post<UserType>('auth/me')
   },
+  register(data: LoginType) {
+    return instance.post('/auth/register', data)
+  },
+  login(data: { email: string; password: string }) {
+    return instance.post<UserType>('auth/login', data)
+  },
+  logout() {
+    return instance.delete('auth/me')
+  },
   changeName(name: string) {
     return instance.put<AxiosResponse<UpdateUserResponseType>>('auth/me', { name })
   },
@@ -33,12 +42,6 @@ link</a>
       },
       { baseURL: 'https://neko-back.herokuapp.com/2.0' }
     )
-  },
-  login(data: LoginType) {
-    return instance.post<UserType>('auth/login', data)
-  },
-  logout() {
-    return instance.delete('auth/me')
   },
   createNewPassword(data: NewPasswordRequestType) {
     return instance.post<NewPasswordResponseType>('auth/set-new-password', data, {
@@ -70,7 +73,7 @@ export type UserType = {
 export type LoginType = {
   email: string
   password: string
-  rememberMe: false
+  rememberMe?: false
 }
 export type NewPasswordRequestType = {
   password: string
