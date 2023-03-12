@@ -16,7 +16,7 @@ export const authAPI = {
   register(data: RegisterType) {
     return instance.post('/auth/register', data)
   },
-  login(data: { email: string; password: string }) {
+  login(data: LoginType) {
     return instance.post<UserType>('auth/login', data)
   },
   logout() {
@@ -145,7 +145,7 @@ export type InfoResponseType = {
 export type LoginType = {
   email: string
   password: string
-  rememberMe: false
+  rememberMe: boolean
 }
 //everything from LoginType except 'rememberMe
 export type RegisterType = Omit<LoginType, 'rememberMe'>
