@@ -147,6 +147,7 @@ export type LoginType = {
   password: string
   rememberMe: false
 }
+//everything from LoginType except 'rememberMe
 export type RegisterType = Omit<LoginType, 'rememberMe'>
 export type NewPasswordType = {
   password: string
