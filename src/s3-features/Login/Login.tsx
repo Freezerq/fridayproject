@@ -18,30 +18,22 @@ import { Navigate, NavLink } from 'react-router-dom'
 import { LoginType } from '../../s1-DAL/loginAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { loginTC } from '../../s2-BLL/loginSlice'
+import { PasswordInput } from '../../s4-components/common/PasswordInput/PasswordInput'
 import { PATH } from '../Routes/AppRoutes'
 
 import s from './Login.module.css'
 
 export const Login: FC = () => {
-  const [showPassword, setShowPassword] = useState(false)
-
-  const handleClickShowPassword = () => setShowPassword(show => !show)
-
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-  }
   const dispatch = useAppDispatch()
   const isLoggedIn = useAppSelector(state => state.login.isLoggedIn)
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<LoginType>({ mode: 'onTouched' })
 
   const onSubmit: SubmitHandler<LoginType> = (data: LoginType) => {
     dispatch(loginTC(data))
-    // reset()
   }
 
   if (isLoggedIn) {
@@ -73,27 +65,8 @@ export const Login: FC = () => {
               helperText={errors.email?.message}
               {...register('email', { required: 'Email is a required field!' })}
             />
-            <FormControl sx={{ m: 1, width: '347px' }} variant="standard">
-              <InputLabel htmlFor="password">Password</InputLabel>
-              <Input
-                id="standard-adornment-password"
-                type={showPassword ? 'text' : 'password'}
-                error={!!errors.password}
-                {...register('password', { required: 'Password is a required field!' })}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-              {errors.password && <span className={s.error}>{errors.password?.message}</span>}
-            </FormControl>
+            <PasswordInput id="password" register={register} error={errors.password} />
+
             <div className={s.rememberMe}>
               <Checkbox id="rememberMe" {...register('rememberMe')} />
               <span>Remember me</span>

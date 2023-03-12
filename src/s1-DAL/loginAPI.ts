@@ -3,11 +3,11 @@ import axios from 'axios'
 import { UserType } from './auth-API'
 
 export const instance = axios.create({
-  // baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',
-  baseURL:
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:7542/2.0/'
-      : 'https://neko-back.herokuapp.com/2.0/',
+  baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',
+  // baseURL:
+  //   process.env.NODE_ENV === 'development'
+  //     ? 'http://localhost:7542/2.0/'
+  //     : 'https://neko-back.herokuapp.com/2.0/',
   withCredentials: true,
 })
 export const loginAPI = {
@@ -18,7 +18,9 @@ export const loginAPI = {
     return instance.delete('auth/me')
   },
   createNewPassword(data: NewPasswordRequestType) {
-    return instance.post<NewPasswordResponseType>('auth/set-new-password', data)
+    return instance.post<NewPasswordResponseType>('auth/set-new-password', data, {
+      baseURL: 'https://neko-back.herokuapp.com/2.0',
+    })
   },
 }
 export type LoginType = {

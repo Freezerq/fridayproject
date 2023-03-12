@@ -21,10 +21,6 @@ export const Profile = () => {
     dispatch(logOutTC())
   }
 
-  useEffect(() => {
-    dispatch(getAuthUserData())
-  }, [])
-
   const onNameChangeHandler = useCallback((newName: string) => {
     dispatch(changeProfileName(newName))
   }, [])

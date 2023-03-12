@@ -8,7 +8,7 @@ export const instance = axios.create({
 
 export const authAPI = {
   authMe() {
-    return instance.post<UserType>('auth/me', {})
+    return instance.post<UserType>('auth/me')
   },
   changeName(name: string) {
     return instance.put<AxiosResponse<UpdateUserResponseType>>('auth/me', { name })

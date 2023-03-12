@@ -1,10 +1,4 @@
-import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit'
-
-import { appAPI } from '../s1-DAL/appAPI'
-import { errorUtils } from '../utils/errorUtils'
-
-import { setAuthUserData } from './authSlice'
-import { setIsLoggedInAC } from './loginSlice'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 const initialState: InitialStateType = {
   error: null,
@@ -26,33 +20,6 @@ const appSlice = createSlice({
     },
   },
 })
-
-//thunks
-export const me = () => async (dispatch: Dispatch) => {
-  dispatch(setAppStatus({ status: 'loading' }))
-  try {
-    const response = await appAPI.me()
-
-    dispatch(setIsLoggedInAC({ value: true }))
-    dispatch(setAuthUserData({ data: response.data }))
-    dispatch(setAppStatus({ status: 'succeeded' }))
-  } catch (e: any) {
-    errorUtils(dispatch, e)
-  } finally {
-    dispatch(setIsInitializedAC({ value: true }))
-  }
-}
-
-// export const registrationThunk = createAsyncThunk(
-//   '123',
-//   async function (data: { email: string; password: string }) {
-//     try {
-//       const res = await instance.post('/auth/register', { ...data })
-//     } catch (e) {
-//       console.log(e)
-//     }
-//   }
-// )
 
 export const { setAppError, setAppStatus, setIsInitializedAC } = appSlice.actions
 export const appReducer = appSlice.reducer

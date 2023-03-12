@@ -84,7 +84,6 @@ export const changeProfileImage = (avatar: string) => async (dispatch: Dispatch)
 }
 
 export const getNewToken = (email: string) => async (dispatch: Dispatch) => {
-  debugger
   const res = await authAPI.getToken(email)
 
   try {
@@ -96,7 +95,7 @@ export const getNewToken = (email: string) => async (dispatch: Dispatch) => {
 
     if (axios.isAxiosError(err)) {
       const error = err.response?.data ? err.response.data.error : err.message
-      //dispatch(setError(error))
+      // dispatch(setError(error))
     } else {
       //dispatch(setError(`Native error ${err.message}`))
     }
