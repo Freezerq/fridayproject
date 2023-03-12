@@ -19,8 +19,8 @@ type FormValues = {
 }
 
 export const Registration = () => {
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
   const dispatch = useAppDispatch()
-  const navigate = useNavigate()
   const {
     handleSubmit,
     control,
@@ -29,7 +29,6 @@ export const Registration = () => {
 
   const submitFunc = (data: FormValues) => {
     dispatch(registrationThunk({ email: data.email, password: data.password }))
-    navigate('/login')
   }
 
   const [isPass1Visible, setIsPass1Visible] = useState('password')
@@ -50,6 +49,10 @@ export const Registration = () => {
     } else {
       setIsPass2Visible('password')
     }
+  }
+
+  if (isLoggedIn) {
+    return <Navigate to={'/profile'} />
   }
 
   return (

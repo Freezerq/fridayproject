@@ -59,7 +59,7 @@ export const getAuthUserData = () => async (dispatch: Dispatch) => {
     }
     dispatch(setIsLoggedIn({ value: true }))
   } catch (e) {
-    // errorUtils(dispatch, e)
+    errorUtils(dispatch, e)
   } finally {
     dispatch(setIsInitializedAC({ value: true }))
     dispatch(setAppStatus({ status: 'succeeded' }))
@@ -160,15 +160,13 @@ export const createNewPassword = (data: NewPasswordRequestType) => async (dispat
 export const registrationThunk = createAsyncThunk(
   'registration',
   async function (data: { email: string; password: string }, { dispatch }) {
-    console.log(data)
     dispatch(setAppStatus({ status: 'loading' }))
     try {
       await instance.post('/auth/register', { email: data.email, password: data.password })
       dispatch(setAppStatus({ status: 'idle' }))
+      dispatch(login({ email: data.email, password: data.password, rememberMe: true }))
     } catch (e: any) {
-      console.log(e)
-      dispatch(setAppError(e.response.data.error))
-      dispatch(setAppStatus({ status: 'idle' }))
+      errorUtils(dispatch, e)
     }
   }
 )
