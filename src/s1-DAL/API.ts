@@ -74,23 +74,42 @@ export const packsAPI = {
   deletePack(id: string) {
     return instance.delete(`cards/pack?id=${id}`)
   },
-  updatePack(data: UpdateCardsType) {
+  updatePack(data: UpdatePackType) {
     return instance.put('cards/pack', { cardsPack: data })
   },
 }
-
 export const cardsAPI = {
-  getAllCards() {
-    return instance.get('/cards/card')
+  getAllCards({
+    cardAnswer,
+    cardQuestion,
+    cardsPack_id,
+    min,
+    max,
+    sortCards,
+    page,
+    pageCount,
+  }: GetCardsType) {
+    return instance.get('/cards/card', {
+      params: {
+        cardAnswer,
+        cardQuestion,
+        cardsPack_id,
+        min,
+        max,
+        sortCards,
+        page,
+        pageCount,
+      },
+    })
   },
-  addNewCard() {
-    return instance.post('/cards/card')
+  addNewCard(data: AddNewCardType) {
+    return instance.post('/cards/card', { card: data })
   },
-  deleteCard() {
-    return instance.delete('cards/card')
+  deleteCard(id: string) {
+    return instance.delete(`cards/card?id=${id}`)
   },
-  updateCard() {
-    return instance.put('cards/card')
+  updateCard(data: UpdateCardType) {
+    return instance.put('cards/card', { card: data })
   },
 }
 
@@ -180,4 +199,52 @@ export type AddNewPackType = {
 }
 
 //id обязательно, а все остальное из packtype не обязательно, Pick выбирает обязательный атрибут
-export type UpdateCardsType = Pick<Partial<PackType>, '_id'>
+export type UpdatePackType = Pick<Partial<PackType>, '_id'>
+
+//cardsAPI types
+export type CardType = {
+  _id: string
+  answer: string
+  question: string
+  cardsPack_id: string
+  grade: number
+  shots: number
+  user_id: string
+  created: Date
+  updated: Date
+}
+
+export type AllCardsReturnType = {
+  cards: CardType[]
+  cardsTotalCount: number
+  maxGrade: number
+  minGrade: number
+  page: number
+  pageCount: number
+  packUserId: string
+}
+//все из этого не обязательно, Partial делает атрибуты необязательными
+export type GetCardsType = Partial<{
+  cardAnswer: string
+  cardQuestion: string
+  cardsPack_id: string
+  min: number
+  max: number
+  sortCards: number
+  page: number
+  pageCount: number
+}>
+//cardsPack_id обязательно, остальное - не обязательно
+export type AddNewCardType = Pick<CardType, 'cardsPack_id'> &
+  Partial<{
+    answer: string
+    question: string
+    grade: number
+    shots: number
+    answerImg: string
+    questionImg: string
+    questionVideo: string
+    answerVideo: string
+  }>
+
+export type UpdateCardType = Pick<Partial<CardType>, '_id'>
