@@ -7,7 +7,7 @@ import { useAppDispatch } from '../../s1-DAL/store'
 import { getNewToken } from '../../s2-BLL/authSlice'
 import { CommonInput } from '../../s4-components/common/CommonInput/CommonInput'
 import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
-import { emailCheck } from '../Registration/Registration'
+import { emailCheck } from '../../utils/regularExpressions'
 import { PATH } from '../Routes/AppRoutes'
 
 import style from './PassRecovery.module.scss'

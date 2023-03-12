@@ -43,11 +43,11 @@ export const getAuthUserData = () => async (dispatch: Dispatch) => {
       dispatch(setAuthUserData({ data: result.data }))
     }
     dispatch(setIsLoggedInAC({ value: true }))
-    dispatch(setAppStatus({ status: 'succeeded' }))
   } catch (e) {
-    errorUtils(dispatch, e)
+    // errorUtils(dispatch, e)
   } finally {
     dispatch(setIsInitializedAC({ value: true }))
+    dispatch(setAppStatus({ status: 'succeeded' }))
   }
 }
 export const changeProfileName = (name: string) => async (dispatch: Dispatch) => {

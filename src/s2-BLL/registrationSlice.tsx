@@ -21,9 +21,10 @@ const registrationSlice = createSlice({
 export const registrationThunk = createAsyncThunk(
   'registration',
   async function (data: { email: string; password: string }, { dispatch }) {
+    console.log(data)
     dispatch(setAppStatus({ status: 'loading' }))
     try {
-      await instance.post('/auth/register', { ...data })
+      await instance.post('/auth/register', { email: data.email, password: data.password })
       dispatch(setAppStatus({ status: 'idle' }))
     } catch (e: any) {
       console.log(e)

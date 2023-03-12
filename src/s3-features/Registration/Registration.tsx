@@ -8,11 +8,9 @@ import { registrationThunk } from '../../s2-BLL/registrationSlice'
 import { CommonInput } from '../../s4-components/common/CommonInput/CommonInput'
 import eye from '../../s4-components/common/image/eyeIcon.svg'
 import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
+import { emailCheck } from '../../utils/regularExpressions'
 
 import style from './registration.module.scss'
-
-export const emailCheck =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 type FormValues = {
   email: string
