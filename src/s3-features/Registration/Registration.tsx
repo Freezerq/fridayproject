@@ -4,7 +4,7 @@ import { useForm, Controller } from 'react-hook-form'
 import { Navigate, NavLink, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { registrationThunk } from '../../s2-BLL/registrationSlice'
+import { registrationThunk } from '../../s2-BLL/authSlice'
 import { CommonInput } from '../../s4-components/common/CommonInput/CommonInput'
 import eye from '../../s4-components/common/image/eyeIcon.svg'
 import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
@@ -20,7 +20,7 @@ type FormValues = {
 
 export const Registration = () => {
   const dispatch = useAppDispatch()
-  const isRegistered = useAppSelector(state => state.registration.isRegistered)
+  const isRegistered = useAppSelector(state => state.auth.isRegistered)
   const navigate = useNavigate()
   const {
     handleSubmit,

@@ -3,6 +3,7 @@ import React from 'react'
 import { UserType } from '../../../s1-DAL/auth-API'
 import changePhotoIcon from '../../../s4-components/common/image/camera.svg'
 import { SuperButton } from '../../../s4-components/common/SuperButton/SuperButton'
+import { LogOutButton } from '../../Login/LogOutButton'
 import { EditableSpan } from '../EditableSpan/EditableSpan'
 import style from '../Profile.module.scss'
 const PersonalInfo = ({ profile, onChangeHandler, logoutHandler }: PersonalInfoPropsTypes) => {
@@ -21,7 +22,7 @@ const PersonalInfo = ({ profile, onChangeHandler, logoutHandler }: PersonalInfoP
         <EditableSpan value={profile.name} onChange={onChangeHandler} />
       </div>
       <div className={style.email}>{profile.email}</div>
-      <SuperButton onClick={logoutHandler}>Log out</SuperButton>
+      <LogOutButton />
     </div>
   )
 }

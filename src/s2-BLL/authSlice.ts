@@ -1,15 +1,18 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios, { AxiosError } from 'axios'
 import { Dispatch } from 'redux'
 
-import { authAPI, UserType } from '../s1-DAL/auth-API'
+import { authAPI, instance, UserType } from '../s1-DAL/auth-API'
+import { loginAPI, LoginType, NewPasswordRequestType } from '../s1-DAL/loginAPI'
 import { errorUtils } from '../utils/errorUtils'
 
 import { setAppError, setAppStatus, setIsInitializedAC } from './appSlice'
-import { setIsLoggedInAC } from './loginSlice'
 
 const initialState = {
   profile: {} as UserType,
+  isLoggedIn: false,
+  isCreateNewPassword: false,
+  isRegistered: false,
 }
 
 const slice = createSlice({
@@ -25,13 +28,25 @@ const slice = createSlice({
     changeAvatar(state, action: PayloadAction<{ avatar: string }>) {
       state.profile.avatar = action.payload.avatar
     },
+    setIsLoggedIn(state, action: PayloadAction<{ value: boolean }>) {
+      state.isLoggedIn = action.payload.value
+    },
+    createNewPasswordAC(state, action: PayloadAction<{ value: boolean }>) {
+      state.isCreateNewPassword = action.payload.value
+    },
+  },
+  extraReducers: builder => {
+    builder.addCase(registrationThunk.fulfilled, (state, action) => {
+      state.isRegistered = true
+    })
   },
 })
 
 export const authReducer = slice.reducer
 
 //action creators
-export const { setAuthUserData, changeName, changeAvatar } = slice.actions
+export const { setAuthUserData, changeName, changeAvatar, setIsLoggedIn, createNewPasswordAC } =
+  slice.actions
 
 //thunk creators
 export const getAuthUserData = () => async (dispatch: Dispatch) => {
@@ -42,7 +57,7 @@ export const getAuthUserData = () => async (dispatch: Dispatch) => {
     if (result.data) {
       dispatch(setAuthUserData({ data: result.data }))
     }
-    dispatch(setIsLoggedInAC({ value: true }))
+    dispatch(setIsLoggedIn({ value: true }))
   } catch (e) {
     // errorUtils(dispatch, e)
   } finally {
@@ -101,6 +116,62 @@ export const getNewToken = (email: string) => async (dispatch: Dispatch) => {
     }
   }
 }
+
+export const login = (data: LoginType) => async (dispatch: Dispatch) => {
+  dispatch(setAppStatus({ status: 'loading' }))
+  try {
+    const response = await loginAPI.login(data)
+
+    dispatch(setIsLoggedIn({ value: true }))
+    dispatch(setAuthUserData({ data: response.data }))
+    dispatch(setAppStatus({ status: 'succeeded' }))
+  } catch (e: any) {
+    errorUtils(dispatch, e)
+  }
+}
+
+export const logOutTC = () => async (dispatch: Dispatch) => {
+  dispatch(setAppStatus({ status: 'loading' }))
+  try {
+    const result = await loginAPI.logout()
+
+    dispatch(setIsLoggedIn({ value: false }))
+    dispatch(setAppStatus({ status: 'idle' }))
+
+    return result
+  } catch (e: any) {
+    console.log('e')
+    dispatch(setAppError(e.response.data.error))
+    dispatch(setAppStatus({ status: 'idle' }))
+  }
+}
+export const createNewPassword = (data: NewPasswordRequestType) => async (dispatch: Dispatch) => {
+  dispatch(setAppStatus({ status: 'loading' }))
+  try {
+    await loginAPI.createNewPassword(data)
+    dispatch(createNewPasswordAC({ value: true }))
+
+    dispatch(setAppStatus({ status: 'succeeded' }))
+  } catch (e: any) {
+    errorUtils(dispatch, e)
+  }
+}
+
+export const registrationThunk = createAsyncThunk(
+  'registration',
+  async function (data: { email: string; password: string }, { dispatch }) {
+    console.log(data)
+    dispatch(setAppStatus({ status: 'loading' }))
+    try {
+      await instance.post('/auth/register', { email: data.email, password: data.password })
+      dispatch(setAppStatus({ status: 'idle' }))
+    } catch (e: any) {
+      console.log(e)
+      dispatch(setAppError(e.response.data.error))
+      dispatch(setAppStatus({ status: 'idle' }))
+    }
+  }
+)
 
 //types
 type InitialStateType = typeof initialState

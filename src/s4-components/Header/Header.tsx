@@ -1,15 +1,13 @@
 import { AppBar, Button, Toolbar, Typography } from '@material-ui/core'
 import { NavLink } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { logOutTC } from '../../s2-BLL/loginSlice'
-import { LogOutButton } from '../../s3-features/Login/LogOutButton'
+import { useAppSelector } from '../../s1-DAL/store'
 import { PATH } from '../../s3-features/Routes/AppRoutes'
 
 import s from './Header.module.css'
 
 const Header = () => {
-  const isLoggedIn = useAppSelector<boolean>(state => state.login.isLoggedIn)
+  const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
 
   return (
     <div className={s.nav}>
