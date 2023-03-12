@@ -1,5 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 
+import { PackTypeFromServer } from '../s2-BLL/packSlice'
+
 export const instance = axios.create({
   // baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',
   baseURL:
@@ -11,7 +13,7 @@ export const instance = axios.create({
 
 export const packsAPI = {
   getAllPacks({ packName, min, max, sortPacks, page, pageCount, user_id, block }: GetPacksType) {
-    return instance.get<AllPacksReturnType>('/cards/pack', {
+    return instance.get('/cards/pack', {
       params: {
         packName,
         min,

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { Navigate, NavLink, useNavigate } from 'react-router-dom'
 
+import { packsAPI } from '../../s1-DAL/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { registrationThunk } from '../../s2-BLL/authSlice'
 import { CommonInput } from '../../s4-components/common/CommonInput/CommonInput'
@@ -20,6 +21,8 @@ type FormValues = {
 
 export const Registration = () => {
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+
+  console.log(packsAPI.getAllPacks({}))
   const dispatch = useAppDispatch()
   const {
     handleSubmit,
