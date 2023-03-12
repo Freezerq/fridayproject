@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Navigate, NavLink } from 'react-router-dom'
 
-import { LoginType } from '../../s1-DAL/loginAPI'
+import { LoginType } from '../../s1-DAL/API'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { login } from '../../s2-BLL/authSlice'
 import { PasswordInput } from '../../s4-components/common/PasswordInput/PasswordInput'

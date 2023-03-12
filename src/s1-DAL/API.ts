@@ -34,6 +34,17 @@ link</a>
       { baseURL: 'https://neko-back.herokuapp.com/2.0' }
     )
   },
+  login(data: LoginType) {
+    return instance.post<UserType>('auth/login', data)
+  },
+  logout() {
+    return instance.delete('auth/me')
+  },
+  createNewPassword(data: NewPasswordRequestType) {
+    return instance.post<NewPasswordResponseType>('auth/set-new-password', data, {
+      baseURL: 'https://neko-back.herokuapp.com/2.0',
+    })
+  },
 }
 
 //types
@@ -54,4 +65,18 @@ export type UserType = {
   rememberMe: boolean
   token: string
   tokenDeathTime: number
+}
+
+export type LoginType = {
+  email: string
+  password: string
+  rememberMe: false
+}
+export type NewPasswordRequestType = {
+  password: string
+  resetPasswordToken: string
+}
+export type NewPasswordResponseType = {
+  info: string
+  error?: string
 }
