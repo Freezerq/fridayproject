@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
 
-import { PackTypeFromServer } from '../s2-BLL/packSlice'
+import { PackTypeFromServer, PackTypeOnlyNeeded } from '../s2-BLL/packSlice'
 
 export const instance = axios.create({
   // baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',
@@ -37,25 +37,6 @@ export const packsAPI = {
   },
 }
 
-//Packs Types
-export type PackType = {
-  _id: string
-  user_id: string
-  name: string
-  cardsCount: number
-  created: Date
-  updated: Date
-}
-
-export type AllPacksReturnType = {
-  cardPacks: PackType[]
-  cardPacksTotalCount: number // количество колод
-  maxCardsCount: number
-  minCardsCount: number
-  page: number // выбранная страница
-  pageCount: number // количество элементов на странице
-}
-
 //все из этого не обязательно, Partial делает атрибуты необязательными
 export type GetPacksType = Partial<{
   packName: string
@@ -75,4 +56,4 @@ export type AddNewPackType = {
 }
 
 //id обязательно, а все остальное из packtype не обязательно, Pick выбирает обязательный атрибут
-export type UpdatePackType = Pick<Partial<PackType>, '_id'>
+export type UpdatePackType = Pick<Partial<PackTypeOnlyNeeded>, '_id'>

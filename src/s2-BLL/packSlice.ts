@@ -5,20 +5,24 @@ import { errorUtils } from '../utils/errorUtils'
 
 const initialState: initialStateType = { packs: [] }
 
+function packFromServerToNormal(pack: PackTypeFromServer): PackTypeOnlyNeeded {
+  return {
+    name: pack.name,
+    user_name: pack.user_name,
+    user_id: pack.user_id,
+    _id: pack._id,
+    updated: pack.updated.slice(0, 10),
+    cardsCount: pack.cardsCount,
+  }
+}
+
 const packSlice = createSlice({
   name: 'pack',
   initialState: initialState,
   reducers: {
     setPacks: (state, action: PayloadAction<{ packs: Array<PackTypeFromServer> }>) => {
       action.payload.packs.forEach(pack => {
-        state.packs.push({
-          name: pack.name,
-          user_name: pack.user_name,
-          user_id: pack.user_id,
-          _id: pack._id,
-          updated: pack.updated.slice(0, 10),
-          cardsCount: pack.cardsCount,
-        })
+        state.packs.push(packFromServerToNormal(pack))
       })
     },
   },
