@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
 
-import { PackTypeFromServer, PackTypeOnlyNeeded } from '../s2-BLL/packSlice'
+import { PackTypeOnlyNeeded } from '../s2-BLL/packSlice'
 
 export const instance = axios.create({
   // baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',
