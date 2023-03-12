@@ -116,7 +116,7 @@ export const getNewToken = (email: string) => async (dispatch: Dispatch) => {
   }
 }
 
-export const login = (data: LoginType) => async (dispatch: Dispatch) => {
+export const loginTC = (data: LoginType) => async (dispatch: Dispatch) => {
   dispatch(setAppStatus({ status: 'loading' }))
   try {
     const response = await authAPI.login(data)
@@ -163,7 +163,7 @@ export const registrationThunk = createAsyncThunk(
     try {
       await authAPI.register({ email: data.email, password: data.password })
       dispatch(setAppStatus({ status: 'idle' }))
-      dispatch(login({ email: data.email, password: data.password, rememberMe: true }))
+      dispatch(loginTC({ email: data.email, password: data.password, rememberMe: true }))
     } catch (e: any) {
       errorUtils(dispatch, e)
     }
