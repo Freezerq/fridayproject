@@ -20,6 +20,8 @@ export const PATH = {
   PASSWORD_RESTORE: '/passRecovery',
   NEW_PASSWORD: '/set-new-password/:token',
   TEST_SUPER_COMPONENTS: '/componentTest',
+  CARDS: '/cards',
+  PACKS: '/packs',
 }
 
 const AppRoutes = () => {
@@ -35,6 +37,8 @@ const AppRoutes = () => {
       <Route path={PATH.ERROR404} element={<ErrorPage />} />
       <Route path={PATH.PASSWORD_RESTORE} element={<PassRecovery />} />
       <Route path={PATH.NEW_PASSWORD} element={<CreateNewPassword />} />
+      <Route path={PATH.CARDS} element={<Cards />} />
+      <Route path={PATH.PACKS} element={<Packs />} />
 
       <Route path={PATH.TEST_SUPER_COMPONENTS} element={<ComponentTest />} />
 
