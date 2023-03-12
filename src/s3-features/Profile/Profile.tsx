@@ -2,10 +2,11 @@ import { userInfo } from 'os'
 
 import React, { useCallback, useEffect } from 'react'
 
-import { Navigate } from 'react-router-dom'
+import { Navigate, NavLink, Link } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { changeProfileName, logOutTC } from '../../s2-BLL/authSlice'
+import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
 import { PATH } from '../Routes/AppRoutes'
 
 import PersonalInfo from './PersonalInfo/PersonalInfo'
@@ -24,7 +25,7 @@ export const Profile = () => {
     dispatch(changeProfileName(newName))
   }, [])
 
-  // if (!isLoggedIn) return <Navigate to={PATH.LOGIN} />
+  //if (!isLoggedIn) return <Navigate to={PATH.LOGIN} />
 
   return (
     <div>
