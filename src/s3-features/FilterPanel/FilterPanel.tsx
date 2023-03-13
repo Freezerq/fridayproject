@@ -75,6 +75,7 @@ export const FilterPanel = (props: FilterPanelType) => {
         }}
         type={'button'}
         variant={'outlined'}
+        onClick={props.resetFilters}
       >
         <FilterAltIcon />
       </Button>
@@ -85,4 +86,5 @@ export const FilterPanel = (props: FilterPanelType) => {
 type FilterPanelType = {
   showMyPacks: () => void
   showAllPacks: () => void
+  resetFilters: () => void
 }

@@ -35,10 +35,18 @@ export const Packs = () => {
     dispatch(setPacksAttributes({ attributes: { user_id: undefined } }))
   }
 
+  const resetFilters = () => {
+    dispatch(setPacksAttributes({ attributes: {} }))
+  }
+
   return (
     <>
       <TableContainer component={Paper}>
-        <FilterPanel showAllPacks={showAllPacks} showMyPacks={showMyPacks} />
+        <FilterPanel
+          showAllPacks={showAllPacks}
+          showMyPacks={showMyPacks}
+          resetFilters={resetFilters}
+        />
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
