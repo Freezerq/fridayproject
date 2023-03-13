@@ -8,6 +8,8 @@ import TableRow from '@mui/material/TableRow'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getPacksTC } from '../../s2-BLL/packSlice'
+import { FilterPanel } from '../FilterPanel/FilterPanel'
+import { SuperPagination } from '../Pagination/Pagination'
 
 export const Packs = () => {
   const packs = useAppSelector(state => state.packs.packs)
@@ -18,32 +20,37 @@ export const Packs = () => {
   }
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="left">Cards</TableCell>
-            <TableCell align="left">Last Updated</TableCell>
-            <TableCell align="left">Created by</TableCell>
-            <TableCell align="left">Actions</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {packs.map(pack => (
-            <TableRow key={pack._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-              <TableCell component="th" scope="row">
-                {pack.name}
-              </TableCell>
-              <TableCell align="left">{pack.cardsCount}</TableCell>
-              <TableCell align="left">{pack.updated}</TableCell>
-              <TableCell align="left">{pack.user_name}</TableCell>
+    <>
+      <TableContainer component={Paper}>
+        <FilterPanel />
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Name</TableCell>
+              <TableCell align="left">Cards</TableCell>
+              <TableCell align="left">Last Updated</TableCell>
+              <TableCell align="left">Created by</TableCell>
               <TableCell align="left">Actions</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <button onClick={buttonOnClick}>Get packs</button>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {packs.map(pack => (
+              <TableRow key={pack._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                <TableCell component="th" scope="row">
+                  {pack.name}
+                </TableCell>
+                <TableCell align="left">{pack.cardsCount}</TableCell>
+                <TableCell align="left">{pack.updated}</TableCell>
+                <TableCell align="left">{pack.user_name}</TableCell>
+                <TableCell align="left">Actions</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        <button onClick={buttonOnClick}>Get packs</button>
+      </TableContainer>
+
+      <SuperPagination paginationTitle={'Packs per Page'} />
+    </>
   )
 }
