@@ -18,7 +18,7 @@ export const Cards = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(getCards({ ...attributes }))
+    //dispatch(getCards({ cardsPack_id: attributes.cardsPack_id }))
   }, [])
 
   return (
