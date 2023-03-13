@@ -8,8 +8,9 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
+import { GetPacksType } from '../../s1-DAL/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { getPacks, setPacksAttributes } from '../../s2-BLL/packSlice'
+import { getPacks, resetPacksAttributes, setPacksAttributes } from '../../s2-BLL/packSlice'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
 import { SuperPagination } from '../Pagination/Pagination'
 
@@ -26,6 +27,7 @@ export const Packs = () => {
   }
 
   useEffect(() => {
+    console.log(attributes)
     dispatch(getPacks(attributes))
   }, [attributes])
 
@@ -37,7 +39,7 @@ export const Packs = () => {
   }
 
   const resetFilters = () => {
-    dispatch(setPacksAttributes({ attributes: {} }))
+    dispatch(resetPacksAttributes({}))
   }
 
   const setPacksPerPage = (rowsPerPage: number) => {

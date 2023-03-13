@@ -26,13 +26,16 @@ const packSlice = createSlice({
       state.packsData = action.payload.packsData
     },
     setPacksAttributes: (state, action: PayloadAction<{ attributes: GetPacksType }>) => {
-      state.attributesData = action.payload.attributes
+      state.attributesData = { ...state.attributesData, ...action.payload.attributes }
+    },
+    resetPacksAttributes: (state, action: PayloadAction<GetPacksType>) => {
+      state.attributesData = action.payload
     },
   },
   extraReducers: builder => {},
 })
 
-export const { setPacks, setPacksAttributes } = packSlice.actions
+export const { setPacks, setPacksAttributes, resetPacksAttributes } = packSlice.actions
 
 export const packReducer = packSlice.reducer
 
