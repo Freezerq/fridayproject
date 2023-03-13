@@ -17,6 +17,7 @@ export const Packs = () => {
   const packs = useAppSelector(state => state.packs.packsData.cardPacks)
   const packsTotalCount = useAppSelector(state => state.packs.packsData.cardPacksTotalCount)
   const attributes = useAppSelector(state => state.packs.attributesData)
+  const packsPerPage = useAppSelector(state => state.packs.attributesData.pageCount)
   const userId = useAppSelector(state => state.auth.profile._id)
   const dispatch = useAppDispatch()
 
@@ -37,6 +38,10 @@ export const Packs = () => {
 
   const resetFilters = () => {
     dispatch(setPacksAttributes({ attributes: {} }))
+  }
+
+  const setPacksPerPage = (rowsPerPage: number) => {
+    dispatch(setPacksAttributes({ attributes: { pageCount: rowsPerPage } }))
   }
 
   return (
@@ -74,7 +79,7 @@ export const Packs = () => {
         <button onClick={buttonOnClick}>Get packs</button>
       </TableContainer>
 
-      <SuperPagination paginationTitle={'Packs per Page'} />
+      <SuperPagination paginationTitle={'Packs per Page'} setPacksPerPage={setPacksPerPage} />
     </>
   )
 }

@@ -6,11 +6,12 @@ import s from './Pagination.module.css'
 
 type PaginationPropsType = {
   paginationTitle: string
+  setPacksPerPage: (rowsPerPage: number) => void
 }
 
-export const SuperPagination: FC<PaginationPropsType> = ({ paginationTitle }) => {
-  const [rowsPerPage, setRowsPerPage] = useState(5)
-  const [page, setPage] = useState(0)
+export const SuperPagination: FC<PaginationPropsType> = ({ paginationTitle, setPacksPerPage }) => {
+  const [rowsPerPage, setRowsPerPage] = useState<number>(4)
+  const [page, setPage] = useState<number>(0)
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage)
@@ -18,7 +19,10 @@ export const SuperPagination: FC<PaginationPropsType> = ({ paginationTitle }) =>
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setRowsPerPage(parseInt(event.target.value, 10))
+    let rows = Number(event.target.value)
+
+    setRowsPerPage(rows)
+    setPacksPerPage(rows)
     setPage(0)
   }
 
