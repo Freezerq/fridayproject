@@ -7,9 +7,17 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
+import { useNavigate } from 'react-router-dom'
 
+import { GetPacksType } from '../../s1-DAL/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { getPacks, setPacksAttributes } from '../../s2-BLL/packSlice'
+import { getCards, setCards } from '../../s2-BLL/cardsSlice'
+import {
+  addNewPack,
+  getPacks,
+  resetPacksAttributes,
+  setPacksAttributes,
+} from '../../s2-BLL/packSlice'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
 import { SuperPagination } from '../Pagination/Pagination'
 
@@ -21,12 +29,15 @@ export const Packs = () => {
   const currentPage = useAppSelector(state => state.packs.attributesData.page)
   const userId = useAppSelector(state => state.auth.profile._id)
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
+  console.log(packs)
   const buttonOnClick = () => {
-    dispatch(getPacks(attributes))
+    dispatch(addNewPack({ name: 'irina' }, attributes))
   }
 
   useEffect(() => {
+    console.log(attributes)
     dispatch(getPacks(attributes))
   }, [attributes])
 
@@ -38,11 +49,16 @@ export const Packs = () => {
   }
 
   const resetFilters = () => {
-    dispatch(setPacksAttributes({ attributes: {} }))
+    dispatch(resetPacksAttributes({}))
   }
 
   const setPacksPerPage = (rowsPerPage: number) => {
     dispatch(setPacksAttributes({ attributes: { pageCount: rowsPerPage } }))
+  }
+
+  const onNameClickHandler = (id: string) => {
+    dispatch(getCards({ cardsPack_id: id }))
+    navigate('/cards')
   }
 
   return (
@@ -54,7 +70,7 @@ export const Packs = () => {
           resetFilters={resetFilters}
         />
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
+          <TableHead style={{ backgroundColor: '#EFEFEF' }}>
             <TableRow>
               <TableCell>Name</TableCell>
               <TableCell align="left">Cards</TableCell>
@@ -66,7 +82,12 @@ export const Packs = () => {
           <TableBody>
             {packs?.map(pack => (
               <TableRow key={pack._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell component="th" scope="row">
+                <TableCell
+                  style={{ backgroundColor: 'gray' }}
+                  onClick={() => onNameClickHandler(pack._id)}
+                  component="th"
+                  scope="row"
+                >
                   {pack.name}
                 </TableCell>
                 <TableCell align="left">{pack.cardsCount}</TableCell>
@@ -77,7 +98,7 @@ export const Packs = () => {
             ))}
           </TableBody>
         </Table>
-        <button onClick={buttonOnClick}>Get packs</button>
+        <button onClick={buttonOnClick}>add pack</button>
       </TableContainer>
 
       <SuperPagination

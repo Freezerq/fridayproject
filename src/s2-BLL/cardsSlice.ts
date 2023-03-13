@@ -22,15 +22,14 @@ const cardsSlice = createSlice({
   name: 'cards',
   initialState: initialState,
   reducers: {
-    setCards: (
-      state,
-      action: PayloadAction<{ cardsData: CardsReturnType; attributes: GetCardsType }>
-    ) => {
+    setCards: (state, action: PayloadAction<{ cardsData: CardsReturnType }>) => {
       state.cardsData = action.payload.cardsData
-      action.payload.cardsData.cards.forEach(card => state.cardsData.cards.push(card))
     },
     setCardsAttributes: (state, action: PayloadAction<{ attributes: GetCardsType }>) => {
-      state.attributesData = action.payload.attributes
+      state.attributesData = { ...state.attributesData, ...action.payload.attributes }
+    },
+    resetCardsAttributes: (state, action: PayloadAction<GetCardsType>) => {
+      state.attributesData = action.payload
     },
   },
 })
@@ -45,15 +44,13 @@ export const getCards = (attributes: GetCardsType) => async (dispatch: Dispatch)
   try {
     const result = await cardsAPI.getAllCards(attributes)
 
-    dispatch(setCards({ cardsData: result.data, attributes }))
+    console.log(result)
+    dispatch(setCards({ cardsData: result.data }))
   } catch (e: any) {
     errorUtils(dispatch, e)
   } finally {
     dispatch(setAppStatus({ status: 'succeeded' }))
   }
-}
-export const setCardsAttributesTC = (attributes: GetCardsType) => (dispatch: Dispatch) => {
-  dispatch(setCardsAttributes({ attributes }))
 }
 
 export const addNewCard =

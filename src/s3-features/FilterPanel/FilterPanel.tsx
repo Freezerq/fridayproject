@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { ChangeEvent, FC, useState } from 'react'
 
 import FilterAltIcon from '@mui/icons-material/FilterAlt'
 import SearchIcon from '@mui/icons-material/Search'
@@ -7,10 +7,18 @@ import InputBase from '@mui/material/InputBase'
 import Paper from '@mui/material/Paper'
 
 import { SuperRange } from '../../s4-components/common/SuperRange/SuperRange'
+import { useDebounce } from '../../utils/hooks/hooks'
 
 import s from './FilterPanel.module.css'
 
 export const FilterPanel = (props: FilterPanelType) => {
+  const [value, setValue] = useState<string>('')
+  const debouncedValue = useDebounce<string>(value, 500)
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value)
+  }
+
   return (
     <div className={s.mainContainer}>
       <div className={s.search}>
@@ -61,7 +69,6 @@ export const FilterPanel = (props: FilterPanelType) => {
           </Button>
         </div>
       </div>
-
       <div className={s.container}>
         <span className={s.text}>Number of cards</span>
         <SuperRange />

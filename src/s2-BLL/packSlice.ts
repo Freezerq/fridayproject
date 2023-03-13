@@ -27,7 +27,10 @@ const packSlice = createSlice({
       state.packsData = action.payload.packsData
     },
     setPacksAttributes: (state, action: PayloadAction<{ attributes: GetPacksType }>) => {
-      state.attributesData = action.payload.attributes
+      state.attributesData = { ...state.attributesData, ...action.payload.attributes }
+    },
+    resetPacksAttributes: (state, action: PayloadAction<GetPacksType>) => {
+      state.attributesData = action.payload
     },
     setPacksTotalCount: (state, action: PayloadAction<{ value: number }>) => {
       state.packsTotalCount = action.payload.value
@@ -36,7 +39,8 @@ const packSlice = createSlice({
   extraReducers: builder => {},
 })
 
-export const { setPacks, setPacksAttributes, setPacksTotalCount } = packSlice.actions
+export const { setPacks, setPacksAttributes, setPacksTotalCount, resetPacksAttributes } = packSlice.actions
+
 
 export const packReducer = packSlice.reducer
 
