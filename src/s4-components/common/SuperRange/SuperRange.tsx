@@ -5,7 +5,6 @@ import Slider from '@mui/material/Slider'
 import s from './SuperRange.module.css'
 
 export const SuperRange = () => {
-  // for autotests // не менять // можно подсунуть в локалСторэдж нужные числа, чтоб увидеть как они отображаются
   const [value1, setValue1] = useState(0)
   const [value2, setValue2] = useState(100)
 
@@ -16,7 +15,6 @@ export const SuperRange = () => {
     } else {
       return setValue1(value)
     }
-    // пишет студент // если пришёл массив - сохранить значения в оба useState, иначе в первый
   }
 
   return (

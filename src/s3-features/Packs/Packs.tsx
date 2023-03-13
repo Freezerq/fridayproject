@@ -18,6 +18,7 @@ export const Packs = () => {
   const packsTotalCount = useAppSelector(state => state.packs.packsData.cardPacksTotalCount)
   const attributes = useAppSelector(state => state.packs.attributesData)
   const packsPerPage = useAppSelector(state => state.packs.attributesData.pageCount)
+  const currentPage = useAppSelector(state => state.packs.attributesData.page)
   const userId = useAppSelector(state => state.auth.profile._id)
   const dispatch = useAppDispatch()
 
@@ -79,7 +80,13 @@ export const Packs = () => {
         <button onClick={buttonOnClick}>Get packs</button>
       </TableContainer>
 
-      <SuperPagination paginationTitle={'Packs per Page'} setPacksPerPage={setPacksPerPage} />
+      <SuperPagination
+        paginationTitle={'Packs per Page'}
+        setPacksPerPage={setPacksPerPage}
+        packsTotalCount={packsTotalCount}
+        currentPage={currentPage ?? 1}
+        packsPerPage={packsPerPage ?? 4}
+      />
     </>
   )
 }

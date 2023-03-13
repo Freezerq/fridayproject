@@ -7,14 +7,23 @@ import s from './Pagination.module.css'
 type PaginationPropsType = {
   paginationTitle: string
   setPacksPerPage: (rowsPerPage: number) => void
+  packsTotalCount: number
+  currentPage: number
+  packsPerPage: number
 }
 
-export const SuperPagination: FC<PaginationPropsType> = ({ paginationTitle, setPacksPerPage }) => {
-  const [rowsPerPage, setRowsPerPage] = useState<number>(4)
-  const [page, setPage] = useState<number>(0)
+export const SuperPagination: FC<PaginationPropsType> = ({
+  paginationTitle,
+  setPacksPerPage,
+  packsTotalCount,
+  currentPage,
+  packsPerPage,
+}) => {
+  const [rowsPerPage, setRowsPerPage] = useState<number>(packsPerPage)
+  const [page, setPage] = useState<number>(currentPage)
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
-    setPage(newPage)
+    setPage(newPage + 1)
   }
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -30,9 +39,8 @@ export const SuperPagination: FC<PaginationPropsType> = ({ paginationTitle, setP
     <div className={s.pagination}>
       <TablePagination
         component="div"
-        count={100}
-        page={page}
-        // page={currentPage - 1}
+        count={packsTotalCount}
+        page={currentPage - 1}
         onPageChange={handleChangePage}
         rowsPerPageOptions={[4, 7, 10, 15]}
         rowsPerPage={rowsPerPage}
