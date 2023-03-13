@@ -32,6 +32,9 @@ export const Packs = () => {
   const showMyPacks = () => {
     dispatch(setPacksAttributes({ attributes: { user_id: userId } }))
   }
+  const showAllPacks = () => {
+    dispatch(setPacksAttributes({ attributes: { user_id: undefined } }))
+  }
 
   return (
     <>
@@ -64,7 +67,7 @@ export const Packs = () => {
         <button onClick={buttonOnClick}>Get packs</button>
         <div>
           <button onClick={showMyPacks}>My packs</button>
-          <button>All packs</button>
+          <button onClick={showAllPacks}>All packs</button>
         </div>
       </TableContainer>
 
