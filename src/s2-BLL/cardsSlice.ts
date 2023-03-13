@@ -8,12 +8,10 @@ import {
   GetCardsType,
   UpdateCardType,
 } from '../s1-DAL/cardsAPI'
-import { GetPacksType } from '../s1-DAL/packsAPI'
 import { AppDispatch } from '../s1-DAL/store'
 import { errorUtils } from '../utils/errorUtils'
 
 import { setAppStatus } from './appSlice'
-import { setPacksAttributes } from './packSlice'
 
 const initialState = {
   cardsData: {} as CardsReturnType,
