@@ -24,7 +24,6 @@ const packSlice = createSlice({
   reducers: {
     setPacks: (state, action: PayloadAction<{ packsData: PackReturnType }>) => {
       state.packsData = action.payload.packsData
-      action.payload.packsData.cardPacks.forEach(pack => state.packsData.cardPacks.push(pack))
     },
     setPacksAttributes: (state, action: PayloadAction<{ attributes: GetPacksType }>) => {
       state.attributesData = action.payload.attributes
@@ -42,18 +41,12 @@ export const getPacks = (attributes: GetPacksType) => async (dispatch: AppDispat
   try {
     const result = await packsAPI.getAllPacks(attributes)
 
-    console.log(result.data)
     dispatch(setPacks({ packsData: result.data }))
-    dispatch(setPacksAttributesTC(attributes))
   } catch (e: any) {
     errorUtils(dispatch, e)
   } finally {
     dispatch(setAppStatus({ status: 'succeeded' }))
   }
-}
-
-export const setPacksAttributesTC = (attributes: GetPacksType) => (dispatch: Dispatch) => {
-  dispatch(setPacksAttributes({ attributes }))
 }
 
 export const addNewPack =
