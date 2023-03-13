@@ -30,7 +30,10 @@ const cardsSlice = createSlice({
       action.payload.cardsData.cards.forEach(card => state.cardsData.cards.push(card))
     },
     setCardsAttributes: (state, action: PayloadAction<{ attributes: GetCardsType }>) => {
-      state.attributesData = action.payload.attributes
+      state.attributesData = { ...state.attributesData, ...action.payload.attributes }
+    },
+    resetCardsAttributes: (state, action: PayloadAction<GetCardsType>) => {
+      state.attributesData = action.payload
     },
   },
 })
