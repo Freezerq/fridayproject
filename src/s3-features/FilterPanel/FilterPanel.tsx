@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useState } from 'react'
+import React, { ChangeEvent, FC, useEffect, useState } from 'react'
 
 import FilterAltIcon from '@mui/icons-material/FilterAlt'
 import SearchIcon from '@mui/icons-material/Search'
@@ -6,6 +6,8 @@ import Button from '@mui/material/Button'
 import InputBase from '@mui/material/InputBase'
 import Paper from '@mui/material/Paper'
 
+import { useAppDispatch } from '../../s1-DAL/store'
+import { setPacksAttributes } from '../../s2-BLL/packSlice'
 import { SuperRange } from '../../s4-components/common/SuperRange/SuperRange'
 import { useDebounce } from '../../utils/hooks/hooks'
 
@@ -13,11 +15,17 @@ import s from './FilterPanel.module.css'
 
 export const FilterPanel = (props: FilterPanelType) => {
   const [value, setValue] = useState<string>('')
-  const debouncedValue = useDebounce<string>(value, 500)
-
+  const debouncedValue = useDebounce<string>(value, 750)
+  const dispatch = useAppDispatch()
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value)
   }
+
+  useEffect(() => {
+    if (value.length > 0) {
+      dispatch(setPacksAttributes({ attributes: { packName: debouncedValue } }))
+    }
+  }, [debouncedValue])
 
   return (
     <div className={s.mainContainer}>
@@ -34,6 +42,8 @@ export const FilterPanel = (props: FilterPanelType) => {
             className={s.input}
             placeholder="Provide your text"
             inputProps={{ 'aria-label': 'provide your text' }}
+            onChange={handleChange}
+            value={value}
           />
         </Paper>
       </div>
