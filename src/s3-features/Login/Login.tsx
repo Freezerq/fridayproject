@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -73,6 +73,7 @@ export const Login: FC = () => {
                 borderRadius: '30px',
                 mt: '69px',
                 background: '#366EFF',
+                textTransform: 'none',
               }}
               type={'submit'}
               variant={'contained'}

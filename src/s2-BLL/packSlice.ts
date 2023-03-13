@@ -30,6 +30,7 @@ const packSlice = createSlice({
       state.attributesData = action.payload.attributes
     },
   },
+  extraReducers: builder => {},
 })
 
 export const { setPacks, setPacksAttributes } = packSlice.actions
