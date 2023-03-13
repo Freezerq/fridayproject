@@ -21,6 +21,7 @@ export const Packs = () => {
   const userId = useAppSelector(state => state.auth.profile._id)
   const dispatch = useAppDispatch()
 
+  console.log(packs)
   const buttonOnClick = () => {
     dispatch(getPacks(attributes))
   }
@@ -78,7 +79,6 @@ export const Packs = () => {
         </Table>
         <button onClick={buttonOnClick}>Get packs</button>
       </TableContainer>
-
       <SuperPagination paginationTitle={'Packs per Page'} setPacksPerPage={setPacksPerPage} />
     </>
   )
