@@ -3,7 +3,12 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { packsAPI } from '../s1-DAL/packsAPI'
 import { errorUtils } from '../utils/errorUtils'
 
-const initialState: initialStateType = { packs: [] }
+const initialState: initialStateType = {
+  packs: [],
+  cardPacksTotalCount: 0,
+  maxCardsCount: 4,
+  minCardsCount: 0,
+}
 
 function packFromServerToNormal(pack: PackTypeFromServer): PackTypeOnlyNeeded {
   return {
@@ -25,11 +30,14 @@ const packSlice = createSlice({
         state.packs.push(packFromServerToNormal(pack))
       })
     },
+    setCardPacksTotalCount(state, action: PayloadAction<{ value: number }>) {
+      state.cardPacksTotalCount = action.payload.value
+    },
   },
   extraReducers: builder => {},
 })
 
-export const { setPacks } = packSlice.actions
+export const { setPacks, setCardPacksTotalCount } = packSlice.actions
 
 export const packReducer = packSlice.reducer
 
@@ -63,6 +71,9 @@ type PackTypeFromServer = {
 }
 type initialStateType = {
   packs: Array<PackTypeOnlyNeeded>
+  cardPacksTotalCount: number | undefined
+  maxCardsCount: number
+  minCardsCount: number
 }
 export type PackTypeOnlyNeeded = {
   _id: string
