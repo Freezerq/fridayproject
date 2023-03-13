@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { GetPacksType } from '../../s1-DAL/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { getCards, setCards } from '../../s2-BLL/cardsSlice'
+import { getCards, setCards, setCardsAttributes } from '../../s2-BLL/cardsSlice'
 import {
   addNewPack,
   getPacks,
@@ -20,6 +20,7 @@ import {
 } from '../../s2-BLL/packSlice'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
 import { SuperPagination } from '../Pagination/Pagination'
+import { PATH } from '../Routes/AppRoutes'
 
 export const Packs = () => {
   const packs = useAppSelector(state => state.packs.packsData.cardPacks)
@@ -56,8 +57,8 @@ export const Packs = () => {
   }
 
   const onNameClickHandler = (id: string) => {
-    dispatch(getCards({ cardsPack_id: id }))
-    navigate('/cards')
+    dispatch(setCardsAttributes({ attributes: { cardsPack_id: id } }))
+    navigate(PATH.CARDS)
   }
 
   return (

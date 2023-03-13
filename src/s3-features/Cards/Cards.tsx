@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 
+import SearchIcon from '@mui/icons-material/Search'
+import InputBase from '@mui/material/InputBase'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -10,6 +12,7 @@ import TableRow from '@mui/material/TableRow'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getCards, setCardsAttributes } from '../../s2-BLL/cardsSlice'
+import s from '../FilterPanel/FilterPanel.module.css'
 
 export const Cards = () => {
   const cards = useAppSelector(state => state.cards.cardsData.cards)
@@ -18,17 +21,28 @@ export const Cards = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    //dispatch(getCards({ cardsPack_id: attributes.cardsPack_id }))
+    dispatch(getCards(attributes))
   }, [])
 
   return (
     <>
       <TableContainer component={Paper}>
-        {/*<FilterPanel*/}
-        {/*  showAllPacks={showAllPacks}*/}
-        {/*  showMyPacks={showMyPacks}*/}
-        {/*  resetFilters={resetFilters}*/}
-        {/*/>*/}
+        <span className={s.text}>Search</span>
+        <Paper
+          component="form"
+          elevation={0}
+          sx={{ background: 'transparent' }}
+          className={s.paper}
+        >
+          <SearchIcon color={'disabled'} sx={{ width: '18px', ml: '5px' }} />
+          <InputBase
+            className={s.input}
+            placeholder="Search by question"
+            inputProps={{ 'aria-label': 'search by question' }}
+            //onChange={handleChange}
+            //value={value}
+          />
+        </Paper>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead style={{ backgroundColor: '#EFEFEF' }}>
             <TableRow>
