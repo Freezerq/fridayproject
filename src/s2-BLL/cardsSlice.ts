@@ -8,10 +8,12 @@ import {
   GetCardsType,
   UpdateCardType,
 } from '../s1-DAL/cardsAPI'
+import { GetPacksType } from '../s1-DAL/packsAPI'
 import { AppDispatch } from '../s1-DAL/store'
 import { errorUtils } from '../utils/errorUtils'
 
 import { setAppStatus } from './appSlice'
+import { setPacksAttributes } from './packSlice'
 
 const initialState = {
   cardsData: {} as CardsReturnType,
@@ -28,12 +30,14 @@ const cardsSlice = createSlice({
     ) => {
       state.cardsData = action.payload.cardsData
       action.payload.cardsData.cards.forEach(card => state.cardsData.cards.push(card))
+    },
+    setCardsAttributes: (state, action: PayloadAction<{ attributes: GetCardsType }>) => {
       state.attributesData = action.payload.attributes
     },
   },
 })
 
-export const { setCards } = cardsSlice.actions
+export const { setCards, setCardsAttributes } = cardsSlice.actions
 
 export const cardsReducer = cardsSlice.reducer
 
@@ -49,6 +53,9 @@ export const getCards = (attributes: GetCardsType) => async (dispatch: Dispatch)
   } finally {
     dispatch(setAppStatus({ status: 'succeeded' }))
   }
+}
+export const setCardsAttributesTC = (attributes: GetCardsType) => (dispatch: Dispatch) => {
+  dispatch(setCardsAttributes({ attributes }))
 }
 
 export const addNewCard =
