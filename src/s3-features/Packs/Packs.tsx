@@ -10,6 +10,7 @@ import TableRow from '@mui/material/TableRow'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getPacks, setPacksAttributes } from '../../s2-BLL/packSlice'
+import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
 
 export const Packs = () => {
   const packs = useAppSelector(state => state.packs.packsData.cardPacks)
@@ -30,9 +31,16 @@ export const Packs = () => {
   const showMyPacks = () => {
     dispatch(setPacksAttributes({ attributes: { user_id: userId } }))
   }
+  const showAllPacks = () => {
+    dispatch(setPacksAttributes({ attributes: { user_id: undefined } }))
+  }
 
   return (
     <TableContainer component={Paper}>
+      <div>
+        <button onClick={showMyPacks}>My packs</button>
+        <button onClick={showAllPacks}>All packs</button>
+      </div>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -58,10 +66,6 @@ export const Packs = () => {
         </TableBody>
       </Table>
       <button onClick={buttonOnClick}>Get packs</button>
-      <div>
-        <button onClick={showMyPacks}>My packs</button>
-        <button>All packs</button>
-      </div>
     </TableContainer>
   )
 }
