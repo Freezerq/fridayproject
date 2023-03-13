@@ -11,8 +11,13 @@ import { useNavigate } from 'react-router-dom'
 
 import { GetPacksType } from '../../s1-DAL/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { setCardsAttributesTC } from '../../s2-BLL/cardsSlice'
-import { getPacks, resetPacksAttributes, setPacksAttributes } from '../../s2-BLL/packSlice'
+import { getCards, setCards } from '../../s2-BLL/cardsSlice'
+import {
+  addNewPack,
+  getPacks,
+  resetPacksAttributes,
+  setPacksAttributes,
+} from '../../s2-BLL/packSlice'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
 import { SuperPagination } from '../Pagination/Pagination'
 
@@ -27,7 +32,7 @@ export const Packs = () => {
 
   console.log(packs)
   const buttonOnClick = () => {
-    dispatch(getPacks(attributes))
+    dispatch(addNewPack({ name: 'irina' }, attributes))
   }
 
   useEffect(() => {
@@ -51,7 +56,7 @@ export const Packs = () => {
   }
 
   const onNameClickHandler = (id: string) => {
-    dispatch(setCardsAttributesTC({ cardsPack_id: id }))
+    dispatch(getCards({ cardsPack_id: id }))
     navigate('/cards')
   }
 
@@ -92,7 +97,7 @@ export const Packs = () => {
             ))}
           </TableBody>
         </Table>
-        <button onClick={buttonOnClick}>Get packs</button>
+        <button onClick={buttonOnClick}>add pack</button>
       </TableContainer>
       <SuperPagination paginationTitle={'Packs per Page'} setPacksPerPage={setPacksPerPage} />
     </>
