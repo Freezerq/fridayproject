@@ -10,7 +10,7 @@ import { SuperRange } from '../../s4-components/common/SuperRange/SuperRange'
 
 import s from './FilterPanel.module.css'
 
-export const FilterPanel: FC = () => {
+export const FilterPanel = (props: FilterPanelType) => {
   return (
     <div className={s.mainContainer}>
       <div className={s.search}>
@@ -42,6 +42,7 @@ export const FilterPanel: FC = () => {
               background: '#366EFF',
             }}
             variant={'contained'}
+            onClick={props.showAllPacks}
           >
             All
           </Button>
@@ -54,6 +55,7 @@ export const FilterPanel: FC = () => {
               background: '#366EFF',
             }}
             variant={'contained'}
+            onClick={props.showMyPacks}
           >
             My
           </Button>
@@ -78,4 +80,9 @@ export const FilterPanel: FC = () => {
       </Button>
     </div>
   )
+}
+
+type FilterPanelType = {
+  showMyPacks: () => void
+  showAllPacks: () => void
 }

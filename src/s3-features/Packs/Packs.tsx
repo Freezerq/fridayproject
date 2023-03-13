@@ -25,7 +25,6 @@ export const Packs = () => {
   }
 
   useEffect(() => {
-    console.log(attributes)
     dispatch(getPacks(attributes))
   }, [attributes])
 
@@ -39,7 +38,7 @@ export const Packs = () => {
   return (
     <>
       <TableContainer component={Paper}>
-        <FilterPanel />
+        <FilterPanel showAllPacks={showAllPacks} showMyPacks={showMyPacks} />
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -65,10 +64,6 @@ export const Packs = () => {
           </TableBody>
         </Table>
         <button onClick={buttonOnClick}>Get packs</button>
-        <div>
-          <button onClick={showMyPacks}>My packs</button>
-          <button onClick={showAllPacks}>All packs</button>
-        </div>
       </TableContainer>
 
       <SuperPagination paginationTitle={'Packs per Page'} />
