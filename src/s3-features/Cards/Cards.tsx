@@ -18,7 +18,7 @@ export const Cards = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(getCards({ cardsPack_id: '640f57e93d4e2415c8bf0e3e' }))
+    dispatch(getCards({ cardsPack_id: attributes.cardsPack_id }))
   }, [])
 
   return (
@@ -44,8 +44,8 @@ export const Cards = () => {
                 <TableCell component="th" scope="row">
                   {card.question}
                 </TableCell>
-                <TableCell align="left">{card.question}</TableCell>
                 <TableCell align="left">{card.answer}</TableCell>
+                <TableCell align="left">updated</TableCell>
                 <TableCell align="left">{card.grade}</TableCell>
                 <TableCell align="left">-</TableCell>
               </TableRow>
