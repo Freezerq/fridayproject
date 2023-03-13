@@ -20,18 +20,24 @@ export const cardsAPI = {
     page,
     pageCount,
   }: GetCardsType) {
-    return instance.get('/cards/card', {
-      params: {
-        cardAnswer,
-        cardQuestion,
-        cardsPack_id,
-        min,
-        max,
-        sortCards,
-        page,
-        pageCount,
-      },
-    })
+    return instance
+      .get('/cards/card', {
+        params: {
+          cardAnswer,
+          cardQuestion,
+          cardsPack_id,
+          min,
+          max,
+          sortCards,
+          page,
+          pageCount,
+        },
+      })
+      .then(res => {
+        console.log(res)
+
+        return res
+      })
   },
   addNewCard(data: AddNewCardType) {
     return instance.post('/cards/card', { card: data })
@@ -57,7 +63,7 @@ export type CardType = {
   updated: Date
 }
 
-export type AllCardsReturnType = {
+export type CardsReturnType = {
   cards: CardType[]
   cardsTotalCount: number
   maxGrade: number
@@ -67,7 +73,9 @@ export type AllCardsReturnType = {
   packUserId: string
 }
 //все из этого не обязательно, Partial делает атрибуты необязательными
-export type GetCardsType = Partial<{
+export type GetCardsType = Partial<GetCardsAttributesType> &
+  Pick<GetCardsAttributesType, 'cardsPack_id'>
+export type GetCardsAttributesType = {
   cardAnswer: string
   cardQuestion: string
   cardsPack_id: string
@@ -76,7 +84,7 @@ export type GetCardsType = Partial<{
   sortCards: number
   page: number
   pageCount: number
-}>
+}
 //cardsPack_id обязательно, остальное - не обязательно
 export type AddNewCardType = Pick<CardType, 'cardsPack_id'> &
   Partial<{
@@ -90,4 +98,4 @@ export type AddNewCardType = Pick<CardType, 'cardsPack_id'> &
     answerVideo: string
   }>
 
-export type UpdateCardType = Pick<Partial<CardType>, '_id'>
+export type UpdateCardType = Partial<CardType> & Pick<CardType, '_id'>

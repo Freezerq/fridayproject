@@ -7,14 +7,16 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { getPacksTC } from '../../s2-BLL/packSlice'
+import { getPacks } from '../../s2-BLL/packSlice'
 
 export const Packs = () => {
-  const packs = useAppSelector(state => state.packs.packs)
+  const packs = useAppSelector(state => state.packs.packsData.cardPacks)
+  const attributes = useAppSelector(state => state.packs.attributesData)
+  const packsTotalCount = useAppSelector(state => state.packs.packsData.cardPacksTotalCount)
   const dispatch = useAppDispatch()
 
   const buttonOnClick = () => {
-    dispatch(getPacksTC())
+    dispatch(getPacks({}))
   }
 
   return (

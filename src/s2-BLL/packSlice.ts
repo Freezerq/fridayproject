@@ -1,74 +1,92 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { Dispatch } from 'redux'
 
-import { packsAPI } from '../s1-DAL/packsAPI'
+import {
+  AddNewPackType,
+  GetPacksType,
+  PackReturnType,
+  packsAPI,
+  UpdatePackType,
+} from '../s1-DAL/packsAPI'
+import { AppDispatch } from '../s1-DAL/store'
 import { errorUtils } from '../utils/errorUtils'
 
-const initialState: initialStateType = { packs: [] }
+import { setAppStatus } from './appSlice'
 
-function packFromServerToNormal(pack: PackTypeFromServer): PackTypeOnlyNeeded {
-  return {
-    name: pack.name,
-    user_name: pack.user_name,
-    user_id: pack.user_id,
-    _id: pack._id,
-    updated: pack.updated.slice(0, 10),
-    cardsCount: pack.cardsCount,
-  }
+const initialState = {
+  packsData: {} as PackReturnType,
+  attributesData: {} as GetPacksType,
 }
 
 const packSlice = createSlice({
   name: 'pack',
   initialState: initialState,
   reducers: {
-    setPacks: (state, action: PayloadAction<{ packs: Array<PackTypeFromServer> }>) => {
-      action.payload.packs.forEach(pack => {
-        state.packs.push(packFromServerToNormal(pack))
-      })
+    setPacks: (
+      state,
+      action: PayloadAction<{ packsData: PackReturnType; attributes: GetPacksType }>
+    ) => {
+      state.packsData = action.payload.packsData
+      action.payload.packsData.cardPacks.forEach(pack => state.packsData.cardPacks.push(pack))
+      state.attributesData = action.payload.attributes
+      console.log(state.packsData)
     },
   },
-  extraReducers: builder => {},
 })
 
 export const { setPacks } = packSlice.actions
 
 export const packReducer = packSlice.reducer
 
-export const getPacksTC = createAsyncThunk('pack', async function (_, { dispatch }) {
+//Thunk creators
+export const getPacks = (attributes: GetPacksType) => async (dispatch: Dispatch) => {
+  dispatch(setAppStatus({ status: 'loading' }))
   try {
-    const result = await packsAPI.getAllPacks({ pageCount: 10, min: 15 })
+    const result = await packsAPI.getAllPacks(attributes)
 
-    dispatch(setPacks({ packs: result.data.cardPacks }))
+    console.log(result.data)
+    dispatch(setPacks({ packsData: result.data, attributes }))
   } catch (e: any) {
     errorUtils(dispatch, e)
+  } finally {
+    dispatch(setAppStatus({ status: 'succeeded' }))
   }
-})
-//types
+}
 
-type PackTypeFromServer = {
-  _id: string
-  user_id: string
-  user_name: string
-  private: boolean
-  name: string
-  path: string
-  grade: number
-  shots: number
-  cardsCount: number
-  type: string
-  rating: number
-  created: string
-  updated: string
-  more_id: string
-  __v: number
-}
-type initialStateType = {
-  packs: Array<PackTypeOnlyNeeded>
-}
-export type PackTypeOnlyNeeded = {
-  _id: string
-  user_id: string
-  user_name: string
-  name: string
-  cardsCount: number
-  updated: string
-}
+export const addNewPack =
+  (data: AddNewPackType, attributes: GetPacksType) => async (dispatch: AppDispatch) => {
+    dispatch(setAppStatus({ status: 'loading' }))
+    try {
+      await packsAPI.addNewPack(data)
+
+      dispatch(getPacks(attributes))
+    } catch (e: any) {
+      errorUtils(dispatch, e)
+    }
+  }
+
+export const deletePack =
+  (packId: string, attributes: GetPacksType) => async (dispatch: AppDispatch) => {
+    dispatch(setAppStatus({ status: 'loading' }))
+    try {
+      await packsAPI.deletePack(packId)
+
+      dispatch(getPacks(attributes))
+    } catch (e: any) {
+      errorUtils(dispatch, e)
+    }
+  }
+export const updatePack =
+  (data: UpdatePackType, attributes: GetPacksType) => async (dispatch: AppDispatch) => {
+    dispatch(setAppStatus({ status: 'loading' }))
+    try {
+      await packsAPI.updatePack(data)
+
+      dispatch(getPacks(attributes))
+    } catch (e: any) {
+      errorUtils(dispatch, e)
+    }
+  }
+
+//types
+type initialStateType = typeof initialState
