@@ -18,7 +18,7 @@ export const Cards = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(getCards({ cardsPack_id: attributes.cardsPack_id }))
+    dispatch(getCards({ ...attributes }))
   }, [])
 
   return (
@@ -30,12 +30,13 @@ export const Cards = () => {
         {/*  resetFilters={resetFilters}*/}
         {/*/>*/}
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
+          <TableHead style={{ backgroundColor: '#EFEFEF' }}>
             <TableRow>
               <TableCell align="left">Question</TableCell>
               <TableCell align="left">Answer</TableCell>
               <TableCell align="left">Last updated</TableCell>
               <TableCell align="left">Grade</TableCell>
+              <TableCell align="left"></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

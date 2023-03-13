@@ -64,7 +64,7 @@ export const Packs = () => {
           resetFilters={resetFilters}
         />
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
+          <TableHead style={{ backgroundColor: '#EFEFEF' }}>
             <TableRow>
               <TableCell>Name</TableCell>
               <TableCell align="left">Cards</TableCell>
