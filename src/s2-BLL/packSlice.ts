@@ -14,7 +14,6 @@ import { setAppStatus } from './appSlice'
 
 const initialState = {
   packsData: {} as PackReturnType,
-  attributesData: {} as GetPacksType,
   packsTotalCount: 0,
   maxCardsCount: 100,
   minCardsCount: 0,
@@ -26,12 +25,6 @@ const packSlice = createSlice({
   reducers: {
     setPacks: (state, action: PayloadAction<{ packsData: PackReturnType }>) => {
       state.packsData = action.payload.packsData
-    },
-    setPacksAttributes: (state, action: PayloadAction<{ attributes: GetPacksType }>) => {
-      state.attributesData = { ...state.attributesData, ...action.payload.attributes }
-    },
-    resetPacksAttributes: (state, action: PayloadAction<GetPacksType>) => {
-      state.attributesData = action.payload
     },
     setPacksTotalCount: (state, action: PayloadAction<{ value: number }>) => {
       state.packsTotalCount = action.payload.value
@@ -46,27 +39,18 @@ const packSlice = createSlice({
   extraReducers: builder => {},
 })
 
-export const {
-  setPacks,
-  setPacksAttributes,
-  setPacksTotalCount,
-  resetPacksAttributes,
-  setMinPacksCount,
-  setMaxCardsCount,
-} = packSlice.actions
+export const { setPacks, setPacksTotalCount, setMinPacksCount, setMaxCardsCount } =
+  packSlice.actions
 
 export const packReducer = packSlice.reducer
 
 //Thunk creators
 export const getPacks =
   (attributes: GetPacksType) => async (dispatch: AppDispatch, getState: () => RootState) => {
-    const { packs } = getState() as RootState
-    const params = packs.attributesData as GetPacksType
-
     dispatch(setAppStatus({ status: 'loading' }))
 
     try {
-      const result = await packsAPI.getAllPacks(params)
+      const result = await packsAPI.getAllPacks(attributes)
 
       dispatch(setPacks({ packsData: result.data }))
       dispatch(setMinPacksCount({ value: result.data.minCardsCount }))

@@ -7,7 +7,6 @@ import InputBase from '@mui/material/InputBase'
 import Paper from '@mui/material/Paper'
 
 import { useAppDispatch } from '../../s1-DAL/store'
-import { setPacksAttributes } from '../../s2-BLL/packSlice'
 import { SuperRange } from '../../s4-components/common/SuperRange/SuperRange'
 import { useDebounce } from '../../utils/hooks/hooks'
 
@@ -23,7 +22,7 @@ export const FilterPanel = (props: FilterPanelType) => {
 
   useEffect(() => {
     if (value.length > 0) {
-      dispatch(setPacksAttributes({ attributes: { packName: debouncedValue } }))
+      //dispatch(setPacksAttributes({ attributes: { packName: debouncedValue } }))
     }
   }, [debouncedValue])
 
@@ -81,7 +80,12 @@ export const FilterPanel = (props: FilterPanelType) => {
       </div>
       <div className={s.container}>
         <span className={s.text}>Number of cards</span>
-        <SuperRange />
+        <SuperRange
+          min={props.minSearchCardsNumber}
+          max={props.maxSearchCardsNumber}
+          maxValue={props.maxCardsValue}
+          setToUrlCardValues={props.onChangeSlider}
+        />
       </div>
 
       <Button
@@ -100,9 +104,12 @@ export const FilterPanel = (props: FilterPanelType) => {
   )
 }
 
-// @ts-ignore
 type FilterPanelType = {
+  minSearchCardsNumber: number
+  maxSearchCardsNumber: number
+  maxCardsValue: number
   showMyPacks: () => void
   showAllPacks: () => void
   resetFilters: () => void
+  onChangeSlider: (min: number, max: number) => void
 }

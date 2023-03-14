@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { SyntheticEvent, useEffect } from 'react'
 
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
@@ -11,12 +11,7 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getCards, setCards, setCardsAttributes } from '../../s2-BLL/cardsSlice'
-import {
-  addNewPack,
-  getPacks,
-  resetPacksAttributes,
-  setPacksAttributes,
-} from '../../s2-BLL/packSlice'
+import { addNewPack, getPacks } from '../../s2-BLL/packSlice'
 import { Actions } from '../Actions/Actions'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
 import { SuperPagination } from '../Pagination/Pagination'
@@ -25,53 +20,64 @@ import { PATH } from '../Routes/AppRoutes'
 export const Packs = () => {
   const packs = useAppSelector(state => state.packs.packsData.cardPacks)
   const packsTotalCount = useAppSelector(state => state.packs.packsData.cardPacksTotalCount)
-  const attributes = useAppSelector(state => state.packs.attributesData)
-  const packsPerPage = useAppSelector(state => state.packs.attributesData.pageCount)
-  const currentPage = useAppSelector(state => state.packs.attributesData.page)
+  //const attributes = useAppSelector(state => state.packs.attributesData)
+
   const userId = useAppSelector(state => state.auth.profile._id)
+  const maxCardsValue = useAppSelector(state => state.packs.packsData.maxCardsCount)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
 
   //set params into URL
   const [searchParams, setSearchParams] = useSearchParams()
+  const currentPage = Number(searchParams.get('page'))
+  const packsPerPage = Number(searchParams.get('pageCount'))
+  const minSearchCardsNumber = Number(searchParams.get('min'))
+  const maxSearchCardsNumber = Number(searchParams.get('max'))
 
   //to get params from URL after Question Mark
   const { search } = useLocation()
   const paramsFromUrl = Object.fromEntries(new URLSearchParams(search))
 
-  //setSearchParams({ user_id: userId }, { replace: false })
-  console.log(paramsFromUrl)
-
-
-  const buttonOnClick = () => {
-    dispatch(addNewPack({ name: 'irina' }, attributes))
-  }
-
   useEffect(() => {
     if (!isLoggedIn) return
 
-    console.log(attributes)
-    dispatch(getPacks(attributes))
-  }, [attributes, isLoggedIn])
+    console.log(paramsFromUrl)
+    dispatch(getPacks(paramsFromUrl))
+  }, [searchParams, isLoggedIn])
 
   const showMyPacks = () => {
-    dispatch(setPacksAttributes({ attributes: { user_id: userId } }))
+    setSearchParams({ ...paramsFromUrl, user_id: userId })
   }
   const showAllPacks = () => {
-    dispatch(setPacksAttributes({ attributes: { user_id: undefined } }))
+    const param = searchParams.get('user_id')
+
+    if (param) {
+      searchParams.delete('user_id')
+      setSearchParams(searchParams)
+    }
   }
 
   const resetFilters = () => {
-    dispatch(resetPacksAttributes({}))
+    setSearchParams({})
   }
 
-  const setPacksPerPage = (rowsPerPage: number, page: number) => {
-    dispatch(setPacksAttributes({ attributes: { pageCount: rowsPerPage, page } }))
+  const setPacksPerPage = (rowsPerPage: number, pageNumber: number) => {
+    setSearchParams({
+      ...paramsFromUrl,
+      pageCount: rowsPerPage.toString(),
+      page: pageNumber.toString(),
+    })
+  }
+  const onChangeCardValues = (min: number, max: number) => {
+    setSearchParams({ ...paramsFromUrl, min: min.toString(), max: max.toString() })
   }
 
+  const buttonOnClick = () => {
+    dispatch(addNewPack({ name: 'irina' }, paramsFromUrl))
+  }
   const onNameClickHandler = (id: string) => {
-    dispatch(setCardsAttributes({ attributes: { cardsPack_id: id } }))
+    //dispatch(setCardsAttributes({ attributes: { cardsPack_id: id } }))
     navigate(PATH.CARDS)
   }
 
@@ -79,9 +85,13 @@ export const Packs = () => {
     <>
       <TableContainer component={Paper}>
         <FilterPanel
+          minSearchCardsNumber={minSearchCardsNumber}
+          maxSearchCardsNumber={maxSearchCardsNumber}
           showAllPacks={showAllPacks}
           showMyPacks={showMyPacks}
           resetFilters={resetFilters}
+          onChangeSlider={onChangeCardValues}
+          maxCardsValue={maxCardsValue}
         />
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead style={{ backgroundColor: '#EFEFEF' }}>
