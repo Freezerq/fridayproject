@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react'
 
-import FilterAltIcon from '@mui/icons-material/FilterAlt'
+import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
 import SearchIcon from '@mui/icons-material/Search'
 import Button from '@mui/material/Button'
 import InputBase from '@mui/material/InputBase'
@@ -94,7 +94,7 @@ export const FilterPanel = (props: FilterPanelType) => {
         variant={'outlined'}
         onClick={props.resetFilters}
       >
-        <FilterAltIcon />
+        <FilterAltOffIcon />
       </Button>
     </div>
   )

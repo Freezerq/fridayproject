@@ -11,7 +11,7 @@ export const instance = axios.create({
 
 export const packsAPI = {
   getAllPacks({ packName, min, max, sortPacks, page, pageCount, user_id, block }: GetPacksType) {
-    return instance.get('/cards/pack', {
+    return instance.get<PackReturnType>('/cards/pack', {
       params: {
         packName,
         min,

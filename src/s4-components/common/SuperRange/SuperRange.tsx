@@ -11,8 +11,8 @@ export const SuperRange = () => {
   const maxValue = useAppSelector(state => state.packs.packsData.maxCardsCount)
   const minValue = useAppSelector(state => state.packs.packsData.minCardsCount)
   const dispatch = useAppDispatch()
-  const [value1, setValue1] = useState(minValue || 0)
-  const [value2, setValue2] = useState(maxValue || 0)
+  const [value1, setValue1] = useState(minValue)
+  const [value2, setValue2] = useState(maxValue)
 
   const change = (event: SyntheticEvent | Event, value: number | Array<number>) => {
     if (Array.isArray(value)) {
@@ -25,7 +25,10 @@ export const SuperRange = () => {
     }
   }
 
-  useEffect(() => {}, [value1, value2])
+  useEffect(() => {
+      setValue1(minValue)
+      setValue2(maxValue)
+  }, [maxValue, minValue])
 
   return (
     <div className={s.wrapper}>

@@ -19,10 +19,12 @@ export const Cards = () => {
   const attributes = useAppSelector(state => state.cards.attributesData)
   const cardsTotalCount = useAppSelector(state => state.cards.cardsData.cardsTotalCount)
   const dispatch = useAppDispatch()
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
 
   useEffect(() => {
+    if (!isLoggedIn) return
     dispatch(getCards(attributes))
-  }, [])
+  }, [isLoggedIn])
 
   return (
     <>

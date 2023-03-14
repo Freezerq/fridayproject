@@ -7,7 +7,7 @@ import {
   packsAPI,
   UpdatePackType,
 } from '../s1-DAL/packsAPI'
-import { AppDispatch } from '../s1-DAL/store'
+import { AppDispatch, RootState } from '../s1-DAL/store'
 import { errorUtils } from '../utils/errorUtils'
 
 import { setAppStatus } from './appSlice'
@@ -58,21 +58,25 @@ export const {
 export const packReducer = packSlice.reducer
 
 //Thunk creators
-export const getPacks = (attributes: GetPacksType) => async (dispatch: AppDispatch) => {
-  dispatch(setAppStatus({ status: 'loading' }))
-  try {
-    const result = await packsAPI.getAllPacks(attributes)
+export const getPacks =
+  (attributes: GetPacksType) => async (dispatch: AppDispatch, getState: () => RootState) => {
+    const { packs } = getState() as RootState
+    const params = packs.attributesData as GetPacksType
 
-    dispatch(setPacks({ packsData: result.data }))
-    dispatch(setMinPacksCount(result.data.minCardsCount))
-    dispatch(setMaxCardsCount(result.data.maxCardsCount))
-    dispatch(setPacksTotalCount({ value: result.data.cardPacksTotalCount }))
-  } catch (e: any) {
-    errorUtils(dispatch, e)
-  } finally {
-    dispatch(setAppStatus({ status: 'succeeded' }))
+    dispatch(setAppStatus({ status: 'loading' }))
+
+    try {
+      const result = await packsAPI.getAllPacks(params)
+
+      dispatch(setPacks({ packsData: result.data }))
+      dispatch(setMinPacksCount({ value: result.data.minCardsCount }))
+      dispatch(setMaxCardsCount({ value: result.data.maxCardsCount }))
+      dispatch(setPacksTotalCount({ value: result.data.cardPacksTotalCount }))
+      dispatch(setAppStatus({ status: 'succeeded' }))
+    } catch (e: any) {
+      errorUtils(dispatch, e)
+    }
   }
-}
 
 export const addNewPack =
   (data: AddNewPackType, attributes: GetPacksType) => async (dispatch: AppDispatch) => {

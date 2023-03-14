@@ -30,6 +30,8 @@ export const Packs = () => {
   const userId = useAppSelector(state => state.auth.profile._id)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+
 
   console.log(packs)
   const buttonOnClick = () => {
@@ -37,9 +39,11 @@ export const Packs = () => {
   }
 
   useEffect(() => {
+    if (!isLoggedIn) return
+
     console.log(attributes)
     dispatch(getPacks(attributes))
-  }, [attributes])
+  }, [attributes, isLoggedIn])
 
   const showMyPacks = () => {
     dispatch(setPacksAttributes({ attributes: { user_id: userId } }))
