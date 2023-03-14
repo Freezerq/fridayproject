@@ -20,9 +20,10 @@ import { PATH } from '../Routes/AppRoutes'
 export const Packs = () => {
   const packs = useAppSelector(state => state.packs.packsData.cardPacks)
   const packsTotalCount = useAppSelector(state => state.packs.packsData.cardPacksTotalCount)
-
   const userId = useAppSelector(state => state.auth.profile._id)
   const maxCardsValue = useAppSelector(state => state.packs.packsData.maxCardsCount)
+  const initialRows = useAppSelector(state => state.packs.packsData.pageCount)
+  const initialPage = useAppSelector(state => state.packs.packsData.page)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
@@ -30,10 +31,10 @@ export const Packs = () => {
   //set params into URL
   const [searchParams, setSearchParams] = useSearchParams()
   //get Single Params From URL
-  const currentPage = Number(searchParams.get('page'))
-  const packsPerPage = Number(searchParams.get('pageCount'))
   const minSearchCardsNumber = Number(searchParams.get('min'))
   const maxSearchCardsNumber = Number(searchParams.get('max'))
+  const rows = Number(searchParams.get('pageCount'))
+  const pageNumber = Number(searchParams.get('page'))
   const SearchValue = searchParams.get('packName')
 
   //to get params from URL after Question Mark
@@ -42,7 +43,6 @@ export const Packs = () => {
 
   useEffect(() => {
     if (!isLoggedIn) return
-
     dispatch(getPacks(paramsFromUrl))
   }, [searchParams, isLoggedIn])
 
@@ -62,7 +62,7 @@ export const Packs = () => {
     setSearchParams({})
   }
 
-  const setPacksPerPage = (rowsPerPage: number, pageNumber: number) => {
+  const setRowsAndPage = (rowsPerPage: number, pageNumber: number) => {
     setSearchParams({
       ...paramsFromUrl,
       pageCount: rowsPerPage.toString(),
@@ -132,13 +132,13 @@ export const Packs = () => {
         <button onClick={buttonOnClick}>add pack</button>
       </TableContainer>
 
-      {/*<SuperPagination*/}
-      {/*  paginationTitle={'Packs per Page'}*/}
-      {/*  setPacksPerPage={setPacksPerPage}*/}
-      {/*  packsTotalCount={packsTotalCount}*/}
-      {/*  currentPage={currentPage ?? 1}*/}
-      {/*  packsPerPage={packsPerPage ?? 4}*/}
-      {/*/>*/}
+      <SuperPagination
+        paginationTitle={'Packs per Page'}
+        setRowsAndPage={setRowsAndPage}
+        packsTotalCount={packsTotalCount}
+        rows={rows === 0 ? 4 : rows}
+        pageNumber={pageNumber === 0 ? 0 : pageNumber - 1}
+      />
     </>
   )
 }

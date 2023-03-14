@@ -52,6 +52,7 @@ export const getPacks =
     try {
       const result = await packsAPI.getAllPacks(attributes)
 
+      console.log(result)
       dispatch(setPacks({ packsData: result.data }))
       dispatch(setMinPacksCount({ value: result.data.minCardsCount }))
       dispatch(setMaxCardsCount({ value: result.data.maxCardsCount }))
