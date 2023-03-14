@@ -9,9 +9,8 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import { useNavigate } from 'react-router-dom'
 
-import { GetPacksType } from '../../s1-DAL/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { getCards, setCards } from '../../s2-BLL/cardsSlice'
+import { getCards } from '../../s2-BLL/cardsSlice'
 import {
   addNewPack,
   getPacks,
@@ -52,8 +51,8 @@ export const Packs = () => {
     dispatch(resetPacksAttributes({}))
   }
 
-  const setPacksPerPage = (rowsPerPage: number) => {
-    dispatch(setPacksAttributes({ attributes: { pageCount: rowsPerPage } }))
+  const setPacksPerPage = (rowsPerPage: number, page: number) => {
+    dispatch(setPacksAttributes({ attributes: { pageCount: rowsPerPage, page } }))
   }
 
   const onNameClickHandler = (id: string) => {

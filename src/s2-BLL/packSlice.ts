@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Dispatch } from 'redux'
 
 import {
   AddNewPackType,
@@ -39,8 +38,8 @@ const packSlice = createSlice({
   extraReducers: builder => {},
 })
 
-export const { setPacks, setPacksAttributes, setPacksTotalCount, resetPacksAttributes } = packSlice.actions
-
+export const { setPacks, setPacksAttributes, setPacksTotalCount, resetPacksAttributes } =
+  packSlice.actions
 
 export const packReducer = packSlice.reducer
 
