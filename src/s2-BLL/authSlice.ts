@@ -63,10 +63,12 @@ export const getAuthUserData = () => async (dispatch: Dispatch) => {
   try {
     const result = await authAPI.authMe()
 
+    if (result.data) {
+      dispatch(setAuthUserData({ data: result.data }))
+    }
     dispatch(setIsLoggedIn({ value: true }))
-    dispatch(setAuthUserData({ data: result.data }))
     dispatch(setAppStatus({ status: 'succeeded' }))
-  } catch (e: any) {
+  } catch (e) {
     console.error(e)
     dispatch(setIsLoggedIn({ value: false }))
     dispatch(setAppStatus({ status: 'failed' }))

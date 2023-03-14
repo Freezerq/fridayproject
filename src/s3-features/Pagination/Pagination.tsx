@@ -20,11 +20,11 @@ export const SuperPagination: FC<PaginationPropsType> = ({
   packsPerPage,
 }) => {
   const [rowsPerPage, setRowsPerPage] = useState<number>(packsPerPage)
-  const [page, setPage] = useState<number>(currentPage)
+  const [page, setPage] = useState<number>(0)
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage)
-    setPacksPerPage(rowsPerPage, newPage)
+    setPacksPerPage(rowsPerPage, newPage + 1)
   }
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
