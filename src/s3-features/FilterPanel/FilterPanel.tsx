@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
 import SearchIcon from '@mui/icons-material/Search'
@@ -7,6 +7,7 @@ import InputBase from '@mui/material/InputBase'
 import Paper from '@mui/material/Paper'
 
 import { SuperRange } from '../../s4-components/common/SuperRange/SuperRange'
+import { SwitchButton } from '../../s4-components/common/SwitchButton/SwitchButton'
 import { useDebounce } from '../../utils/hooks/hooks'
 
 import s from './FilterPanel.module.css'
@@ -45,35 +46,9 @@ export const FilterPanel = (props: FilterPanelType) => {
 
       <div className={s.container}>
         <span className={s.text}>Show packs cards</span>
-        <div>
-          <Button
-            type={'button'}
-            sx={{
-              textTransform: 'none',
-              width: '98px',
-              height: '36px',
-              background: '#366EFF',
-            }}
-            variant={'contained'}
-            onClick={props.showAllPacks}
-          >
-            All
-          </Button>
-          <Button
-            type={'button'}
-            sx={{
-              textTransform: 'none',
-              width: '98px',
-              height: '36px',
-              background: '#366EFF',
-            }}
-            variant={'contained'}
-            onClick={props.showMyPacks}
-          >
-            My
-          </Button>
-        </div>
+        <SwitchButton showMyPacks={props.showMyPacks} showAllPacks={props.showAllPacks} />
       </div>
+
       <div className={s.container}>
         <span className={s.text}>Number of cards</span>
         <SuperRange
