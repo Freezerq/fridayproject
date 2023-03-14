@@ -35,8 +35,8 @@ export const FilterPanel = (props: FilterPanelType) => {
           <SearchIcon color={'disabled'} sx={{ width: '18px', ml: '5px' }} />
           <InputBase
             className={s.input}
-            placeholder="Provide your text"
-            inputProps={{ 'aria-label': 'provide your text' }}
+            placeholder="Search by name"
+            inputProps={{ 'aria-label': 'search by name' }}
             onChange={handleChange}
             value={value}
           />

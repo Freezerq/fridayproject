@@ -22,7 +22,6 @@ type FormValues = {
 export const Registration = () => {
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
 
-  console.log(packsAPI.getAllPacks({}))
   const dispatch = useAppDispatch()
   const {
     handleSubmit,

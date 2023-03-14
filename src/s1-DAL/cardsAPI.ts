@@ -20,24 +20,18 @@ export const cardsAPI = {
     page,
     pageCount,
   }: GetCardsType) {
-    return instance
-      .get('/cards/card', {
-        params: {
-          cardAnswer,
-          cardQuestion,
-          cardsPack_id,
-          min,
-          max,
-          sortCards,
-          page,
-          pageCount,
-        },
-      })
-      .then(res => {
-        console.log(res)
-
-        return res
-      })
+    return instance.get('/cards/card', {
+      params: {
+        cardAnswer,
+        cardQuestion,
+        cardsPack_id,
+        min,
+        max,
+        sortCards,
+        page,
+        pageCount,
+      },
+    })
   },
   addNewCard(data: AddNewCardType) {
     return instance.post('/cards/card', { card: data })
@@ -78,7 +72,7 @@ export type GetCardsType = Partial<GetCardsAttributesType> &
 export type GetCardsAttributesType = {
   cardAnswer: string
   cardQuestion: string
-  cardsPack_id: string
+  cardsPack_id: string | null
   min: number
   max: number
   sortCards: number

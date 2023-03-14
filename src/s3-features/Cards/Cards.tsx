@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 
 import SearchIcon from '@mui/icons-material/Search'
 import InputBase from '@mui/material/InputBase'
@@ -9,22 +9,31 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
+import { useLocation, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { getCards, setCardsAttributes } from '../../s2-BLL/cardsSlice'
+import { getCards } from '../../s2-BLL/cardsSlice'
 import s from '../FilterPanel/FilterPanel.module.css'
 
 export const Cards = () => {
   const cards = useAppSelector(state => state.cards.cardsData.cards)
-  const attributes = useAppSelector(state => state.cards.attributesData)
+  const cardsData = useAppSelector(state => state.cards.cardsData)
   const cardsTotalCount = useAppSelector(state => state.cards.cardsData.cardsTotalCount)
   const dispatch = useAppDispatch()
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+  //set params into URL
+  const [searchParams, setSearchParams] = useSearchParams()
+  //get Single Params From URL
+  //to get params from URL after Question Mark
+  const { search } = useLocation()
+  const paramsFromUrl = Object.fromEntries(new URLSearchParams(search))
 
   useEffect(() => {
     if (!isLoggedIn) return
-    dispatch(getCards(attributes))
-  }, [isLoggedIn])
+    const cardsPackId = searchParams.get('cardsPack_id')
+
+    dispatch(getCards({ ...paramsFromUrl, cardsPack_id: cardsPackId }))
+  }, [searchParams, isLoggedIn])
 
   return (
     <>

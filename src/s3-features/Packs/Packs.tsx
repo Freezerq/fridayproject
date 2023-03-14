@@ -10,6 +10,7 @@ import TableRow from '@mui/material/TableRow'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
+import { getCards } from '../../s2-BLL/cardsSlice'
 import { addNewPack, getPacks } from '../../s2-BLL/packSlice'
 import { Actions } from '../Actions/Actions'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
@@ -42,7 +43,6 @@ export const Packs = () => {
   useEffect(() => {
     if (!isLoggedIn) return
 
-    console.log(paramsFromUrl)
     dispatch(getPacks(paramsFromUrl))
   }, [searchParams, isLoggedIn])
 
@@ -81,8 +81,7 @@ export const Packs = () => {
     dispatch(addNewPack({ name: 'irina' }, paramsFromUrl))
   }
   const onNameClickHandler = (id: string) => {
-    //dispatch(setCardsAttributes({ attributes: { cardsPack_id: id } }))
-    navigate(PATH.CARDS)
+    navigate(PATH.CARDS + `?cardsPack_id=${id}`)
   }
 
   return (
@@ -133,13 +132,13 @@ export const Packs = () => {
         <button onClick={buttonOnClick}>add pack</button>
       </TableContainer>
 
-      <SuperPagination
-        paginationTitle={'Packs per Page'}
-        setPacksPerPage={setPacksPerPage}
-        packsTotalCount={packsTotalCount}
-        currentPage={currentPage ?? 1}
-        packsPerPage={packsPerPage ?? 4}
-      />
+      {/*<SuperPagination*/}
+      {/*  paginationTitle={'Packs per Page'}*/}
+      {/*  setPacksPerPage={setPacksPerPage}*/}
+      {/*  packsTotalCount={packsTotalCount}*/}
+      {/*  currentPage={currentPage ?? 1}*/}
+      {/*  packsPerPage={packsPerPage ?? 4}*/}
+      {/*/>*/}
     </>
   )
 }
