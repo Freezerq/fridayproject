@@ -10,7 +10,6 @@ import TableRow from '@mui/material/TableRow'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { getCards, setCards, setCardsAttributes } from '../../s2-BLL/cardsSlice'
 import { addNewPack, getPacks } from '../../s2-BLL/packSlice'
 import { Actions } from '../Actions/Actions'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
@@ -20,7 +19,6 @@ import { PATH } from '../Routes/AppRoutes'
 export const Packs = () => {
   const packs = useAppSelector(state => state.packs.packsData.cardPacks)
   const packsTotalCount = useAppSelector(state => state.packs.packsData.cardPacksTotalCount)
-  //const attributes = useAppSelector(state => state.packs.attributesData)
 
   const userId = useAppSelector(state => state.auth.profile._id)
   const maxCardsValue = useAppSelector(state => state.packs.packsData.maxCardsCount)
