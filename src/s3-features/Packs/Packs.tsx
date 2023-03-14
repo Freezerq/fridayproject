@@ -17,6 +17,7 @@ import {
   resetPacksAttributes,
   setPacksAttributes,
 } from '../../s2-BLL/packSlice'
+import { Actions } from '../Actions/Actions'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
 import { SuperPagination } from '../Pagination/Pagination'
 import { PATH } from '../Routes/AppRoutes'
@@ -41,6 +42,7 @@ export const Packs = () => {
 
   //setSearchParams({ user_id: userId }, { replace: false })
   console.log(paramsFromUrl)
+
 
   const buttonOnClick = () => {
     dispatch(addNewPack({ name: 'irina' }, attributes))
@@ -105,7 +107,9 @@ export const Packs = () => {
                 <TableCell align="left">{pack.cardsCount}</TableCell>
                 <TableCell align="left">{pack.updated}</TableCell>
                 <TableCell align="left">{pack.user_name}</TableCell>
-                <TableCell align="left">Actions</TableCell>
+                <TableCell align="left">
+                  <Actions pack={pack} onStudyClick={onNameClickHandler} />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
