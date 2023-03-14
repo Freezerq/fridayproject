@@ -28,12 +28,13 @@ export const Actions = (props: ActionsPropsType) => {
       {props.pack.user_id === userId ? (
         <div>
           <img
+            style={{ marginRight: '8px' }}
             src={studyIcon}
             onClick={() => {
               props.onStudyClick(props.pack._id)
             }}
           />
-          <img src={editIcon} />
+          <img src={editIcon} style={{ marginRight: '8px' }} />
           <img src={trashIcon} />
         </div>
       ) : (
