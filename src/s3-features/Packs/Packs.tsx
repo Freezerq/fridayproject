@@ -30,10 +30,12 @@ export const Packs = () => {
 
   //set params into URL
   const [searchParams, setSearchParams] = useSearchParams()
+  //get Single Params From URL
   const currentPage = Number(searchParams.get('page'))
   const packsPerPage = Number(searchParams.get('pageCount'))
   const minSearchCardsNumber = Number(searchParams.get('min'))
   const maxSearchCardsNumber = Number(searchParams.get('max'))
+  const SearchValue = searchParams.get('packName')
 
   //to get params from URL after Question Mark
   const { search } = useLocation()
@@ -73,6 +75,10 @@ export const Packs = () => {
     setSearchParams({ ...paramsFromUrl, min: min.toString(), max: max.toString() })
   }
 
+  const onSearchNameDebounce = (value: string) => {
+    setSearchParams({ ...paramsFromUrl, packName: value })
+  }
+
   const buttonOnClick = () => {
     dispatch(addNewPack({ name: 'irina' }, paramsFromUrl))
   }
@@ -92,6 +98,8 @@ export const Packs = () => {
           resetFilters={resetFilters}
           onChangeSlider={onChangeCardValues}
           maxCardsValue={maxCardsValue}
+          searchValue={SearchValue}
+          onSearchName={onSearchNameDebounce}
         />
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead style={{ backgroundColor: '#EFEFEF' }}>

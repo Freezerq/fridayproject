@@ -6,24 +6,20 @@ import Button from '@mui/material/Button'
 import InputBase from '@mui/material/InputBase'
 import Paper from '@mui/material/Paper'
 
-import { useAppDispatch } from '../../s1-DAL/store'
 import { SuperRange } from '../../s4-components/common/SuperRange/SuperRange'
 import { useDebounce } from '../../utils/hooks/hooks'
 
 import s from './FilterPanel.module.css'
 
 export const FilterPanel = (props: FilterPanelType) => {
-  const [value, setValue] = useState<string>('')
+  const [value, setValue] = useState<string>(props.searchValue ? props.searchValue : '')
   const debouncedValue = useDebounce<string>(value, 750)
-  const dispatch = useAppDispatch()
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value)
   }
 
   useEffect(() => {
-    if (value.length > 0) {
-      //dispatch(setPacksAttributes({ attributes: { packName: debouncedValue } }))
-    }
+    props.onSearchName(value)
   }, [debouncedValue])
 
   return (
@@ -112,4 +108,6 @@ type FilterPanelType = {
   showAllPacks: () => void
   resetFilters: () => void
   onChangeSlider: (min: number, max: number) => void
+  searchValue: string | null
+  onSearchName: (value: string) => void
 }
