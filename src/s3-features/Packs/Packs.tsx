@@ -9,7 +9,6 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import { useNavigate } from 'react-router-dom'
 
-import { GetPacksType } from '../../s1-DAL/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getCards, setCards, setCardsAttributes } from '../../s2-BLL/cardsSlice'
 import {
@@ -27,6 +26,7 @@ export const Packs = () => {
   const packsTotalCount = useAppSelector(state => state.packs.packsData.cardPacksTotalCount)
   const attributes = useAppSelector(state => state.packs.attributesData)
   const packsPerPage = useAppSelector(state => state.packs.attributesData.pageCount)
+  const currentPage = useAppSelector(state => state.packs.attributesData.page)
   const userId = useAppSelector(state => state.auth.profile._id)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -52,8 +52,8 @@ export const Packs = () => {
     dispatch(resetPacksAttributes({}))
   }
 
-  const setPacksPerPage = (rowsPerPage: number) => {
-    dispatch(setPacksAttributes({ attributes: { pageCount: rowsPerPage } }))
+  const setPacksPerPage = (rowsPerPage: number, page: number) => {
+    dispatch(setPacksAttributes({ attributes: { pageCount: rowsPerPage, page } }))
   }
 
   const onNameClickHandler = (id: string) => {
@@ -100,7 +100,14 @@ export const Packs = () => {
         </Table>
         <button onClick={buttonOnClick}>add pack</button>
       </TableContainer>
-      <SuperPagination paginationTitle={'Packs per Page'} setPacksPerPage={setPacksPerPage} />
+
+      <SuperPagination
+        paginationTitle={'Packs per Page'}
+        setPacksPerPage={setPacksPerPage}
+        packsTotalCount={packsTotalCount}
+        currentPage={currentPage ?? 1}
+        packsPerPage={packsPerPage ?? 4}
+      />
     </>
   )
 }

@@ -8,13 +8,12 @@ import { setPacksAttributes } from '../../../s2-BLL/packSlice'
 import s from './SuperRange.module.css'
 
 export const SuperRange = () => {
-  // for autotests // не менять // можно подсунуть в локалСторэдж нужные числа, чтоб увидеть как они отображаются
   const maxValue = useAppSelector(state => state.packs.packsData.maxCardsCount)
   const dispatch = useAppDispatch()
   const [value1, setValue1] = useState(0)
   const [value2, setValue2] = useState(100)
 
-  const change = (event: React.SyntheticEvent | Event, value: number | Array<number>) => {
+  const change = (event: SyntheticEvent | Event, value: number | Array<number>) => {
     if (Array.isArray(value)) {
       setValue1(value[0])
       dispatch(setPacksAttributes({ attributes: { min: value[0] } }))
