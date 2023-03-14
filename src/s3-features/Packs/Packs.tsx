@@ -7,7 +7,7 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getCards, setCards, setCardsAttributes } from '../../s2-BLL/cardsSlice'
@@ -32,8 +32,16 @@ export const Packs = () => {
   const navigate = useNavigate()
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
 
+  //set params into URL
+  const [searchParams, setSearchParams] = useSearchParams()
 
-  console.log(packs)
+  //to get params from URL after Question Mark
+  const { search } = useLocation()
+  const paramsFromUrl = Object.fromEntries(new URLSearchParams(search))
+
+  //setSearchParams({ user_id: userId }, { replace: false })
+  console.log(paramsFromUrl)
+
   const buttonOnClick = () => {
     dispatch(addNewPack({ name: 'irina' }, attributes))
   }
