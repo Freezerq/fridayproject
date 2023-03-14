@@ -16,6 +16,8 @@ const initialState = {
   packsData: {} as PackReturnType,
   attributesData: {} as GetPacksType,
   packsTotalCount: 0,
+  maxCardsCount: 100,
+  minCardsCount: 0,
 }
 
 const packSlice = createSlice({
@@ -34,12 +36,24 @@ const packSlice = createSlice({
     setPacksTotalCount: (state, action: PayloadAction<{ value: number }>) => {
       state.packsTotalCount = action.payload.value
     },
+    setMinPacksCount(state, action: PayloadAction<{ value: number }>) {
+      state.minCardsCount = action.payload.value
+    },
+    setMaxCardsCount(state, action: PayloadAction<{ value: number }>) {
+      state.maxCardsCount = action.payload.value
+    },
   },
   extraReducers: builder => {},
 })
 
-export const { setPacks, setPacksAttributes, setPacksTotalCount, resetPacksAttributes } =
-  packSlice.actions
+export const {
+  setPacks,
+  setPacksAttributes,
+  setPacksTotalCount,
+  resetPacksAttributes,
+  setMinPacksCount,
+  setMaxCardsCount,
+} = packSlice.actions
 
 export const packReducer = packSlice.reducer
 
@@ -50,6 +64,8 @@ export const getPacks = (attributes: GetPacksType) => async (dispatch: AppDispat
     const result = await packsAPI.getAllPacks(attributes)
 
     dispatch(setPacks({ packsData: result.data }))
+    dispatch(setMinPacksCount(result.data.minCardsCount))
+    dispatch(setMaxCardsCount(result.data.maxCardsCount))
     dispatch(setPacksTotalCount({ value: result.data.cardPacksTotalCount }))
   } catch (e: any) {
     errorUtils(dispatch, e)

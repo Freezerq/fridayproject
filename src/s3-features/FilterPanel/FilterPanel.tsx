@@ -100,6 +100,7 @@ export const FilterPanel = (props: FilterPanelType) => {
   )
 }
 
+// @ts-ignore
 type FilterPanelType = {
   showMyPacks: () => void
   showAllPacks: () => void

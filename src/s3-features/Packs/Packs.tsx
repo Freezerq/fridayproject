@@ -105,7 +105,7 @@ export const Packs = () => {
         paginationTitle={'Packs per Page'}
         setPacksPerPage={setPacksPerPage}
         packsTotalCount={packsTotalCount}
-        currentPage={currentPage ?? 1}
+        currentPage={currentPage ?? 0}
         packsPerPage={packsPerPage ?? 4}
       />
     </>

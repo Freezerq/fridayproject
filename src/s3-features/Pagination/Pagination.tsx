@@ -24,7 +24,7 @@ export const SuperPagination: FC<PaginationPropsType> = ({
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage)
-    setPacksPerPage(rowsPerPage, page)
+    setPacksPerPage(rowsPerPage, newPage)
   }
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

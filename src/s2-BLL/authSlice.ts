@@ -63,15 +63,15 @@ export const getAuthUserData = () => async (dispatch: Dispatch) => {
   try {
     const result = await authAPI.authMe()
 
-    if (result.data) {
-      dispatch(setAuthUserData({ data: result.data }))
-    }
     dispatch(setIsLoggedIn({ value: true }))
-  } catch (e) {
-    errorUtils(dispatch, e)
+    dispatch(setAuthUserData({ data: result.data }))
+    dispatch(setAppStatus({ status: 'succeeded' }))
+  } catch (e: any) {
+    console.error(e)
+    dispatch(setIsLoggedIn({ value: false }))
+    dispatch(setAppStatus({ status: 'failed' }))
   } finally {
     dispatch(setIsInitializedAC({ value: true }))
-    dispatch(setAppStatus({ status: 'succeeded' }))
   }
 }
 export const changeProfileName = (name: string) => async (dispatch: Dispatch) => {
