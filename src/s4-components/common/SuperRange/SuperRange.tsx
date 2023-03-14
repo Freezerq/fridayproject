@@ -26,8 +26,8 @@ export const SuperRange = () => {
   }
 
   useEffect(() => {
-      setValue1(minValue)
-      setValue2(maxValue)
+    setValue1(minValue)
+    setValue2(maxValue)
   }, [maxValue, minValue])
 
   return (
