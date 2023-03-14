@@ -10,6 +10,7 @@ import TableRow from '@mui/material/TableRow'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
+import { getCards } from '../../s2-BLL/cardsSlice'
 import { addNewPack, getPacks } from '../../s2-BLL/packSlice'
 import { Actions } from '../Actions/Actions'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
@@ -19,9 +20,10 @@ import { PATH } from '../Routes/AppRoutes'
 export const Packs = () => {
   const packs = useAppSelector(state => state.packs.packsData.cardPacks)
   const packsTotalCount = useAppSelector(state => state.packs.packsData.cardPacksTotalCount)
-
   const userId = useAppSelector(state => state.auth.profile._id)
   const maxCardsValue = useAppSelector(state => state.packs.packsData.maxCardsCount)
+  const initialRows = useAppSelector(state => state.packs.packsData.pageCount)
+  const initialPage = useAppSelector(state => state.packs.packsData.page)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
@@ -29,10 +31,10 @@ export const Packs = () => {
   //set params into URL
   const [searchParams, setSearchParams] = useSearchParams()
   //get Single Params From URL
-  const currentPage = Number(searchParams.get('page'))
-  const packsPerPage = Number(searchParams.get('pageCount'))
   const minSearchCardsNumber = Number(searchParams.get('min'))
   const maxSearchCardsNumber = Number(searchParams.get('max'))
+  const rows = Number(searchParams.get('pageCount'))
+  const pageNumber = Number(searchParams.get('page'))
   const SearchValue = searchParams.get('packName')
 
   //to get params from URL after Question Mark
@@ -41,8 +43,6 @@ export const Packs = () => {
 
   useEffect(() => {
     if (!isLoggedIn) return
-
-    console.log(paramsFromUrl)
     dispatch(getPacks(paramsFromUrl))
   }, [searchParams, isLoggedIn])
 
@@ -62,7 +62,7 @@ export const Packs = () => {
     setSearchParams({})
   }
 
-  const setPacksPerPage = (rowsPerPage: number, pageNumber: number) => {
+  const setRowsAndPage = (rowsPerPage: number, pageNumber: number) => {
     setSearchParams({
       ...paramsFromUrl,
       pageCount: rowsPerPage.toString(),
@@ -81,8 +81,7 @@ export const Packs = () => {
     dispatch(addNewPack({ name: 'irina' }, paramsFromUrl))
   }
   const onNameClickHandler = (id: string) => {
-    //dispatch(setCardsAttributes({ attributes: { cardsPack_id: id } }))
-    navigate(PATH.CARDS)
+    navigate(PATH.CARDS + `?cardsPack_id=${id}`)
   }
 
   return (
@@ -135,10 +134,10 @@ export const Packs = () => {
 
       <SuperPagination
         paginationTitle={'Packs per Page'}
-        setPacksPerPage={setPacksPerPage}
+        setRowsAndPage={setRowsAndPage}
         packsTotalCount={packsTotalCount}
-        currentPage={currentPage ?? 1}
-        packsPerPage={packsPerPage ?? 4}
+        rows={rows === 0 ? 4 : rows}
+        pageNumber={pageNumber === 0 ? 0 : pageNumber - 1}
       />
     </>
   )

@@ -143,7 +143,6 @@ export const logOutTC = () => async (dispatch: Dispatch) => {
 
     return result
   } catch (e: any) {
-    console.log('e')
     dispatch(setAppError(e.response.data.error))
     dispatch(setAppStatus({ status: 'idle' }))
   }

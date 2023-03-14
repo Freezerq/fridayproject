@@ -15,7 +15,6 @@ import { setAppStatus } from './appSlice'
 
 const initialState = {
   cardsData: {} as CardsReturnType,
-  attributesData: {} as GetCardsType,
 }
 
 const cardsSlice = createSlice({
@@ -25,16 +24,10 @@ const cardsSlice = createSlice({
     setCards: (state, action: PayloadAction<{ cardsData: CardsReturnType }>) => {
       state.cardsData = action.payload.cardsData
     },
-    setCardsAttributes: (state, action: PayloadAction<{ attributes: GetCardsType }>) => {
-      state.attributesData = { ...state.attributesData, ...action.payload.attributes }
-    },
-    resetCardsAttributes: (state, action: PayloadAction<GetCardsType>) => {
-      state.attributesData = action.payload
-    },
   },
 })
 
-export const { setCards, setCardsAttributes } = cardsSlice.actions
+export const { setCards } = cardsSlice.actions
 
 export const cardsReducer = cardsSlice.reducer
 
@@ -44,7 +37,6 @@ export const getCards = (attributes: GetCardsType) => async (dispatch: Dispatch)
   try {
     const result = await cardsAPI.getAllCards(attributes)
 
-    console.log(result)
     dispatch(setCards({ cardsData: result.data }))
   } catch (e: any) {
     errorUtils(dispatch, e)
