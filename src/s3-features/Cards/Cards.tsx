@@ -42,7 +42,7 @@ export const Cards = () => {
   }, [searchParams, isLoggedIn])
 
   const onSearchNameDebounce = (value: string) => {
-    setSearchParams({ ...paramsFromUrl, packName: value })
+    setSearchParams({ ...paramsFromUrl, cardQuestion: value })
   }
 
   const onStudyClick = () => {
@@ -60,7 +60,11 @@ export const Cards = () => {
         <span>Back to Packs List</span>
       </div>
       <TableContainer component={Paper}>
-        {/*<SearchField onSearchName={onSearchNameDebounce} searchValue={searchValue ?? ''} />*/}
+        <SearchField
+          onSearchName={onSearchNameDebounce}
+          searchValue={searchValue ?? ''}
+          searchParams={searchParams}
+        />
 
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead style={{ backgroundColor: '#EFEFEF' }}>
