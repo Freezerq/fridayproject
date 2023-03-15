@@ -1,17 +1,23 @@
 import React, { useEffect } from 'react'
 
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import Paper from '@mui/material/Paper'
+import Rating from '@mui/material/Rating/Rating'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import { useLocation, useSearchParams } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getCards } from '../../s2-BLL/cardsSlice'
 import { SearchField } from '../../s4-components/common/SearchField/SearchField'
+import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
+import { ActionsForCards } from '../Actions/ActionsForCards'
+import { ActionsForPacks } from '../Actions/ActionsForPacks'
+import { PATH } from '../Routes/AppRoutes'
 
 export const Cards = () => {
   const cards = useAppSelector(state => state.cards.cardsData.cards)
@@ -20,6 +26,7 @@ export const Cards = () => {
   const dispatch = useAppDispatch()
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
   //set params into URL
+  const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
   //get Single Params From URL
   const searchValue = searchParams.get('')
@@ -38,8 +45,20 @@ export const Cards = () => {
     setSearchParams({ ...paramsFromUrl, packName: value })
   }
 
+  const onStudyClick = () => {
+    console.log('study')
+  }
+
+  const buttonBackOnClick = () => {
+    navigate(PATH.PACKS)
+  }
+
   return (
     <>
+      <div style={{ display: 'flex', margin: '15px', alignItems: 'center' }}>
+        <ArrowBackIcon onClick={buttonBackOnClick} />
+        <span>Back to Packs List</span>
+      </div>
       <TableContainer component={Paper}>
         <SearchField onSearchName={onSearchNameDebounce} searchValue={searchValue} />
 
@@ -61,8 +80,12 @@ export const Cards = () => {
                 </TableCell>
                 <TableCell align="left">{card.answer}</TableCell>
                 <TableCell align="left">updated</TableCell>
-                <TableCell align="left">{card.grade}</TableCell>
-                <TableCell align="left">-</TableCell>
+                <TableCell align="left">
+                  <Rating name="size-medium" value={card.grade} />
+                </TableCell>
+                <TableCell align="left">
+                  <ActionsForCards onStudyClick={onStudyClick} card={card} />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

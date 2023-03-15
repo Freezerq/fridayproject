@@ -12,7 +12,7 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { addNewPack, getPacks } from '../../s2-BLL/packSlice'
 import { SearchField } from '../../s4-components/common/SearchField/SearchField'
-import { Actions } from '../Actions/Actions'
+import { ActionsForPacks } from '../Actions/ActionsForPacks'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
 import { SuperPagination } from '../Pagination/Pagination'
 import { PATH } from '../Routes/AppRoutes'
@@ -132,7 +132,7 @@ export const Packs = () => {
                   <TableCell align="left">{pack.updated}</TableCell>
                   <TableCell align="left">{pack.user_name}</TableCell>
                   <TableCell align="left">
-                    <Actions pack={pack} onStudyClick={onNameClickHandler} />
+                    <ActionsForPacks pack={pack} onStudyClick={onNameClickHandler} />
                   </TableCell>
                 </TableRow>
               ))
