@@ -59,7 +59,6 @@ export const Packs = () => {
       setSearchParams(searchParams)
     }
   }
-
   const resetFilters = () => {
     setSearchParams({})
   }
@@ -92,8 +91,9 @@ export const Packs = () => {
         <div className={s.filterContainer}>
           <SearchField
             onSearchName={onSearchNameDebounce}
-            searchValue={searchValue}
+            searchValue={searchValue ?? ''}
             classname={s.search}
+            searchParams={searchParams}
           />
           <FilterPanel
             minSearchCardsNumber={minSearchCardsNumber}

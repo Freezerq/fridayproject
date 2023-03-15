@@ -1,3 +1,5 @@
+import { log } from 'util'
+
 import React, { ChangeEvent, useEffect, useState } from 'react'
 
 import SearchIcon from '@mui/icons-material/Search'
@@ -9,7 +11,7 @@ import { useDebounce } from '../../../utils/hooks/hooks'
 import s from './SearchField.module.scss'
 
 export function SearchField({ onSearchName, searchValue, classname, ...props }: SearchFieldTypes) {
-  const [value, setValue] = useState<string>(searchValue ? searchValue : '')
+  const [value, setValue] = useState<string>(searchValue)
   const debouncedValue = useDebounce<string>(value, 750)
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value)
@@ -18,6 +20,10 @@ export function SearchField({ onSearchName, searchValue, classname, ...props }: 
   useEffect(() => {
     onSearchName(value)
   }, [debouncedValue])
+
+  useEffect(() => {
+    if (value !== searchValue) setValue(searchValue)
+  }, [searchValue])
 
   return (
     <div className={classname}>
@@ -39,5 +45,6 @@ export function SearchField({ onSearchName, searchValue, classname, ...props }: 
 type SearchFieldTypes = {
   classname?: string
   onSearchName: (value: string) => void
-  searchValue: string | null
+  searchValue: string
+  searchParams: URLSearchParams
 }

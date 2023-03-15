@@ -22,7 +22,7 @@ export const Profile = () => {
     dispatch(changeProfileName(newName))
   }, [])
 
-  //if (!isLoggedIn) return <Navigate to={PATH.LOGIN} />
+  if (!isLoggedIn) return <Navigate to={PATH.LOGIN} />
 
   return (
     <div>

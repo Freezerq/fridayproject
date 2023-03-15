@@ -41,7 +41,7 @@ export const Cards = () => {
   return (
     <>
       <TableContainer component={Paper}>
-        <SearchField onSearchName={onSearchNameDebounce} searchValue={searchValue} />
+        {/*<SearchField onSearchName={onSearchNameDebounce} searchValue={searchValue ?? ''} />*/}
 
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead style={{ backgroundColor: '#EFEFEF' }}>
