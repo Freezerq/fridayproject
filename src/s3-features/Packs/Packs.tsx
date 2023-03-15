@@ -11,6 +11,7 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { addNewPack, getPacks } from '../../s2-BLL/packSlice'
 import { SearchField } from '../../s4-components/common/SearchField/SearchField'
+import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
 import { ActionsForPacks } from '../Actions/ActionsForPacks'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
 import { SuperPagination } from '../Pagination/Pagination'
@@ -94,6 +95,21 @@ export const Packs = () => {
 
   return (
     <>
+      <div className={s.headerContainer}>
+        <div className={s.header}>
+          <span className={s.title}>Packs list</span>
+          <SuperButton
+            style={{
+              letterSpacing: '0.01em',
+              fontSize: '16px',
+              width: '175px',
+            }}
+            onClick={buttonOnClick}
+          >
+            Add new pack
+          </SuperButton>
+        </div>
+      </div>
       <TableContainer component={Paper}>
         <div className={s.filterContainer}>
           <SearchField
@@ -145,7 +161,6 @@ export const Packs = () => {
             )}
           </TableBody>
         </Table>
-        <button onClick={buttonOnClick}>add pack</button>
       </TableContainer>
 
       <SuperPagination

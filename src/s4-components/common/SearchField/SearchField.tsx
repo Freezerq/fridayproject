@@ -1,5 +1,3 @@
-import { log } from 'util'
-
 import React, { ChangeEvent, useEffect, useState } from 'react'
 
 import SearchIcon from '@mui/icons-material/Search'

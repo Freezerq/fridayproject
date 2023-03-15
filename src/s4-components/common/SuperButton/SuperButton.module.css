@@ -20,7 +20,7 @@
 .default {
     width: 85%;
     height: 36px;
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
     line-height: 23px;
     font-style: normal;
     font-weight: 500;

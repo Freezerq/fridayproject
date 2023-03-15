@@ -1,12 +1,8 @@
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React from 'react'
 
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
-import SearchIcon from '@mui/icons-material/Search'
 import Button from '@mui/material/Button'
-import InputBase from '@mui/material/InputBase'
-import Paper from '@mui/material/Paper'
 
-import { SearchField } from '../../s4-components/common/SearchField/SearchField'
 import { SuperRange } from '../../s4-components/common/SuperRange/SuperRange'
 import { SwitchButton } from '../../s4-components/common/SwitchButton/SwitchButton'
 
