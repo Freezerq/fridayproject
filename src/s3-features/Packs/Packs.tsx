@@ -1,4 +1,4 @@
-import { SyntheticEvent, useEffect } from 'react'
+import { useEffect } from 'react'
 
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
@@ -10,12 +10,13 @@ import TableRow from '@mui/material/TableRow'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { getCards } from '../../s2-BLL/cardsSlice'
 import { addNewPack, getPacks } from '../../s2-BLL/packSlice'
 import { Actions } from '../Actions/Actions'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
 import { SuperPagination } from '../Pagination/Pagination'
 import { PATH } from '../Routes/AppRoutes'
+
+import s from './Packs.module.scss'
 
 export const Packs = () => {
   const packs = useAppSelector(state => state.packs.packsData.cardPacks)
@@ -109,24 +110,32 @@ export const Packs = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {packs?.map(pack => (
-              <TableRow key={pack._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell
-                  style={{ backgroundColor: 'gray' }}
-                  onClick={() => onNameClickHandler(pack._id)}
-                  component="th"
-                  scope="row"
-                >
-                  {pack.name}
-                </TableCell>
-                <TableCell align="left">{pack.cardsCount}</TableCell>
-                <TableCell align="left">{pack.updated}</TableCell>
-                <TableCell align="left">{pack.user_name}</TableCell>
-                <TableCell align="left">
-                  <Actions pack={pack} onStudyClick={onNameClickHandler} />
-                </TableCell>
-              </TableRow>
-            ))}
+            {packs?.length > 0 ? (
+              packs?.map(pack => (
+                <TableRow key={pack._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell
+                    style={{ backgroundColor: 'gray' }}
+                    onClick={() => onNameClickHandler(pack._id)}
+                    component="th"
+                    scope="row"
+                  >
+                    {pack.name}
+                  </TableCell>
+                  <TableCell align="left">{pack.cardsCount}</TableCell>
+                  <TableCell align="left">{pack.updated}</TableCell>
+                  <TableCell align="left">{pack.user_name}</TableCell>
+                  <TableCell align="left">
+                    <Actions pack={pack} onStudyClick={onNameClickHandler} />
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <div className={s.container}>
+                <span className={s.message}>
+                  {'Nothing was found. Change your search parameters'}
+                </span>
+              </div>
+            )}
           </TableBody>
         </Table>
         <button onClick={buttonOnClick}>add pack</button>
