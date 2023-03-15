@@ -5,7 +5,6 @@ import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
@@ -17,6 +16,7 @@ import { FilterPanel } from '../FilterPanel/FilterPanel'
 import { SuperPagination } from '../Pagination/Pagination'
 import { PATH } from '../Routes/AppRoutes'
 
+import { HeadTableComponent } from './HeadTableComponent/HeadTableComponent'
 import s from './Packs.module.scss'
 
 export const Packs = () => {
@@ -38,6 +38,7 @@ export const Packs = () => {
   const rows = Number(searchParams.get('pageCount'))
   const pageNumber = Number(searchParams.get('page'))
   const searchValue = searchParams.get('packName')
+  const sort = searchParams.get('sortPacks')
 
   //to get params from URL after Question Mark
   const { search } = useLocation()
@@ -74,6 +75,12 @@ export const Packs = () => {
   const onChangeCardValues = (min: number, max: number) => {
     setSearchParams({ ...paramsFromUrl, min: min.toString(), max: max.toString() })
   }
+  const setSort = (sortPacks: string) => {
+    setSearchParams({
+      ...paramsFromUrl,
+      sortPacks,
+    })
+  }
 
   const onSearchNameDebounce = (value: string) => {
     setSearchParams({ ...paramsFromUrl, packName: value })
@@ -107,15 +114,8 @@ export const Packs = () => {
         </div>
 
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead style={{ backgroundColor: '#EFEFEF' }}>
-            <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell align="left">Cards</TableCell>
-              <TableCell align="left">Last Updated</TableCell>
-              <TableCell align="left">Created by</TableCell>
-              <TableCell align="left">Actions</TableCell>
-            </TableRow>
-          </TableHead>
+          <HeadTableComponent sort={sort ?? '0updated'} setSort={setSort} />
+
           <TableBody>
             {packs?.length > 0 ? (
               packs?.map(pack => (
