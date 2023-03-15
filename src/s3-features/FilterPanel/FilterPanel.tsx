@@ -6,44 +6,15 @@ import Button from '@mui/material/Button'
 import InputBase from '@mui/material/InputBase'
 import Paper from '@mui/material/Paper'
 
+import { SearchField } from '../../s4-components/common/SearchField/SearchField'
 import { SuperRange } from '../../s4-components/common/SuperRange/SuperRange'
 import { SwitchButton } from '../../s4-components/common/SwitchButton/SwitchButton'
-import { useDebounce } from '../../utils/hooks/hooks'
 
 import s from './FilterPanel.module.css'
 
 export const FilterPanel = (props: FilterPanelType) => {
-  const [value, setValue] = useState<string>(props.searchValue ? props.searchValue : '')
-  const debouncedValue = useDebounce<string>(value, 750)
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value)
-  }
-
-  useEffect(() => {
-    props.onSearchName(value)
-  }, [debouncedValue])
-
   return (
     <div className={s.mainContainer}>
-      <div className={s.search}>
-        <span className={s.text}>Search</span>
-        <Paper
-          component="form"
-          elevation={0}
-          sx={{ background: 'transparent' }}
-          className={s.paper}
-        >
-          <SearchIcon color={'disabled'} sx={{ width: '18px', ml: '5px' }} />
-          <InputBase
-            className={s.input}
-            placeholder="Search by name"
-            inputProps={{ 'aria-label': 'search by name' }}
-            onChange={handleChange}
-            value={value}
-          />
-        </Paper>
-      </div>
-
       <div className={s.container}>
         <span className={s.text}>Show packs cards</span>
         <SwitchButton showMyPacks={props.showMyPacks} showAllPacks={props.showAllPacks} />
@@ -83,6 +54,4 @@ type FilterPanelType = {
   showAllPacks: () => void
   resetFilters: () => void
   onChangeSlider: (min: number, max: number) => void
-  searchValue: string | null
-  onSearchName: (value: string) => void
 }

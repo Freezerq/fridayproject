@@ -14,3 +14,14 @@
 
   }
 }
+.search {
+  width: 45%
+}
+
+.filterContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 195px 0 24px;
+}

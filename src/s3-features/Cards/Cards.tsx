@@ -1,7 +1,5 @@
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
-import SearchIcon from '@mui/icons-material/Search'
-import InputBase from '@mui/material/InputBase'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -13,7 +11,7 @@ import { useLocation, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getCards } from '../../s2-BLL/cardsSlice'
-import s from '../FilterPanel/FilterPanel.module.css'
+import { SearchField } from '../../s4-components/common/SearchField/SearchField'
 
 export const Cards = () => {
   const cards = useAppSelector(state => state.cards.cardsData.cards)
@@ -24,6 +22,7 @@ export const Cards = () => {
   //set params into URL
   const [searchParams, setSearchParams] = useSearchParams()
   //get Single Params From URL
+  const searchValue = searchParams.get('')
   //to get params from URL after Question Mark
   const { search } = useLocation()
   const paramsFromUrl = Object.fromEntries(new URLSearchParams(search))
@@ -35,25 +34,15 @@ export const Cards = () => {
     dispatch(getCards({ ...paramsFromUrl, cardsPack_id: cardsPackId }))
   }, [searchParams, isLoggedIn])
 
+  const onSearchNameDebounce = (value: string) => {
+    setSearchParams({ ...paramsFromUrl, packName: value })
+  }
+
   return (
     <>
       <TableContainer component={Paper}>
-        <span className={s.text}>Search</span>
-        <Paper
-          component="form"
-          elevation={0}
-          sx={{ background: 'transparent' }}
-          className={s.paper}
-        >
-          <SearchIcon color={'disabled'} sx={{ width: '18px', ml: '5px' }} />
-          <InputBase
-            className={s.input}
-            placeholder="Search by question"
-            inputProps={{ 'aria-label': 'search by question' }}
-            //onChange={handleChange}
-            //value={value}
-          />
-        </Paper>
+        <SearchField onSearchName={onSearchNameDebounce} searchValue={searchValue} />
+
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead style={{ backgroundColor: '#EFEFEF' }}>
             <TableRow>

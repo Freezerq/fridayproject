@@ -11,6 +11,7 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { addNewPack, getPacks } from '../../s2-BLL/packSlice'
+import { SearchField } from '../../s4-components/common/SearchField/SearchField'
 import { Actions } from '../Actions/Actions'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
 import { SuperPagination } from '../Pagination/Pagination'
@@ -36,7 +37,7 @@ export const Packs = () => {
   const maxSearchCardsNumber = Number(searchParams.get('max'))
   const rows = Number(searchParams.get('pageCount'))
   const pageNumber = Number(searchParams.get('page'))
-  const SearchValue = searchParams.get('packName')
+  const searchValue = searchParams.get('packName')
 
   //to get params from URL after Question Mark
   const { search } = useLocation()
@@ -88,17 +89,23 @@ export const Packs = () => {
   return (
     <>
       <TableContainer component={Paper}>
-        <FilterPanel
-          minSearchCardsNumber={minSearchCardsNumber}
-          maxSearchCardsNumber={maxSearchCardsNumber}
-          showAllPacks={showAllPacks}
-          showMyPacks={showMyPacks}
-          resetFilters={resetFilters}
-          onChangeSlider={onChangeCardValues}
-          maxCardsValue={maxCardsValue}
-          searchValue={SearchValue}
-          onSearchName={onSearchNameDebounce}
-        />
+        <div className={s.filterContainer}>
+          <SearchField
+            onSearchName={onSearchNameDebounce}
+            searchValue={searchValue}
+            classname={s.search}
+          />
+          <FilterPanel
+            minSearchCardsNumber={minSearchCardsNumber}
+            maxSearchCardsNumber={maxSearchCardsNumber}
+            showAllPacks={showAllPacks}
+            showMyPacks={showMyPacks}
+            resetFilters={resetFilters}
+            onChangeSlider={onChangeCardValues}
+            maxCardsValue={maxCardsValue}
+          />
+        </div>
+
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead style={{ backgroundColor: '#EFEFEF' }}>
             <TableRow>
