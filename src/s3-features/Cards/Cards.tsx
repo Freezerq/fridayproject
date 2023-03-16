@@ -111,7 +111,7 @@ export const Cards = () => {
                     {card.question}
                   </TableCell>
                   <TableCell align="left">{card.answer}</TableCell>
-                  <TableCell align="left">{card.updated}</TableCell>
+                  <TableCell align="left">{card.updated.substring(0, 10)}</TableCell>
                   <TableCell align="left">
                     <Rating name="size-medium" value={card.grade} />
                   </TableCell>
@@ -143,7 +143,7 @@ export const Cards = () => {
       <SuperPagination
         paginationTitle={'Cards per Page'}
         setRowsAndPage={setRowsAndPage}
-        totalCount={cardsTotalCount}
+        totalCount={cardsTotalCount ?? 0}
         rows={rows === 0 ? 4 : rows}
         page={pageNumber === 0 ? 0 : pageNumber - 1}
       />

@@ -143,7 +143,7 @@ export const Packs = () => {
                     {pack.name}
                   </TableCell>
                   <TableCell align="left">{pack.cardsCount}</TableCell>
-                  <TableCell align="left">{pack.updated}</TableCell>
+                  <TableCell align="left">{pack.updated.substring(0, 10)}</TableCell>
                   <TableCell align="left">{pack.user_name}</TableCell>
                   <TableCell align="left">
                     <ActionsForPacks pack={pack} onStudyClick={onNameClickHandler} />
