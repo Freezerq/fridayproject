@@ -20,7 +20,6 @@ import { ActionsForPacks } from '../Actions/ActionsForPacks'
 import { PATH } from '../Routes/AppRoutes'
 
 import s from './Cards.module.scss'
-
 import { CardsTableHead } from './CardsTableHead'
 
 export const Cards = () => {
