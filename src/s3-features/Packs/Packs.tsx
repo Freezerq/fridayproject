@@ -162,7 +162,7 @@ export const Packs = () => {
       <SuperPagination
         paginationTitle={'Packs per Page'}
         setRowsAndPage={setRowsAndPage}
-        packsTotalCount={packsTotalCount}
+        totalCount={packsTotalCount}
         rows={rows === 0 ? 4 : rows}
         page={pageNumber === 0 ? 0 : pageNumber - 1}
       />

@@ -144,7 +144,7 @@ export const Cards = () => {
       <SuperPagination
         paginationTitle={'Cards per Page'}
         setRowsAndPage={setRowsAndPage}
-        packsTotalCount={cardsTotalCount}
+        totalCount={cardsTotalCount}
         rows={rows === 0 ? 4 : rows}
         page={pageNumber === 0 ? 0 : pageNumber - 1}
       />

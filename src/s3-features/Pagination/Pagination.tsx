@@ -7,7 +7,7 @@ import s from './Pagination.module.css'
 type PaginationPropsType = {
   paginationTitle: string
   setRowsAndPage: (rowsPerPage: number, page: number) => void
-  packsTotalCount: number
+  totalCount: number
   rows: number
   page: number
 }
@@ -15,7 +15,7 @@ type PaginationPropsType = {
 export const SuperPagination: FC<PaginationPropsType> = ({
   paginationTitle,
   setRowsAndPage,
-  packsTotalCount,
+  totalCount,
   rows,
   page,
 }) => {
@@ -34,7 +34,7 @@ export const SuperPagination: FC<PaginationPropsType> = ({
     <div className={s.pagination}>
       <TablePagination
         component="div"
-        count={packsTotalCount}
+        count={totalCount}
         page={page}
         onPageChange={handleChangePage}
         rowsPerPageOptions={[4, 7, 10, 15]}
