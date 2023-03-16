@@ -15,6 +15,7 @@ import { getCards } from '../../s2-BLL/cardsSlice'
 import { SearchField } from '../../s4-components/common/SearchField/SearchField'
 import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
 import { ActionsForCards } from '../Actions/ActionsForCards'
+import { SuperPagination } from '../Pagination/Pagination'
 import { PATH } from '../Routes/AppRoutes'
 
 import s from './Cards.module.scss'
@@ -34,6 +35,8 @@ export const Cards = () => {
   const searchValue = searchParams.get('cardQuestion')
   const sortCards = searchParams.get('sortCards')
   const packId = searchParams.get('cardsPack_id')
+  const rows = Number(searchParams.get('pageCount'))
+  const pageNumber = Number(searchParams.get('page'))
   //to get params from URL after Question Mark
   const { search } = useLocation()
   const paramsFromUrl = Object.fromEntries(new URLSearchParams(search))
@@ -52,6 +55,13 @@ export const Cards = () => {
     setSearchParams({
       ...paramsFromUrl,
       sortCards,
+    })
+  }
+  const setRowsAndPage = (rowsPerPage: number, pageNumber: number) => {
+    setSearchParams({
+      ...paramsFromUrl,
+      pageCount: rowsPerPage.toString(),
+      page: pageNumber.toString(),
     })
   }
 
@@ -122,7 +132,13 @@ export const Cards = () => {
         </Table>
         {/*<button onClick={buttonOnClick}>Get cards</button>*/}
       </TableContainer>
-      {/*<SuperPagination paginationTitle={'Packs per Page'} setPacksPerPage={setPacksPerPage} />*/}
+      <SuperPagination
+        paginationTitle={'Cards per Page'}
+        setRowsAndPage={setRowsAndPage}
+        packsTotalCount={cardsTotalCount}
+        rows={rows === 0 ? 4 : rows}
+        page={pageNumber === 0 ? 0 : pageNumber - 1}
+      />
     </>
   )
 }
