@@ -24,29 +24,21 @@ export const ActionsForPacks = (props: ActionsPropsType) => {
 
   return (
     <div style={{ marginRight: '14px' }}>
-      {props.pack.user_id === userId ? (
-        <div>
-          {props.pack.cardsCount === 0 ? (
-            <SchoolIcon style={{ marginRight: '8px' }} color={'disabled'} />
-          ) : (
-            <SchoolIcon
-              style={{ marginRight: '8px' }}
-              onClick={() => {
-                props.onStudyClick(props.pack._id)
-              }}
-            />
-          )}
+      {props.pack.cardsCount === 0 ? (
+        <SchoolIcon style={{ marginRight: '8px' }} color={'disabled'} />
+      ) : (
+        <SchoolIcon
+          style={{ marginRight: '8px' }}
+          onClick={() => {
+            props.onStudyClick(props.pack._id)
+          }}
+        />
+      )}
+      {props.pack.user_id === userId && (
+        <>
           <BorderColorIcon style={{ marginRight: '8px' }} />
           <DeleteSweepIcon />
-        </div>
-      ) : (
-        <div>
-          <SchoolIcon
-            onClick={() => {
-              props.onStudyClick(props.pack._id)
-            }}
-          />
-        </div>
+        </>
       )}
     </div>
   )
