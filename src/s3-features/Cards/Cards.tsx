@@ -19,6 +19,8 @@ import { ActionsForCards } from '../Actions/ActionsForCards'
 import { ActionsForPacks } from '../Actions/ActionsForPacks'
 import { PATH } from '../Routes/AppRoutes'
 
+import s from './Cards.module.scss'
+
 import { CardsTableHead } from './CardsTableHead'
 
 export const Cards = () => {
@@ -45,7 +47,7 @@ export const Cards = () => {
   }, [searchParams, isLoggedIn])
 
   const onSearchNameDebounce = (value: string) => {
-    setSearchParams({ ...paramsFromUrl, packName: value })
+    setSearchParams({ ...paramsFromUrl, cardQuestion: value })
   }
   const setSortCards = (sortCards: string) => {
     setSearchParams({
@@ -69,26 +71,38 @@ export const Cards = () => {
         <span>Back to Packs List</span>
       </div>
       <TableContainer component={Paper}>
-        {/*<SearchField onSearchName={onSearchNameDebounce} searchValue={searchValue ?? ''} />*/}
+        <SearchField
+          onSearchName={onSearchNameDebounce}
+          searchValue={searchValue ?? ''}
+          searchParams={searchParams}
+        />
 
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <CardsTableHead setSort={setSortCards} sort={sortCards ?? '0updated'} />
           <TableBody>
-            {cards?.map(card => (
-              <TableRow key={card._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell component="th" scope="row">
-                  {card.question}
-                </TableCell>
-                <TableCell align="left">{card.answer}</TableCell>
-                <TableCell align="left">{card.updated}</TableCell>
-                <TableCell align="left">
-                  <Rating name="size-medium" value={card.grade} />
-                </TableCell>
-                <TableCell align="left">
-                  <ActionsForCards onStudyClick={onStudyClick} card={card} />
-                </TableCell>
-              </TableRow>
-            ))}
+            {cards?.length > 0 ? (
+              cards?.map(card => (
+                <TableRow key={card._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell component="th" scope="row">
+                    {card.question}
+                  </TableCell>
+                  <TableCell align="left">{card.answer}</TableCell>
+                  <TableCell align="left">{card.updated}</TableCell>
+                  <TableCell align="left">
+                    <Rating name="size-medium" value={card.grade} />
+                  </TableCell>
+                  <TableCell align="left">
+                    <ActionsForCards onStudyClick={onStudyClick} card={card} />
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <div className={s.container}>
+                <span className={s.message}>
+                  {'Nothing was found. Change your search parameters'}
+                </span>
+              </div>
+            )}
           </TableBody>
         </Table>
         {/*<button onClick={buttonOnClick}>Get cards</button>*/}
