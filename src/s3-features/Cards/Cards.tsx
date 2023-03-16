@@ -72,7 +72,6 @@ export const Cards = () => {
     navigate(PATH.PACKS)
   }
 
-  if (!isLoggedIn) return <Navigate to={PATH.PACKS} />
   if (cardsPackId === null) return <Navigate to={PATH.PACKS} />
 
   return (
