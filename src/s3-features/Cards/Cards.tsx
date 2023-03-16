@@ -19,6 +19,8 @@ import { ActionsForCards } from '../Actions/ActionsForCards'
 import { ActionsForPacks } from '../Actions/ActionsForPacks'
 import { PATH } from '../Routes/AppRoutes'
 
+import s from './Cards.module.scss'
+
 export const Cards = () => {
   const cards = useAppSelector(state => state.cards.cardsData.cards)
   const cardsData = useAppSelector(state => state.cards.cardsData)
@@ -77,21 +79,29 @@ export const Cards = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {cards?.map(card => (
-              <TableRow key={card._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell component="th" scope="row">
-                  {card.question}
-                </TableCell>
-                <TableCell align="left">{card.answer}</TableCell>
-                <TableCell align="left">updated</TableCell>
-                <TableCell align="left">
-                  <Rating name="size-medium" value={card.grade} />
-                </TableCell>
-                <TableCell align="left">
-                  <ActionsForCards onStudyClick={onStudyClick} card={card} />
-                </TableCell>
-              </TableRow>
-            ))}
+            {cards?.length > 0 ? (
+              cards?.map(card => (
+                <TableRow key={card._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell component="th" scope="row">
+                    {card.question}
+                  </TableCell>
+                  <TableCell align="left">{card.answer}</TableCell>
+                  <TableCell align="left">updated</TableCell>
+                  <TableCell align="left">
+                    <Rating name="size-medium" value={card.grade} />
+                  </TableCell>
+                  <TableCell align="left">
+                    <ActionsForCards onStudyClick={onStudyClick} card={card} />
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <div className={s.container}>
+                <span className={s.message}>
+                  {'Nothing was found. Change your search parameters'}
+                </span>
+              </div>
+            )}
           </TableBody>
         </Table>
         {/*<button onClick={buttonOnClick}>Get cards</button>*/}
