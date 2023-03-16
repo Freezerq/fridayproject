@@ -22,7 +22,7 @@ import { CardsTableHead } from './CardsTableHead'
 
 export const Cards = () => {
   const cards = useAppSelector(state => state.cards.cardsData.cards)
-  const packs = useAppSelector(state => state.packs.packsData.cardPacks)
+  const packName = useAppSelector(state => state.cards.cardsData.packName)
   const cardsData = useAppSelector(state => state.cards.cardsData)
   const cardsTotalCount = useAppSelector(state => state.cards.cardsData.cardsTotalCount)
   const dispatch = useAppDispatch()
@@ -33,14 +33,13 @@ export const Cards = () => {
   //get Single Params From URL
   const searchValue = searchParams.get('cardQuestion')
   const sortCards = searchParams.get('sortCards')
-  const packId = searchParams.get('cardsPack_id')
+  const cardsPackId = searchParams.get('cardsPack_id')
   //to get params from URL after Question Mark
   const { search } = useLocation()
   const paramsFromUrl = Object.fromEntries(new URLSearchParams(search))
 
   useEffect(() => {
     if (!isLoggedIn) return
-    const cardsPackId = searchParams.get('cardsPack_id')
 
     dispatch(getCards({ ...paramsFromUrl, cardsPack_id: cardsPackId }))
   }, [searchParams, isLoggedIn])
@@ -63,6 +62,8 @@ export const Cards = () => {
     navigate(PATH.PACKS)
   }
 
+  console.log(cardsData)
+
   return (
     <>
       <div style={{ display: 'flex', margin: '15px', alignItems: 'center' }}>
@@ -72,7 +73,7 @@ export const Cards = () => {
 
       <div className={s.headerContainer}>
         <div className={s.header}>
-          <span className={s.title}>{packs.map(p => (p._id === packId ? p.name : ''))}</span>
+          <span className={s.title}>{packName}</span>
           <SuperButton
             style={{
               letterSpacing: '0.01em',
