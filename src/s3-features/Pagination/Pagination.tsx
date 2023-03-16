@@ -9,7 +9,7 @@ type PaginationPropsType = {
   setRowsAndPage: (rowsPerPage: number, page: number) => void
   packsTotalCount: number
   rows: number
-  pageNumber: number
+  page: number
 }
 
 export const SuperPagination: FC<PaginationPropsType> = ({
@@ -17,25 +17,17 @@ export const SuperPagination: FC<PaginationPropsType> = ({
   setRowsAndPage,
   packsTotalCount,
   rows,
-  pageNumber,
+  page,
 }) => {
-  const [rowsPerPage, setRowsPerPage] = useState<number>(rows)
-  const [page, setPage] = useState<number>(pageNumber)
-
-  useEffect(() => {
-    setRowsAndPage(rowsPerPage, page + 1)
-  }, [rowsPerPage, page])
-
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
-    setPage(newPage)
+    setRowsAndPage(rows, newPage + 1)
   }
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    let rows = Number(event.target.value)
+    let rowsNumber = Number(event.target.value)
 
-    setRowsPerPage(rows)
-    setPage(0)
+    setRowsAndPage(rowsNumber, 1)
   }
 
   return (
@@ -46,7 +38,7 @@ export const SuperPagination: FC<PaginationPropsType> = ({
         page={page}
         onPageChange={handleChangePage}
         rowsPerPageOptions={[4, 7, 10, 15]}
-        rowsPerPage={rowsPerPage}
+        rowsPerPage={rows}
         labelRowsPerPage={paginationTitle}
         onRowsPerPageChange={handleChangeRowsPerPage}
         showFirstButton
