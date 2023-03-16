@@ -25,8 +25,6 @@ export const Packs = () => {
   const packsTotalCount = useAppSelector(state => state.packs.packsData.cardPacksTotalCount)
   const userId = useAppSelector(state => state.auth.profile._id)
   const maxCardsValue = useAppSelector(state => state.packs.packsData.maxCardsCount)
-  const initialRows = useAppSelector(state => state.packs.packsData.pageCount)
-  const initialPage = useAppSelector(state => state.packs.packsData.page)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
@@ -168,7 +166,7 @@ export const Packs = () => {
         setRowsAndPage={setRowsAndPage}
         packsTotalCount={packsTotalCount}
         rows={rows === 0 ? 4 : rows}
-        pageNumber={pageNumber === 0 ? 0 : pageNumber - 1}
+        page={pageNumber === 0 ? 0 : pageNumber - 1}
       />
     </>
   )

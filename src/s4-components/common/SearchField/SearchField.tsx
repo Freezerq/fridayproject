@@ -11,9 +11,6 @@ import s from './SearchField.module.scss'
 export function SearchField({ onSearchName, searchValue, classname, ...props }: SearchFieldTypes) {
   const [value, setValue] = useState<string>(searchValue)
   const debouncedValue = useDebounce<string>(value, 750)
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value)
-  }
 
   useEffect(() => {
     onSearchName(value)
@@ -22,6 +19,10 @@ export function SearchField({ onSearchName, searchValue, classname, ...props }: 
   useEffect(() => {
     if (value !== searchValue) setValue(searchValue)
   }, [searchValue])
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value)
+  }
 
   return (
     <div className={classname}>
