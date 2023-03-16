@@ -7,9 +7,8 @@ import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getCards } from '../../s2-BLL/cardsSlice'
@@ -17,6 +16,7 @@ import { SearchField } from '../../s4-components/common/SearchField/SearchField'
 import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
 import { ActionsForCards } from '../Actions/ActionsForCards'
 import { ActionsForPacks } from '../Actions/ActionsForPacks'
+import s from '../Packs/Packs.module.scss'
 import { PATH } from '../Routes/AppRoutes'
 
 import s from './Cards.module.scss'
@@ -24,6 +24,7 @@ import { CardsTableHead } from './CardsTableHead'
 
 export const Cards = () => {
   const cards = useAppSelector(state => state.cards.cardsData.cards)
+  const packs = useAppSelector(state => state.packs.packsData.cardPacks)
   const cardsData = useAppSelector(state => state.cards.cardsData)
   const cardsTotalCount = useAppSelector(state => state.cards.cardsData.cardsTotalCount)
   const dispatch = useAppDispatch()
@@ -34,6 +35,7 @@ export const Cards = () => {
   //get Single Params From URL
   const searchValue = searchParams.get('cardQuestion')
   const sortCards = searchParams.get('sortCards')
+  const packId = searchParams.get('cardsPack_id')
   //to get params from URL after Question Mark
   const { search } = useLocation()
   const paramsFromUrl = Object.fromEntries(new URLSearchParams(search))
@@ -69,6 +71,22 @@ export const Cards = () => {
         <ArrowBackIcon onClick={buttonBackOnClick} />
         <span>Back to Packs List</span>
       </div>
+
+      <div className={s.headerContainer}>
+        <div className={s.header}>
+          <span className={s.title}>{packs.map(p => (p._id === packId ? p.name : ''))}</span>
+          <SuperButton
+            style={{
+              letterSpacing: '0.01em',
+              fontSize: '16px',
+              width: '175px',
+            }}
+          >
+            Learn to pack
+          </SuperButton>
+        </div>
+      </div>
+
       <TableContainer component={Paper}>
         <SearchField
           onSearchName={onSearchNameDebounce}

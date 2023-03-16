@@ -8,7 +8,7 @@ export type CardData = {
   answer: string
   updated: string
   grade: string
-  empty: string
+  actions: string
 }
 
 const headerCardsTable: HeaderType<CardData>[] = [
@@ -16,6 +16,7 @@ const headerCardsTable: HeaderType<CardData>[] = [
   { id: 'answer', label: 'Answer' },
   { id: 'updated', label: 'Last Updated' },
   { id: 'grade', label: 'Grade' },
+  { id: 'actions', label: 'Actions' },
 ]
 
 type CardsTableHeadType = {
