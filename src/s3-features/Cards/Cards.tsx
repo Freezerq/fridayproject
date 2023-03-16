@@ -19,6 +19,8 @@ import { ActionsForCards } from '../Actions/ActionsForCards'
 import { ActionsForPacks } from '../Actions/ActionsForPacks'
 import { PATH } from '../Routes/AppRoutes'
 
+import { CardsTableHead } from './CardsTableHead'
+
 export const Cards = () => {
   const cards = useAppSelector(state => state.cards.cardsData.cards)
   const cardsData = useAppSelector(state => state.cards.cardsData)
@@ -30,6 +32,7 @@ export const Cards = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   //get Single Params From URL
   const searchValue = searchParams.get('')
+  const sortCards = searchParams.get('sortCards')
   //to get params from URL after Question Mark
   const { search } = useLocation()
   const paramsFromUrl = Object.fromEntries(new URLSearchParams(search))
@@ -43,6 +46,12 @@ export const Cards = () => {
 
   const onSearchNameDebounce = (value: string) => {
     setSearchParams({ ...paramsFromUrl, packName: value })
+  }
+  const setSortCards = (sortCards: string) => {
+    setSearchParams({
+      ...paramsFromUrl,
+      sortCards,
+    })
   }
 
   const onStudyClick = () => {
@@ -63,15 +72,7 @@ export const Cards = () => {
         {/*<SearchField onSearchName={onSearchNameDebounce} searchValue={searchValue ?? ''} />*/}
 
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead style={{ backgroundColor: '#EFEFEF' }}>
-            <TableRow>
-              <TableCell align="left">Question</TableCell>
-              <TableCell align="left">Answer</TableCell>
-              <TableCell align="left">Last updated</TableCell>
-              <TableCell align="left">Grade</TableCell>
-              <TableCell align="left"></TableCell>
-            </TableRow>
-          </TableHead>
+          <CardsTableHead setSort={setSortCards} sort={sortCards ?? '0updated'} />
           <TableBody>
             {cards?.map(card => (
               <TableRow key={card._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -79,7 +80,7 @@ export const Cards = () => {
                   {card.question}
                 </TableCell>
                 <TableCell align="left">{card.answer}</TableCell>
-                <TableCell align="left">updated</TableCell>
+                <TableCell align="left">{card.updated}</TableCell>
                 <TableCell align="left">
                   <Rating name="size-medium" value={card.grade} />
                 </TableCell>

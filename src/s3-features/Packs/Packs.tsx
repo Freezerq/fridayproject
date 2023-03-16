@@ -17,7 +17,7 @@ import { FilterPanel } from '../FilterPanel/FilterPanel'
 import { SuperPagination } from '../Pagination/Pagination'
 import { PATH } from '../Routes/AppRoutes'
 
-import { HeadTableComponent } from './HeadTableComponent/HeadTableComponent'
+import { PacksTableHead } from './PacksTableHead'
 import s from './Packs.module.scss'
 
 export const Packs = () => {
@@ -39,7 +39,7 @@ export const Packs = () => {
   const rows = Number(searchParams.get('pageCount'))
   const pageNumber = Number(searchParams.get('page'))
   const searchValue = searchParams.get('packName')
-  const sort = searchParams.get('sortPacks')
+  const sortPacks = searchParams.get('sortPacks')
 
   //to get params from URL after Question Mark
   const { search } = useLocation()
@@ -75,7 +75,7 @@ export const Packs = () => {
   const onChangeCardValues = (min: number, max: number) => {
     setSearchParams({ ...paramsFromUrl, min: min.toString(), max: max.toString() })
   }
-  const setSort = (sortPacks: string) => {
+  const setSortPacks = (sortPacks: string) => {
     setSearchParams({
       ...paramsFromUrl,
       sortPacks,
@@ -130,7 +130,7 @@ export const Packs = () => {
         </div>
 
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <HeadTableComponent sort={sort ?? '0updated'} setSort={setSort} />
+          <PacksTableHead sort={sortPacks ?? '0updated'} setSort={setSortPacks} />
 
           <TableBody>
             {packs?.length > 0 ? (

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { HeadTable } from './HeadTable/HeadTable'
+import { HeadTable } from '../../s4-components/common/HeadTable/HeadTable'
 
 export type HeaderType<D> = {
   id: keyof D
@@ -14,7 +14,7 @@ export type PackData = {
   actions: string
 }
 
-const headerTableComponent: HeaderType<PackData>[] = [
+const headerPacksTable: HeaderType<PackData>[] = [
   { id: 'name', label: 'Name' },
   { id: 'cardsCount', label: 'Cards' },
   { id: 'updated', label: 'Last updated' },
@@ -27,13 +27,13 @@ type PacksTableHeadProps = {
   sort: string
 }
 
-export const HeadTableComponent = (props: PacksTableHeadProps) => {
+export const PacksTableHead = (props: PacksTableHeadProps) => {
   const sortBy = props.sort ? props.sort.substring(1) : 'update'
   const sortOrder = props.sort ? props.sort[0] : '0'
 
   return (
     <HeadTable
-      header={headerTableComponent}
+      header={headerPacksTable}
       setSort={props.setSort}
       sortBy={sortBy}
       sortOrderStart={sortOrder}

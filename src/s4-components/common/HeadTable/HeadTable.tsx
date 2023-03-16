@@ -5,7 +5,7 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import TableSortLabel from '@mui/material/TableSortLabel'
 
-import { HeaderType } from '../HeadTableComponent'
+import { HeaderType } from '../../../s3-features/Packs/PacksTableHead'
 
 type Props<D> = {
   header: HeaderType<D>[]
