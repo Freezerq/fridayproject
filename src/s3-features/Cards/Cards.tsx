@@ -8,7 +8,7 @@ import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableRow from '@mui/material/TableRow'
-import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getCards } from '../../s2-BLL/cardsSlice'
@@ -71,6 +71,9 @@ export const Cards = () => {
   const buttonBackOnClick = () => {
     navigate(PATH.PACKS)
   }
+
+  if (!isLoggedIn) return <Navigate to={PATH.PACKS} />
+  if (cardsPackId === null) return <Navigate to={PATH.PACKS} />
 
   return (
     <>
