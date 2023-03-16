@@ -127,12 +127,12 @@ export const Packs = () => {
           />
         </div>
 
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <PacksTableHead sort={sortPacks ?? '0updated'} setSort={setSortPacks} />
+        {packs?.length > 0 ? (
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <PacksTableHead sort={sortPacks ?? '0updated'} setSort={setSortPacks} />
 
-          <TableBody>
-            {packs?.length > 0 ? (
-              packs?.map(pack => (
+            <TableBody>
+              {packs?.map(pack => (
                 <TableRow key={pack._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                   <TableCell
                     style={{ backgroundColor: 'gray' }}
@@ -149,16 +149,14 @@ export const Packs = () => {
                     <ActionsForPacks pack={pack} onStudyClick={onNameClickHandler} />
                   </TableCell>
                 </TableRow>
-              ))
-            ) : (
-              <div className={s.container}>
-                <span className={s.message}>
-                  {'Nothing was found. Change your search parameters'}
-                </span>
-              </div>
-            )}
-          </TableBody>
-        </Table>
+              ))}
+            </TableBody>
+          </Table>
+        ) : (
+          <div className={s.container}>
+            <span className={s.message}>{'Nothing was found. Change your search parameters'}</span>
+          </div>
+        )}
       </TableContainer>
 
       <SuperPagination

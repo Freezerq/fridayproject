@@ -102,11 +102,11 @@ export const Cards = () => {
           searchParams={searchParams}
         />
 
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <CardsTableHead setSort={setSortCards} sort={sortCards ?? '0updated'} />
-          <TableBody>
-            {cards?.length > 0 ? (
-              cards?.map(card => (
+        {cards?.length > 0 ? (
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <CardsTableHead setSort={setSortCards} sort={sortCards ?? '0updated'} />
+            <TableBody>
+              {cards?.map(card => (
                 <TableRow key={card._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                   <TableCell component="th" scope="row">
                     {card.question}
@@ -120,17 +120,26 @@ export const Cards = () => {
                     <ActionsForCards onStudyClick={onStudyClick} card={card} />
                   </TableCell>
                 </TableRow>
-              ))
-            ) : (
-              <div className={s.container}>
-                <span className={s.message}>
-                  {'Nothing was found. Change your search parameters'}
-                </span>
-              </div>
-            )}
-          </TableBody>
-        </Table>
-        {/*<button onClick={buttonOnClick}>Get cards</button>*/}
+              ))}
+            </TableBody>
+          </Table>
+        ) : (
+          <div className={s.container}>
+            <span className={s.message}>
+              {'This pack is empty. Click add new card to fill this pack'}
+            </span>
+            <SuperButton
+              style={{
+                letterSpacing: '0.01em',
+                fontSize: '16px',
+                width: '171px',
+                marginBottom: '20px',
+              }}
+            >
+              Add new card
+            </SuperButton>
+          </div>
+        )}
       </TableContainer>
       <SuperPagination
         paginationTitle={'Cards per Page'}
