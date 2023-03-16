@@ -17,8 +17,8 @@ import { FilterPanel } from '../FilterPanel/FilterPanel'
 import { SuperPagination } from '../Pagination/Pagination'
 import { PATH } from '../Routes/AppRoutes'
 
-import { PacksTableHead } from './PacksTableHead'
 import s from './Packs.module.scss'
+import { PacksTableHead } from './PacksTableHead'
 
 export const Packs = () => {
   const packs = useAppSelector(state => state.packs.packsData.cardPacks)
