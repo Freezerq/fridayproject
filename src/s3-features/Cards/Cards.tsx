@@ -32,7 +32,7 @@ export const Cards = () => {
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
   //get Single Params From URL
-  const searchValue = searchParams.get('')
+  const searchValue = searchParams.get('cardQuestion')
   const sortCards = searchParams.get('sortCards')
   //to get params from URL after Question Mark
   const { search } = useLocation()
