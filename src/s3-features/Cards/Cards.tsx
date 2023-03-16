@@ -15,10 +15,9 @@ import { getCards } from '../../s2-BLL/cardsSlice'
 import { SearchField } from '../../s4-components/common/SearchField/SearchField'
 import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
 import { ActionsForCards } from '../Actions/ActionsForCards'
-import { ActionsForPacks } from '../Actions/ActionsForPacks'
-import s from '../Packs/Packs.module.scss'
 import { PATH } from '../Routes/AppRoutes'
 
+import s from './Cards.module.scss'
 import { CardsTableHead } from './CardsTableHead'
 
 export const Cards = () => {
