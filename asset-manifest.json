@@ -1,21 +1,22 @@
 {
   "files": {
-    "main.css": "/fridayproject/static/css/main.a13fc6db.css",
-    "main.js": "/fridayproject/static/js/main.2c05dd5d.js",
-    "static/media/pencil.svg": "/fridayproject/static/media/pencil.0555732b3b9e8f537d46f4ccbde7b262.svg",
-    "static/media/study.svg": "/fridayproject/static/media/study.47c79637f0ba7c0ec81739a8fbc6009e.svg",
+    "main.css": "/fridayproject/static/css/main.8c03d1e2.css",
+    "main.js": "/fridayproject/static/js/main.ecf2ce41.js",
+    "static/media/emailImg.svg": "/fridayproject/static/media/emailImg.565755d5f2f689197fc13d3fc9c94e9e.svg",
+    "static/media/pencil.svg": "/fridayproject/static/media/pencil.70402b8c191487d02accca06e5f95095.svg",
+    "static/media/study.svg": "/fridayproject/static/media/study.d3568d9b74d8af5305b3c21beb63ab1d.svg",
     "static/media/camera.svg": "/fridayproject/static/media/camera.6cefb14073fbf484a0f41ec9ff071a68.svg",
-    "static/media/delete.svg": "/fridayproject/static/media/delete.b46110e5beab591b0e63f40a4c3cb233.svg",
-    "static/media/checked.svg": "/fridayproject/static/media/checked.0b6a1bcf5d417ff0a947.svg",
-    "static/media/more-vertical.svg": "/fridayproject/static/media/more-vertical.0f32efdeef1a3bc7cdfae0a3d27f7631.svg",
+    "static/media/delete.svg": "/fridayproject/static/media/delete.418015ad440a1de25ef2851f6d1168eb.svg",
+    "static/media/checked.svg": "/fridayproject/static/media/checked.b75ca55e8759862b4083.svg",
+    "static/media/more-vertical.svg": "/fridayproject/static/media/more-vertical.c7315ed2f4e0ec216571b48232ad9a96.svg",
     "index.html": "/fridayproject/index.html",
-    "static/media/logout.svg": "/fridayproject/static/media/logout.6aacae96c673ca973607f9c893793b02.svg",
-    "static/media/eyeIcon.svg": "/fridayproject/static/media/eyeIcon.2cecc50f104028b5d30e022b16572f78.svg",
-    "main.a13fc6db.css.map": "/fridayproject/static/css/main.a13fc6db.css.map",
-    "main.2c05dd5d.js.map": "/fridayproject/static/js/main.2c05dd5d.js.map"
+    "static/media/logout.svg": "/fridayproject/static/media/logout.cb129deb68a5eaccedb237c356886ba8.svg",
+    "static/media/eyeIcon.svg": "/fridayproject/static/media/eyeIcon.f94c0c1db3b9955d7b1c7886af95d7b6.svg",
+    "main.8c03d1e2.css.map": "/fridayproject/static/css/main.8c03d1e2.css.map",
+    "main.ecf2ce41.js.map": "/fridayproject/static/js/main.ecf2ce41.js.map"
   },
   "entrypoints": [
-    "static/css/main.a13fc6db.css",
-    "static/js/main.2c05dd5d.js"
+    "static/css/main.8c03d1e2.css",
+    "static/js/main.ecf2ce41.js"
   ]
 }
