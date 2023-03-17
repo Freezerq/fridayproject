@@ -38,6 +38,7 @@ export const Packs = () => {
   const pageNumber = Number(searchParams.get('page'))
   const searchValue = searchParams.get('packName')
   const sortPacks = searchParams.get('sortPacks')
+  const searchByAll = searchParams.get('searchByAll')
 
   //to get params from URL after Question Mark
   const { search } = useLocation()

@@ -93,14 +93,12 @@ export const Cards = () => {
           </SuperButton>
         </div>
       </div>
-
       <TableContainer component={Paper}>
         <SearchField
           onSearchName={onSearchNameDebounce}
           searchValue={searchValue ?? ''}
           searchParams={searchParams}
         />
-
         {cards?.length > 0 ? (
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <CardsTableHead setSort={setSortCards} sort={sortCards ?? '0updated'} />
@@ -124,22 +122,20 @@ export const Cards = () => {
           </Table>
         ) : (
           <div className={s.container}>
-            <span className={s.message}>
-              {'This pack is empty. Click add new card to fill this pack'}
-            </span>
-            <SuperButton
-              style={{
-                letterSpacing: '0.01em',
-                fontSize: '16px',
-                width: '171px',
-                marginBottom: '20px',
-              }}
-            >
-              Add new card
-            </SuperButton>
+            <span className={s.message}>{'Nothing was found. Change your search parameters'}</span>
           </div>
         )}
       </TableContainer>
+      {/*<SuperButton*/}
+      {/*    style={{*/}
+      {/*      letterSpacing: '0.01em',*/}
+      {/*      fontSize: '16px',*/}
+      {/*      width: '171px',*/}
+      {/*      marginBottom: '20px',*/}
+      {/*    }}*/}
+      {/*>*/}
+      {/*  Add new card*/}
+      {/*</SuperButton>*/}
       <SuperPagination
         paginationTitle={'Cards per Page'}
         setRowsAndPage={setRowsAndPage}
