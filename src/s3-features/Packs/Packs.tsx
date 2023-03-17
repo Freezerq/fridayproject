@@ -1,21 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableContainer from '@mui/material/TableContainer'
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { useLocation, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { addNewPack, getPacks } from '../../s2-BLL/packSlice'
-import moreVertical from '../../s4-components/common/image/more-vertical.svg'
 import { SearchField } from '../../s4-components/common/SearchField/SearchField'
-import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
 import { SuperPagination } from '../Pagination/Pagination'
-import { PATH } from '../Routes/AppRoutes'
 
-import { EditBar } from './editBar/EditBar'
 import s from './Packs.module.scss'
+import { PacksHeader } from './PacksHeader'
 import { PacksTableBody } from './PacksTableBody'
 import { PacksTableHead } from './PacksTableHead'
 
@@ -25,9 +22,7 @@ export const Packs = () => {
   const userId = useAppSelector(state => state.auth.profile._id)
   const maxCardsValue = useAppSelector(state => state.packs.packsData.maxCardsCount)
   const dispatch = useAppDispatch()
-  const navigate = useNavigate()
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
-  const appStatus = useAppSelector(state => state.app.status)
 
   //set params into URL
   const [searchParams, setSearchParams] = useSearchParams()
@@ -89,40 +84,9 @@ export const Packs = () => {
     dispatch(addNewPack({ name: 'irina' }, paramsFromUrl))
   }
 
-  const [open, setOpen] = useState(false)
-  const handleClose = () => setOpen(false)
-  const handleOpen = () => setOpen(true)
-
   return (
     <>
-      <div className={s.headerContainer}>
-        <div className={s.header}>
-          <div className={s.titleBlock}>
-            <span className={s.title}>Packs list</span>
-            <div className={s.popUpBar}>
-              <img
-                src={moreVertical}
-                alt={'open menu'}
-                onClick={handleOpen}
-                className={s.moreImg}
-              />
-              <EditBar open={open} handleClose={handleClose} />
-            </div>
-          </div>
-
-          <SuperButton
-            style={{
-              letterSpacing: '0.01em',
-              fontSize: '16px',
-              width: '175px',
-            }}
-            onClick={buttonOnClick}
-            disabled={appStatus === 'loading'}
-          >
-            Add new pack
-          </SuperButton>
-        </div>
-      </div>
+      <PacksHeader buttonOnClick={buttonOnClick} />
       <TableContainer component={Paper}>
         <div className={s.filterContainer}>
           <SearchField

@@ -1,19 +1,17 @@
 import React, { useEffect } from 'react'
 
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableContainer from '@mui/material/TableContainer'
-import { Navigate, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { Navigate, useLocation, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getCards } from '../../s2-BLL/cardsSlice'
 import { SearchField } from '../../s4-components/common/SearchField/SearchField'
-import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
 import { SuperPagination } from '../Pagination/Pagination'
 import { PATH } from '../Routes/AppRoutes'
 
-import s from './Cards.module.scss'
+import { CardsHeader } from './CardsHeader'
 import { CardsTableBody } from './CardsTableBody'
 import { CardsTableHead } from './CardsTableHead'
 
@@ -24,7 +22,6 @@ export const Cards = () => {
   const dispatch = useAppDispatch()
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
   //set params into URL
-  const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
   //get Single Params From URL
   const searchValue = searchParams.get('cardQuestion')
@@ -59,60 +56,22 @@ export const Cards = () => {
     })
   }
 
-  const buttonBackOnClick = () => {
-    navigate(PATH.PACKS)
-  }
-
   if (cardsPackId === null) return <Navigate to={PATH.PACKS} />
 
   return (
     <>
-      <div style={{ display: 'flex', margin: '15px', alignItems: 'center' }}>
-        <ArrowBackIcon onClick={buttonBackOnClick} />
-        <span>Back to Packs List</span>
-      </div>
-
-      <div className={s.headerContainer}>
-        <div className={s.header}>
-          <span className={s.title}>{packName}</span>
-          <SuperButton
-            style={{
-              letterSpacing: '0.01em',
-              fontSize: '16px',
-              width: '175px',
-            }}
-          >
-            Learn to pack
-          </SuperButton>
-        </div>
-      </div>
+      <CardsHeader packName={packName} />
       <TableContainer component={Paper}>
         <SearchField
           onSearchName={onSearchNameDebounce}
           searchValue={searchValue ?? ''}
           searchParams={searchParams}
         />
-        {cards?.length > 0 ? (
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <CardsTableHead setSort={setSortCards} sort={sortCards ?? '0updated'} />
-            <CardsTableBody />
-          </Table>
-        ) : (
-          <div className={s.container}>
-            <span className={s.message}>{'Nothing was found. Change your search parameters'}</span>
-          </div>
-        )}
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <CardsTableHead setSort={setSortCards} sort={sortCards ?? '0updated'} />
+          <CardsTableBody />
+        </Table>
       </TableContainer>
-      {/*<SuperButton*/}
-      {/*    style={{*/}
-      {/*      letterSpacing: '0.01em',*/}
-      {/*      fontSize: '16px',*/}
-      {/*      width: '171px',*/}
-      {/*      marginBottom: '20px',*/}
-      {/*    }}*/}
-      {/*>*/}
-      {/*  Add new card*/}
-      {/*</SuperButton>*/}
       <SuperPagination
         paginationTitle={'Cards per Page'}
         setRowsAndPage={setRowsAndPage}
