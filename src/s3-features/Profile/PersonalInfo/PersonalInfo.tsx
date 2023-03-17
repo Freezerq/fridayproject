@@ -15,8 +15,8 @@ const PersonalInfo = ({ profile, onChangeHandler, ...props }: PersonalInfoPropsT
 
   return (
     <div className={style.form}>
-      <NavLink to={PATH.CARDS}>
-        <SuperButton className={style.button}>Open cards</SuperButton>
+      <NavLink to={PATH.PACKS}>
+        <SuperButton className={style.button}>Open packs</SuperButton>
       </NavLink>
 
       <h2 className={style.title}>Personal Information</h2>
