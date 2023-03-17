@@ -6,8 +6,9 @@ import TableContainer from '@mui/material/TableContainer'
 import { Navigate, useLocation, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { getCards } from '../../s2-BLL/cardsSlice'
+import { addNewCard, getCards } from '../../s2-BLL/cardsSlice'
 import { SearchField } from '../../s4-components/common/SearchField/SearchField'
+import s from '../Packs/Packs.module.scss'
 import { SuperPagination } from '../Pagination/Pagination'
 import { PATH } from '../Routes/AppRoutes'
 
@@ -28,7 +29,7 @@ export const Cards = () => {
   const sortCards = searchParams.get('sortCards')
   const rows = Number(searchParams.get('pageCount'))
   const pageNumber = Number(searchParams.get('page'))
-  const cardsPackId = searchParams.get('cardsPack_id')
+  const cardsPack_id = searchParams.get('cardsPack_id')
   //to get params from URL after Question Mark
   const { search } = useLocation()
   const paramsFromUrl = Object.fromEntries(new URLSearchParams(search))
@@ -36,7 +37,7 @@ export const Cards = () => {
   useEffect(() => {
     if (!isLoggedIn) return
 
-    dispatch(getCards({ ...paramsFromUrl, cardsPack_id: cardsPackId }))
+    dispatch(getCards({ ...paramsFromUrl, cardsPack_id: cardsPack_id }))
   }, [searchParams, isLoggedIn])
 
   const onSearchNameDebounce = (value: string) => {
@@ -56,21 +57,31 @@ export const Cards = () => {
     })
   }
 
-  if (cardsPackId === null) return <Navigate to={PATH.PACKS} />
+  const onAddNewCardHandler = () => {
+    dispatch(addNewCard({ cardsPack_id }, { cardsPack_id }))
+  }
+
+  if (cardsPack_id === null) return <Navigate to={PATH.PACKS} />
 
   return (
     <>
-      <CardsHeader packName={packName} />
+      <CardsHeader packName={packName} onAddNewCard={onAddNewCardHandler} />
       <TableContainer component={Paper}>
         <SearchField
           onSearchName={onSearchNameDebounce}
           searchValue={searchValue ?? ''}
           searchParams={searchParams}
         />
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <CardsTableHead setSort={setSortCards} sort={sortCards ?? '0updated'} />
-          <CardsTableBody />
-        </Table>
+        {cards?.length > 0 ? (
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <CardsTableHead setSort={setSortCards} sort={sortCards ?? '0updated'} />
+            <CardsTableBody />
+          </Table>
+        ) : (
+          <div className={s.container}>
+            <span className={s.message}>{'Nothing was found. Change your search parameters'}</span>
+          </div>
+        )}
       </TableContainer>
       <SuperPagination
         paginationTitle={'Cards per Page'}

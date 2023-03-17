@@ -49,7 +49,7 @@ export type CardType = {
   _id: string
   answer: string
   question: string
-  cardsPack_id: string
+  cardsPack_id: string | null
   grade: number
   shots: number
   user_id: string

@@ -3,7 +3,8 @@ import React from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppSelector } from '../../s1-DAL/store'
+import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
+import { addNewCard } from '../../s2-BLL/cardsSlice'
 import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
 import { PATH } from '../Routes/AppRoutes'
 
@@ -11,6 +12,7 @@ import s from './Cards.module.scss'
 
 type CardsHeaderType = {
   packName: string
+  onAddNewCard: () => void
 }
 
 export const CardsHeader = (props: CardsHeaderType) => {
@@ -38,6 +40,7 @@ export const CardsHeader = (props: CardsHeaderType) => {
                 fontSize: '16px',
                 width: '175px',
               }}
+              onClick={props.onAddNewCard}
             >
               Add new card
             </SuperButton>

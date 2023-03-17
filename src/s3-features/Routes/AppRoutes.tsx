@@ -8,6 +8,7 @@ import { CreateNewPassword } from '../CreateNewPassword/CreateNewPassword'
 import { ErrorPage } from '../ErrorPage/ErrorPage'
 import { Login } from '../Login/Login'
 import { Packs } from '../Packs/Packs'
+import { CheckEmail } from '../PassRecovery/checkEmail/CheckEmail'
 import { PassRecovery } from '../PassRecovery/PassRecovery'
 import { Profile } from '../Profile/Profile'
 import { Registration } from '../Registration/Registration'
@@ -42,6 +43,7 @@ const AppRoutes = () => {
       <Route path={PATH.NEW_PASSWORD} element={<CreateNewPassword />} />
       <Route path={PATH.CARDS} element={<Cards />} />
       <Route path={PATH.PACKS} element={<Packs />} />
+      <Route path={PATH.CHECK_EMAIL} element={<CheckEmail />} />
 
       <Route path={PATH.TEST_SUPER_COMPONENTS} element={<ComponentTest />} />
 
