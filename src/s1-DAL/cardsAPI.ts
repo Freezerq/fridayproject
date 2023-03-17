@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios'
+import axios from 'axios'
 
 export const instance = axios.create({
   // baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',
@@ -20,7 +20,7 @@ export const cardsAPI = {
     page,
     pageCount,
   }: GetCardsType) {
-    return instance.get('/cards/card', {
+    return instance.get<CardsReturnType>('/cards/card', {
       params: {
         cardAnswer,
         cardQuestion,
