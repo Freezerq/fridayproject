@@ -1,23 +1,18 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 
 import Button from '@mui/material/Button'
 
 type SwitchButtonPropsType = {
   showMyPacks: () => void
   showAllPacks: () => void
+  searchId: string
 }
 
-export const SwitchButton: FC<SwitchButtonPropsType> = ({ showMyPacks, showAllPacks }) => {
-  const [switchOn, setSwitchOn] = useState('All')
-
-  const onAllClick = () => {
-    setSwitchOn('All')
-    showAllPacks()
-  }
-  const onMyClick = () => {
-    setSwitchOn('My')
-    showMyPacks()
-  }
+export const SwitchButton: FC<SwitchButtonPropsType> = ({
+  showMyPacks,
+  showAllPacks,
+  searchId,
+}) => {
   const switchOnStyle = {
     textTransform: 'none',
     width: '98px',
@@ -36,17 +31,17 @@ export const SwitchButton: FC<SwitchButtonPropsType> = ({ showMyPacks, showAllPa
     <div>
       <Button
         type={'button'}
-        sx={switchOn === 'All' ? switchOnStyle : switchOffStyle}
+        sx={!searchId ? switchOnStyle : switchOffStyle}
         variant={'contained'}
-        onClick={onAllClick}
+        onClick={() => showAllPacks()}
       >
         All
       </Button>
       <Button
         type={'button'}
-        sx={switchOn === 'My' ? switchOnStyle : switchOffStyle}
+        sx={searchId ? switchOnStyle : switchOffStyle}
         variant={'contained'}
-        onClick={onMyClick}
+        onClick={() => showMyPacks()}
       >
         My
       </Button>

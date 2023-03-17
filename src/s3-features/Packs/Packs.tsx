@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
-import MoreVertIcon from '@mui/icons-material/MoreVert'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableRow from '@mui/material/TableRow'
-import { Navigate, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { addNewPack, getPacks } from '../../s2-BLL/packSlice'
@@ -41,7 +40,7 @@ export const Packs = () => {
   const pageNumber = Number(searchParams.get('page'))
   const searchValue = searchParams.get('packName')
   const sortPacks = searchParams.get('sortPacks')
-  const searchByAll = searchParams.get('searchByAll')
+  const searchId = searchParams.get('user_id')
 
   //to get params from URL after Question Mark
   const { search } = useLocation()
@@ -144,6 +143,7 @@ export const Packs = () => {
             resetFilters={resetFilters}
             onChangeSlider={onChangeCardValues}
             maxCardsValue={maxCardsValue}
+            searchId={searchId ?? ''}
           />
         </div>
 

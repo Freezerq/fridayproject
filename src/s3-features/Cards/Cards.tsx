@@ -8,7 +8,7 @@ import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableRow from '@mui/material/TableRow'
-import { Navigate, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getCards } from '../../s2-BLL/cardsSlice'
@@ -24,7 +24,6 @@ import { CardsTableHead } from './CardsTableHead'
 export const Cards = () => {
   const cards = useAppSelector(state => state.cards.cardsData.cards)
   const packName = useAppSelector(state => state.cards.cardsData.packName)
-  const cardsData = useAppSelector(state => state.cards.cardsData)
   const cardsTotalCount = useAppSelector(state => state.cards.cardsData.cardsTotalCount)
   const dispatch = useAppDispatch()
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)

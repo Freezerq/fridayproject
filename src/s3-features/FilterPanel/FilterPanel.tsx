@@ -13,7 +13,11 @@ export const FilterPanel = (props: FilterPanelType) => {
     <div className={s.mainContainer}>
       <div className={s.container}>
         <span className={s.text}>Show packs cards</span>
-        <SwitchButton showMyPacks={props.showMyPacks} showAllPacks={props.showAllPacks} />
+        <SwitchButton
+          showMyPacks={props.showMyPacks}
+          showAllPacks={props.showAllPacks}
+          searchId={props.searchId}
+        />
       </div>
 
       <div className={s.container}>
@@ -50,4 +54,5 @@ type FilterPanelType = {
   showAllPacks: () => void
   resetFilters: () => void
   onChangeSlider: (min: number, max: number) => void
+  searchId: string
 }
