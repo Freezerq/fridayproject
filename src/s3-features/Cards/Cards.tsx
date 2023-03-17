@@ -2,23 +2,19 @@ import React, { useEffect } from 'react'
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import Paper from '@mui/material/Paper'
-import Rating from '@mui/material/Rating/Rating'
 import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
-import TableRow from '@mui/material/TableRow'
 import { Navigate, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getCards } from '../../s2-BLL/cardsSlice'
 import { SearchField } from '../../s4-components/common/SearchField/SearchField'
 import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
-import { ActionsForCards } from '../Actions/ActionsForCards'
 import { SuperPagination } from '../Pagination/Pagination'
 import { PATH } from '../Routes/AppRoutes'
 
 import s from './Cards.module.scss'
+import { CardsTableBody } from './CardsTableBody'
 import { CardsTableHead } from './CardsTableHead'
 
 export const Cards = () => {
@@ -63,10 +59,6 @@ export const Cards = () => {
     })
   }
 
-  const onStudyClick = () => {
-    console.log('study')
-  }
-
   const buttonBackOnClick = () => {
     navigate(PATH.PACKS)
   }
@@ -103,23 +95,7 @@ export const Cards = () => {
         {cards?.length > 0 ? (
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <CardsTableHead setSort={setSortCards} sort={sortCards ?? '0updated'} />
-            <TableBody>
-              {cards?.map(card => (
-                <TableRow key={card._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                  <TableCell component="th" scope="row">
-                    {card.question}
-                  </TableCell>
-                  <TableCell align="left">{card.answer}</TableCell>
-                  <TableCell align="left">{card.updated.substring(0, 10)}</TableCell>
-                  <TableCell align="left">
-                    <Rating name="size-medium" value={card.grade} />
-                  </TableCell>
-                  <TableCell align="left">
-                    <ActionsForCards onStudyClick={onStudyClick} card={card} />
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
+            <CardsTableBody />
           </Table>
         ) : (
           <div className={s.container}>

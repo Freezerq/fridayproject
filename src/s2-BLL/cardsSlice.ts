@@ -38,10 +38,9 @@ export const getCards = (attributes: GetCardsType) => async (dispatch: Dispatch)
     const result = await cardsAPI.getAllCards(attributes)
 
     dispatch(setCards({ cardsData: result.data }))
+    dispatch(setAppStatus({ status: 'succeeded' }))
   } catch (e: any) {
     errorUtils(dispatch, e)
-  } finally {
-    dispatch(setAppStatus({ status: 'succeeded' }))
   }
 }
 
@@ -52,6 +51,7 @@ export const addNewCard =
       await cardsAPI.addNewCard(data)
 
       dispatch(getCards(attributes))
+      dispatch(setAppStatus({ status: 'succeeded' }))
     } catch (e: any) {
       errorUtils(dispatch, e)
     }
@@ -64,6 +64,7 @@ export const deleteCard =
       await cardsAPI.deleteCard(cardId)
 
       dispatch(getCards(attributes))
+      dispatch(setAppStatus({ status: 'succeeded' }))
     } catch (e: any) {
       errorUtils(dispatch, e)
     }
@@ -75,6 +76,7 @@ export const updateCard =
       await cardsAPI.updateCard(data)
 
       dispatch(getCards(attributes))
+      dispatch(setAppStatus({ status: 'succeeded' }))
     } catch (e: any) {
       errorUtils(dispatch, e)
     }

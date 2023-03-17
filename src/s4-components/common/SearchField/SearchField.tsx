@@ -4,6 +4,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import InputBase from '@mui/material/InputBase'
 import Paper from '@mui/material/Paper'
 
+import { useAppSelector } from '../../../s1-DAL/store'
 import { useDebounce } from '../../../utils/hooks/hooks'
 
 import s from './SearchField.module.scss'
@@ -11,6 +12,7 @@ import s from './SearchField.module.scss'
 export function SearchField({ onSearchName, searchValue, classname, ...props }: SearchFieldTypes) {
   const [value, setValue] = useState<string>(searchValue)
   const debouncedValue = useDebounce<string>(value, 750)
+  const appStatus = useAppSelector(state => state.app.status)
 
   useEffect(() => {
     onSearchName(value)
@@ -35,6 +37,7 @@ export function SearchField({ onSearchName, searchValue, classname, ...props }: 
           inputProps={{ 'aria-label': 'search by question' }}
           onChange={handleChange}
           value={value}
+          disabled={appStatus === 'loading'}
         />
       </Paper>
     </div>

@@ -2,6 +2,8 @@ import React, { FC } from 'react'
 
 import Button from '@mui/material/Button'
 
+import { useAppSelector } from '../../../s1-DAL/store'
+
 type SwitchButtonPropsType = {
   showMyPacks: () => void
   showAllPacks: () => void
@@ -13,6 +15,7 @@ export const SwitchButton: FC<SwitchButtonPropsType> = ({
   showAllPacks,
   searchId,
 }) => {
+  const appStatus = useAppSelector(state => state.app.status)
   const switchOnStyle = {
     textTransform: 'none',
     width: '98px',
@@ -34,6 +37,7 @@ export const SwitchButton: FC<SwitchButtonPropsType> = ({
         sx={!searchId ? switchOnStyle : switchOffStyle}
         variant={'contained'}
         onClick={() => showAllPacks()}
+        disabled={appStatus === 'loading'}
       >
         All
       </Button>
@@ -42,6 +46,7 @@ export const SwitchButton: FC<SwitchButtonPropsType> = ({
         sx={searchId ? switchOnStyle : switchOffStyle}
         variant={'contained'}
         onClick={() => showMyPacks()}
+        disabled={appStatus === 'loading'}
       >
         My
       </Button>

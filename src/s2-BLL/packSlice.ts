@@ -69,6 +69,7 @@ export const addNewPack =
       await packsAPI.addNewPack(data)
 
       dispatch(getPacks(attributes))
+      dispatch(setAppStatus({ status: 'succeeded' }))
     } catch (e: any) {
       errorUtils(dispatch, e)
     }
@@ -81,6 +82,7 @@ export const deletePack =
       await packsAPI.deletePack(packId)
 
       dispatch(getPacks(attributes))
+      dispatch(setAppStatus({ status: 'succeeded' }))
     } catch (e: any) {
       errorUtils(dispatch, e)
     }
@@ -92,6 +94,7 @@ export const updatePack =
       await packsAPI.updatePack(data)
 
       dispatch(getPacks(attributes))
+      dispatch(setAppStatus({ status: 'succeeded' }))
     } catch (e: any) {
       errorUtils(dispatch, e)
     }

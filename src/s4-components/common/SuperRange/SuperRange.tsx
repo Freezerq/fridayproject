@@ -2,9 +2,12 @@ import React, { SyntheticEvent, useEffect, useState } from 'react'
 
 import Slider from '@mui/material/Slider'
 
+import { useAppSelector } from '../../../s1-DAL/store'
+
 import s from './SuperRange.module.css'
 
 export const SuperRange = (props: SuperRangeType) => {
+  const appStatus = useAppSelector(state => state.app.status)
   const [value1, setValue1] = useState(props.min)
   const [value2, setValue2] = useState(props.maxValue)
 
@@ -49,6 +52,7 @@ export const SuperRange = (props: SuperRangeType) => {
         onChange={changeValues}
         onChangeCommitted={setValuesToUrl}
         value={[value1, value2]}
+        disabled={appStatus === 'loading'}
       />
       <span className={s.number}>{value2}</span>
     </div>

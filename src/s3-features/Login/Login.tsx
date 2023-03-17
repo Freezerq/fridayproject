@@ -19,6 +19,7 @@ import s from './Login.module.css'
 export const Login: FC = () => {
   const dispatch = useAppDispatch()
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+  const appStatus = useAppSelector(state => state.app.status)
   const {
     register,
     handleSubmit,
@@ -78,6 +79,7 @@ export const Login: FC = () => {
               type={'submit'}
               variant={'contained'}
               color={'primary'}
+              disabled={appStatus === 'loading'}
             >
               Sign In
             </Button>

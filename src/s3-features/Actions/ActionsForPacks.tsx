@@ -3,6 +3,7 @@ import React from 'react'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep'
 import SchoolIcon from '@mui/icons-material/School'
+import { Skeleton } from '@mui/material'
 
 import { PackType } from '../../s1-DAL/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
@@ -14,12 +15,17 @@ type ActionsPropsType = {
 
 export const ActionsForPacks = (props: ActionsPropsType) => {
   const userId = useAppSelector(state => state.auth.profile._id)
+  const appStatus = useAppSelector(state => state.app.status)
   const dispatch = useAppDispatch()
   const onEditClick = () => {
     // dispatch(updatePack({ p }))
   }
   const onTrashClick = () => {
     // dispatch(deletePack(props.pack._id))
+  }
+
+  if (appStatus === 'loading') {
+    return <Skeleton />
   }
 
   return (

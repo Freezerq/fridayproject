@@ -16,6 +16,7 @@ export const PassRecovery = () => {
   const [email, setEmail] = useState('')
   const dispatch = useAppDispatch()
   const isSendedEmail = useAppSelector(state => state.auth.isSendedEmail)
+  const appStatus = useAppSelector(state => state.app.status)
   const navigate = useNavigate()
 
   const {
@@ -66,6 +67,7 @@ export const PassRecovery = () => {
         <SuperButton
           style={{ marginTop: '60px', letterSpacing: '0.01em', fontSize: '1.3rem' }}
           type="submit"
+          disabled={appStatus === 'loading'}
         >
           Submit
         </SuperButton>

@@ -20,6 +20,7 @@ type NewPasswordType = {
 export const CreateNewPassword = () => {
   const dispatch = useAppDispatch()
   const isCreateNewPassword = useAppSelector(state => state.auth.isCreateNewPassword)
+  const appStatus = useAppSelector(state => state.app.status)
 
   const {
     register,
@@ -69,6 +70,7 @@ export const CreateNewPassword = () => {
               type={'submit'}
               variant={'contained'}
               color={'primary'}
+              disabled={appStatus === 'loading'}
             >
               Create new password
             </Button>

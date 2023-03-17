@@ -2,10 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
-import TableRow from '@mui/material/TableRow'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
@@ -13,13 +10,13 @@ import { addNewPack, getPacks } from '../../s2-BLL/packSlice'
 import moreVertical from '../../s4-components/common/image/more-vertical.svg'
 import { SearchField } from '../../s4-components/common/SearchField/SearchField'
 import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
-import { ActionsForPacks } from '../Actions/ActionsForPacks'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
 import { SuperPagination } from '../Pagination/Pagination'
 import { PATH } from '../Routes/AppRoutes'
 
 import { EditBar } from './editBar/EditBar'
 import s from './Packs.module.scss'
+import { PacksTableBody } from './PacksTableBody'
 import { PacksTableHead } from './PacksTableHead'
 
 export const Packs = () => {
@@ -30,6 +27,7 @@ export const Packs = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+  const appStatus = useAppSelector(state => state.app.status)
 
   //set params into URL
   const [searchParams, setSearchParams] = useSearchParams()
@@ -90,9 +88,6 @@ export const Packs = () => {
   const buttonOnClick = () => {
     dispatch(addNewPack({ name: 'irina' }, paramsFromUrl))
   }
-  const onNameClickHandler = (id: string) => {
-    navigate(PATH.CARDS + `?cardsPack_id=${id}`)
-  }
 
   const [open, setOpen] = useState(false)
   const handleClose = () => setOpen(false)
@@ -122,6 +117,7 @@ export const Packs = () => {
               width: '175px',
             }}
             onClick={buttonOnClick}
+            disabled={appStatus === 'loading'}
           >
             Add new pack
           </SuperButton>
@@ -150,26 +146,7 @@ export const Packs = () => {
         {packs?.length > 0 ? (
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <PacksTableHead sort={sortPacks ?? '0updated'} setSort={setSortPacks} />
-            <TableBody>
-              {packs?.map(pack => (
-                <TableRow key={pack._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                  <TableCell
-                    style={{ backgroundColor: 'gray' }}
-                    onClick={() => onNameClickHandler(pack._id)}
-                    component="th"
-                    scope="row"
-                  >
-                    {pack.name}
-                  </TableCell>
-                  <TableCell align="left">{pack.cardsCount}</TableCell>
-                  <TableCell align="left">{pack.updated.substring(0, 10)}</TableCell>
-                  <TableCell align="left">{pack.user_name}</TableCell>
-                  <TableCell align="left">
-                    <ActionsForPacks pack={pack} onStudyClick={onNameClickHandler} />
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
+            <PacksTableBody />
           </Table>
         ) : (
           <div className={s.container}>

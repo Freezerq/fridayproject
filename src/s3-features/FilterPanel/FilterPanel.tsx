@@ -3,12 +3,15 @@ import React from 'react'
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
 import Button from '@mui/material/Button'
 
+import { useAppSelector } from '../../s1-DAL/store'
 import { SuperRange } from '../../s4-components/common/SuperRange/SuperRange'
 import { SwitchButton } from '../../s4-components/common/SwitchButton/SwitchButton'
 
 import s from './FilterPanel.module.css'
 
 export const FilterPanel = (props: FilterPanelType) => {
+  const appStatus = useAppSelector(state => state.app.status)
+
   return (
     <div className={s.mainContainer}>
       <div className={s.container}>
@@ -39,6 +42,7 @@ export const FilterPanel = (props: FilterPanelType) => {
         type={'button'}
         variant={'outlined'}
         onClick={props.resetFilters}
+        disabled={appStatus === 'loading'}
       >
         <FilterAltOffIcon />
       </Button>
