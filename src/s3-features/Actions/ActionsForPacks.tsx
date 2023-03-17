@@ -11,6 +11,8 @@ import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 type ActionsPropsType = {
   onStudyClick: (id: string) => void
   pack: PackType
+  packId: string
+  onDeletePackHandle: (id: string) => void
 }
 
 export const ActionsForPacks = (props: ActionsPropsType) => {
@@ -43,7 +45,11 @@ export const ActionsForPacks = (props: ActionsPropsType) => {
       {props.pack.user_id === userId && (
         <>
           <BorderColorIcon style={{ marginRight: '8px' }} />
-          <DeleteSweepIcon />
+          <DeleteSweepIcon
+            onClick={() => {
+              props.onDeletePackHandle(props.pack._id)
+            }}
+          />
         </>
       )}
     </div>

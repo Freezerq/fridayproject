@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer'
 import { useLocation, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { addNewPack, getPacks } from '../../s2-BLL/packSlice'
+import { addNewPack, deletePack, getPacks } from '../../s2-BLL/packSlice'
 import { SearchField } from '../../s4-components/common/SearchField/SearchField'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
 import { SuperPagination } from '../Pagination/Pagination'
@@ -76,6 +76,10 @@ export const Packs = () => {
     })
   }
 
+  const onDeletePackHandle = (id: string) => {
+    dispatch(deletePack(id, paramsFromUrl))
+  }
+
   const onSearchNameDebounce = (value: string) => {
     setSearchParams({ ...paramsFromUrl, packName: value })
   }
@@ -110,7 +114,7 @@ export const Packs = () => {
         {packs?.length > 0 ? (
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <PacksTableHead sort={sortPacks ?? '0updated'} setSort={setSortPacks} />
-            <PacksTableBody />
+            <PacksTableBody onDeletePackHandle={onDeletePackHandle} />
           </Table>
         ) : (
           <div className={s.container}>

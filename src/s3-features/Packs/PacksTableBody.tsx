@@ -10,7 +10,7 @@ import { useAppSelector } from '../../s1-DAL/store'
 import { ActionsForPacks } from '../Actions/ActionsForPacks'
 import { PATH } from '../Routes/AppRoutes'
 
-export const PacksTableBody = () => {
+export const PacksTableBody = (props: PacksTableBodyType) => {
   const packs = useAppSelector(state => state.packs.packsData.cardPacks)
   const appStatus = useAppSelector(state => state.app.status)
   const navigate = useNavigate()
@@ -40,10 +40,19 @@ export const PacksTableBody = () => {
             {appStatus === 'loading' ? <Skeleton /> : pack.user_name}
           </TableCell>
           <TableCell align="left">
-            <ActionsForPacks pack={pack} onStudyClick={onNameClickHandler} />
+            <ActionsForPacks
+              pack={pack}
+              onStudyClick={onNameClickHandler}
+              onDeletePackHandle={props.onDeletePackHandle}
+              packId={pack._id}
+            />
           </TableCell>
         </TableRow>
       ))}
     </TableBody>
   )
+}
+
+type PacksTableBodyType = {
+  onDeletePackHandle: (id: string) => void
 }
