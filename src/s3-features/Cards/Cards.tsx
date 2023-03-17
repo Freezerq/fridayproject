@@ -8,7 +8,7 @@ import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableRow from '@mui/material/TableRow'
-import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getCards } from '../../s2-BLL/cardsSlice'
@@ -72,6 +72,8 @@ export const Cards = () => {
     navigate(PATH.PACKS)
   }
 
+  if (cardsPackId === null) return <Navigate to={PATH.PACKS} />
+
   return (
     <>
       <div style={{ display: 'flex', margin: '15px', alignItems: 'center' }}>
@@ -109,7 +111,7 @@ export const Cards = () => {
                     {card.question}
                   </TableCell>
                   <TableCell align="left">{card.answer}</TableCell>
-                  <TableCell align="left">{card.updated}</TableCell>
+                  <TableCell align="left">{card.updated.substring(0, 10)}</TableCell>
                   <TableCell align="left">
                     <Rating name="size-medium" value={card.grade} />
                   </TableCell>
@@ -139,7 +141,7 @@ export const Cards = () => {
       <SuperPagination
         paginationTitle={'Cards per Page'}
         setRowsAndPage={setRowsAndPage}
-        totalCount={cardsTotalCount}
+        totalCount={cardsTotalCount ?? 0}
         rows={rows === 0 ? 4 : rows}
         page={pageNumber === 0 ? 0 : pageNumber - 1}
       />

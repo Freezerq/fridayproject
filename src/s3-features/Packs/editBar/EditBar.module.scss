@@ -1,0 +1,56 @@
+.sidebar{
+  display: none;
+}
+.open{
+  display: flex;
+  //border: 1px solid black;
+  width: 130px;
+  position: absolute;
+  background-color: #dedede;
+  z-index: 2;
+  flex-direction: column;
+  right: 10px;
+  top: 3rem;
+}
+.background{
+  display: flex;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 1;
+  background-color: transparent;
+}
+.nav{
+  .menu{
+    position: relative;
+    &:before {
+      content: "";
+      position: absolute;
+      top: -43px;
+      right: 0;
+      width: 28px;
+      height: 28px;
+      background: radial-gradient(60px at top left, transparent 49%, #dedede 51%) no-repeat right top;
+    }
+    .button{
+      cursor: pointer;
+      margin: 15px;
+      .image{
+        position: relative;
+        width: 25px;
+        margin-right: 10px;
+        bottom: -5px;
+      }
+    }
+  }
+}
+
+//content: "";
+//position: absolute;
+//bottom: 0;
+//right: -28px;
+//width: 28px;
+//height: 28px;
+//background: radial-gradient(60px at top right, transparent 49%, #04393d 51%) no-repeat left bottom;
