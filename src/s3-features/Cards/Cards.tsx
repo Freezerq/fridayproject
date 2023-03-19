@@ -7,7 +7,8 @@ import { Navigate, useLocation, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { addNewCard, getCards } from '../../s2-BLL/cardsSlice'
-import { SearchField } from '../../s4-components/common/SearchField/SearchField'
+import { SearchField } from '../../s4-common/common/SearchField/SearchField'
+import { BasicModal } from '../Modals/BasicModal'
 import s from '../Packs/Packs.module.scss'
 import { SuperPagination } from '../Pagination/Pagination'
 import { PATH } from '../Routes/AppRoutes'
@@ -49,6 +50,7 @@ export const Cards = () => {
       sortCards,
     })
   }
+
   const setRowsAndPage = (rowsPerPage: number, pageNumber: number) => {
     setSearchParams({
       ...paramsFromUrl,

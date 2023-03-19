@@ -5,8 +5,8 @@ import { NavLink, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getNewToken } from '../../s2-BLL/authSlice'
-import { CommonInput } from '../../s4-components/common/CommonInput/CommonInput'
-import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
+import { CommonInput } from '../../s4-common/common/CommonInput/CommonInput'
+import { SuperButton } from '../../s4-common/common/SuperButton/SuperButton'
 import { emailCheck } from '../../utils/regularExpressions'
 import { PATH } from '../Routes/AppRoutes'
 

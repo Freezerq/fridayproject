@@ -8,7 +8,7 @@ import { Navigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { createNewPassword } from '../../s2-BLL/authSlice'
-import { PasswordInput } from '../../s4-components/common/PasswordInput/PasswordInput'
+import { PasswordInput } from '../../s4-common/common/PasswordInput/PasswordInput'
 import { PATH } from '../Routes/AppRoutes'
 
 import s from './CreateNewPassword.module.css'

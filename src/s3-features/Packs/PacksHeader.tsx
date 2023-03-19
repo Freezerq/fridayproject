@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react'
 
 import { useAppSelector } from '../../s1-DAL/store'
-import moreVertical from '../../s4-components/common/image/more-vertical.svg'
-import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
+import { SuperButton } from '../../s4-common/common/SuperButton/SuperButton'
+import moreVertical from '../../s4-common/images/more-vertical.svg'
 
 import { EditBar } from './editBar/EditBar'
 import s from './Packs.module.scss'

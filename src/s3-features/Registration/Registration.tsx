@@ -5,9 +5,9 @@ import { Navigate, NavLink } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { registrationThunk } from '../../s2-BLL/authSlice'
-import { CommonInput } from '../../s4-components/common/CommonInput/CommonInput'
-import eye from '../../s4-components/common/image/eyeIcon.svg'
-import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
+import { CommonInput } from '../../s4-common/common/CommonInput/CommonInput'
+import { SuperButton } from '../../s4-common/common/SuperButton/SuperButton'
+import eye from '../../s4-common/images/eyeIcon.svg'
 import { emailCheck } from '../../utils/regularExpressions'
 
 import style from './registration.module.scss'

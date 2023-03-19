@@ -1,8 +1,8 @@
 import React from 'react'
 
-import deleteImg from '../../../s4-components/common/image/delete.svg'
-import editImg from '../../../s4-components/common/image/pencil.svg'
-import studyImg from '../../../s4-components/common/image/study.svg'
+import deleteImg from '../../../s4-common/images/delete.svg'
+import editImg from '../../../s4-common/images/pencil.svg'
+import studyImg from '../../../s4-common/images/study.svg'
 
 import s from './EditBar.module.scss'
 

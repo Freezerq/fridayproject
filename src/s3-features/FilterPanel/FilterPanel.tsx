@@ -4,8 +4,8 @@ import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
 import Button from '@mui/material/Button'
 
 import { useAppSelector } from '../../s1-DAL/store'
-import { SuperRange } from '../../s4-components/common/SuperRange/SuperRange'
-import { SwitchButton } from '../../s4-components/common/SwitchButton/SwitchButton'
+import { SuperRange } from '../../s4-common/common/SuperRange/SuperRange'
+import { SwitchButton } from '../../s4-common/common/SwitchButton/SwitchButton'
 
 import s from './FilterPanel.module.css'
 

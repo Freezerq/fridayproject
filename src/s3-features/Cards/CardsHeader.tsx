@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { addNewCard } from '../../s2-BLL/cardsSlice'
-import { SuperButton } from '../../s4-components/common/SuperButton/SuperButton'
+import { SuperButton } from '../../s4-common/common/SuperButton/SuperButton'
 import { PATH } from '../Routes/AppRoutes'
 
 import s from './Cards.module.scss'
