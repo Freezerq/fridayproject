@@ -42,6 +42,9 @@ export const cardsAPI = {
   updateCard(data: UpdateCardType) {
     return instance.put('cards/card', { card: data })
   },
+  updateCardGrade(data: UpdateCardGradeType) {
+    return instance.put<UpdateCardGradeReturnType>('cards/grade', data)
+  },
 }
 
 //types
@@ -95,3 +98,15 @@ export type AddNewCardType = Pick<CardType, 'cardsPack_id'> &
   }>
 
 export type UpdateCardType = Partial<CardType> & Pick<CardType, '_id'>
+export type UpdateCardGradeType = {
+  grade: number
+  card_id: string
+}
+type UpdateCardGradeReturnType = {
+  _id: string
+  cardsPack_id: string
+  card_id: string
+  user_id: string
+  grade: number
+  shots: number
+}

@@ -6,6 +6,7 @@ import {
   cardsAPI,
   CardsReturnType,
   GetCardsType,
+  UpdateCardGradeType,
   UpdateCardType,
 } from '../s1-DAL/cardsAPI'
 import { AppDispatch } from '../s1-DAL/store'
@@ -81,6 +82,13 @@ export const updateCard =
       errorUtils(dispatch, e)
     }
   }
+
+// export const updateCardGrade = (data: UpdateCardGradeType) => async (dispatch: AppDispatch) => {
+//   dispatch(setAppStatus({ status: 'loading' }))
+//     try{
+//       await
+//     }
+// }
 
 //types
 type InitialStateType = typeof initialState

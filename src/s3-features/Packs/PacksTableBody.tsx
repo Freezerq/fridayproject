@@ -42,7 +42,6 @@ export const PacksTableBody = (props: PacksTableBodyType) => {
           <TableCell align="left">
             <ActionsForPacks
               pack={pack}
-              onStudyClick={onNameClickHandler}
               onDeletePackHandle={props.onDeletePackHandle}
               packId={pack._id}
             />

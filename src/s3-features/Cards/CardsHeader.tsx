@@ -3,8 +3,7 @@ import React from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { addNewCard } from '../../s2-BLL/cardsSlice'
+import { useAppSelector } from '../../s1-DAL/store'
 import { SuperButton } from '../../s4-common/common/SuperButton/SuperButton'
 import { PATH } from '../Routes/AppRoutes'
 
@@ -23,6 +22,9 @@ export const CardsHeader = (props: CardsHeaderType) => {
   const buttonBackOnClick = () => {
     navigate(PATH.PACKS)
   }
+  // const onLearnCards = () => {
+  //   navigate(`${PATH.LEARN}/${packId}`)
+  // }
 
   return (
     <>
@@ -52,6 +54,7 @@ export const CardsHeader = (props: CardsHeaderType) => {
                 width: '175px',
               }}
               disabled={cardsTotalCount === 0}
+              // onClick={onLearnCards}
             >
               Learn to pack
             </SuperButton>

@@ -6,6 +6,7 @@ import { Cards } from '../Cards/Cards'
 import { ComponentTest } from '../ComponentTest/ComponentTest'
 import { CreateNewPassword } from '../CreateNewPassword/CreateNewPassword'
 import { ErrorPage } from '../ErrorPage/ErrorPage'
+import { Learn } from '../Learn/Learn'
 import { Login } from '../Login/Login'
 import { Packs } from '../Packs/Packs'
 import { CheckEmail } from '../PassRecovery/checkEmail/CheckEmail'
@@ -26,7 +27,8 @@ export const PATH = {
   CARDS: '/cards',
   PACKS: '/packs',
   CHECK_EMAIL: '/check-email',
-}
+  LEARN: '/learn',
+} as const
 
 const AppRoutes = () => {
   return (
@@ -44,6 +46,7 @@ const AppRoutes = () => {
       <Route path={PATH.CARDS} element={<Cards />} />
       <Route path={PATH.PACKS} element={<Packs />} />
       <Route path={PATH.CHECK_EMAIL} element={<CheckEmail />} />
+      <Route path={PATH.LEARN + '/:packId'} element={<Learn />} />
 
       <Route path={PATH.TEST_SUPER_COMPONENTS} element={<ComponentTest />} />
 
