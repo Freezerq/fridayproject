@@ -1,25 +1,23 @@
 import React, { useEffect } from 'react'
 
 import Paper from '@mui/material/Paper'
-import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getCards } from '../../s2-BLL/cardsSlice'
 import { setCurrentCard, setIsFirst, setShowAnswer } from '../../s2-BLL/learnSlice'
 import { BackToPacksList } from '../../s4-common/common/BackToPacksList/BackToPacksList'
-import { SuperButton } from '../../s4-common/common/SuperButton/SuperButton'
 import { getRandomCard } from '../../utils/getRandomCards'
 
-import { Answer } from './Answer'
+import { Answer } from './Answer/Answer'
 import s from './Learn.module.scss'
+import { Question } from './Question/Question'
 
 export const Learn = () => {
   const cards = useAppSelector(state => state.cards.cardsData.cards)
   const packName = useAppSelector(state => state.cards.cardsData.packName)
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
   const first = useAppSelector(state => state.learn.isFirst)
-  const question = useAppSelector(state => state.learn.currentCard.question)
-  const shots = useAppSelector(state => state.learn.currentCard.shots)
   const showAnswer = useAppSelector(state => state.learn.showAnswer)
 
   const dispatch = useAppDispatch()
@@ -40,9 +38,6 @@ export const Learn = () => {
       dispatch(setCurrentCard(getRandomCard(cards)))
     }
   }, [isLoggedIn, packId, first, cards])
-  const onClickHandler = () => {
-    dispatch(setShowAnswer({ showAnswer: true }))
-  }
 
   return (
     <>
@@ -50,20 +45,7 @@ export const Learn = () => {
       <div className={s.questionContainer}>
         <div className={s.title}>Learn &quot;{packName}&quot;</div>
         <Paper elevation={3}>
-          <div>Question: {question}</div>
-          <span>{`Number of answers to the question: ${shots}`}</span>
-          {!showAnswer && (
-            <SuperButton
-              style={{
-                letterSpacing: '0.01em',
-                fontSize: '16px',
-                width: '175px',
-              }}
-              onClick={onClickHandler}
-            >
-              Show answer
-            </SuperButton>
-          )}
+          <Question />
           {showAnswer && <Answer />}
         </Paper>
       </div>

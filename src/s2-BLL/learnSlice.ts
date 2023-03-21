@@ -6,7 +6,7 @@ const initialState = {
   isFirst: true,
   showAnswer: false,
   currentCard: {} as CardType,
-  grade: 1,
+  grade: 0,
 }
 
 const learnSlice = createSlice({
@@ -23,7 +23,7 @@ const learnSlice = createSlice({
       state.showAnswer = action.payload.showAnswer
     },
     setGrade(state, action: PayloadAction<{ grade: number }>) {
-      state.grade = action.payload.grade
+      state.currentCard.grade = action.payload.grade
     },
   },
 })

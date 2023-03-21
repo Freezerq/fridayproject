@@ -9,10 +9,11 @@ import {
   UpdateCardGradeType,
   UpdateCardType,
 } from '../s1-DAL/cardsAPI'
-import { AppDispatch } from '../s1-DAL/store'
+import { AppDispatch, RootState } from '../s1-DAL/store'
 import { errorUtils } from '../utils/errorUtils'
 
 import { setAppStatus } from './appSlice'
+import { setShowAnswer } from './learnSlice'
 
 const initialState = {
   cardsData: {} as CardsReturnType,
@@ -26,6 +27,11 @@ const cardsSlice = createSlice({
       state.cardsData = action.payload.cardsData
     },
   },
+  // extraReducers: builder => {
+  //   builder.addCase(setShowAnswer, (state, action) => {
+  //    state= action.payload.showAnswer
+  //   })
+  // },
 })
 
 export const { setCards } = cardsSlice.actions
@@ -83,12 +89,32 @@ export const updateCard =
     }
   }
 
-// export const updateCardGrade = (data: UpdateCardGradeType) => async (dispatch: AppDispatch) => {
-//   dispatch(setAppStatus({ status: 'loading' }))
-//     try{
-//       await
-//     }
-// }
+export const updateCardGrade =
+  (data: UpdateCardGradeType) => async (dispatch: AppDispatch, getState: () => RootState) => {
+    const cardsData = getState().cards.cardsData
+
+    dispatch(setAppStatus({ status: 'loading' }))
+    try {
+      const res = await cardsAPI.updateCardGrade(data)
+
+      dispatch(
+        setCards({
+          cardsData: {
+            ...cardsData,
+            cards: cardsData.cards.map(card =>
+              card._id === res.data.card_id
+                ? { ...card, grade: res.data.grade, shots: res.data.shots }
+                : card
+            ),
+          },
+        })
+      )
+      dispatch(setAppStatus({ status: 'succeeded' }))
+      dispatch(setShowAnswer({ showAnswer: false }))
+    } catch (e: any) {
+      errorUtils(dispatch, e)
+    }
+  }
 
 //types
 type InitialStateType = typeof initialState
