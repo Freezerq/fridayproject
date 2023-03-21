@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react'
 
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getCards } from '../../s2-BLL/cardsSlice'
-import { setCurrentCard, setIsFirst } from '../../s2-BLL/learnSlice'
+import { setCurrentCard, setIsFirst, setShowAnswer } from '../../s2-BLL/learnSlice'
+import { BackToPacksList } from '../../s4-common/common/BackToPacksList/BackToPacksList'
+import { SuperButton } from '../../s4-common/common/SuperButton/SuperButton'
 import { getRandomCard } from '../../utils/getRandomCards'
-import { PATH } from '../Routes/AppRoutes'
 
+import { Answer } from './Answer'
 import s from './Learn.module.scss'
 
 export const Learn = () => {
@@ -19,13 +19,10 @@ export const Learn = () => {
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
   const first = useAppSelector(state => state.learn.isFirst)
   const question = useAppSelector(state => state.learn.currentCard.question)
-  const navigate = useNavigate()
-  const buttonBackOnClick = () => {
-    navigate(PATH.PACKS)
-  }
+  const shots = useAppSelector(state => state.learn.currentCard.shots)
+  const showAnswer = useAppSelector(state => state.learn.showAnswer)
+
   const dispatch = useAppDispatch()
-  // const [searchParams, setSearchParams] = useSearchParams()
-  // const cardsPack_id = searchParams.get('cardsPack_id')
   const { search } = useLocation()
   const paramsFromUrl = Object.fromEntries(new URLSearchParams(search))
   const { packId } = useParams<{ packId: string }>()
@@ -39,21 +36,35 @@ export const Learn = () => {
     if (first) {
       dispatch(setIsFirst({ isFirst: false }))
     }
-    if (cards.length > 0) {
+    if (cards && cards.length > 0) {
       dispatch(setCurrentCard(getRandomCard(cards)))
     }
   }, [isLoggedIn, packId, first, cards])
+  const onClickHandler = () => {
+    dispatch(setShowAnswer({ showAnswer: true }))
+  }
 
   return (
     <>
-      <div style={{ display: 'flex', margin: '15px', alignItems: 'center' }}>
-        <ArrowBackIcon onClick={buttonBackOnClick} />
-        <span>Back to Packs List</span>
-      </div>
+      <BackToPacksList />
       <div className={s.questionContainer}>
         <div className={s.title}>Learn &quot;{packName}&quot;</div>
         <Paper elevation={3}>
-          <div>{question}</div>
+          <div>Question: {question}</div>
+          <span>{`Number of answers to the question: ${shots}`}</span>
+          {!showAnswer && (
+            <SuperButton
+              style={{
+                letterSpacing: '0.01em',
+                fontSize: '16px',
+                width: '175px',
+              }}
+              onClick={onClickHandler}
+            >
+              Show answer
+            </SuperButton>
+          )}
+          {showAnswer && <Answer />}
         </Paper>
       </div>
     </>
