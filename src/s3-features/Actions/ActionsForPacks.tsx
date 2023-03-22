@@ -49,7 +49,7 @@ export const ActionsForPacks = ({ pack, onDeletePackHandle, ...props }: ActionsP
           {/*    <DeletePackModal packId={pack._id} onDeleteHandle={onDeletePackHandle} />*/}
           {/*  )}*/}
           {/*/>*/}
-          <DeletePackModal packId={pack._id} onDeleteHandle={onDeletePackHandle} />
+          <DeletePackModal pack={pack} onDeleteHandle={onDeletePackHandle} />
         </>
       )}
     </div>
