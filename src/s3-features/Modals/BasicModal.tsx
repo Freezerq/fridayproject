@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { FC, ReactNode } from 'react'
 
+import DeleteSweepIcon from '@mui/icons-material/DeleteSweep'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Modal from '@mui/material/Modal'
@@ -17,10 +18,14 @@ const style = {
   p: 4,
 }
 
-export const BasicModal: FC<BasicModalPropsType> = ({ children, open, handleClose }) => {
+export const BasicModal: FC<BasicModalPropsType> = ({ children, icon }) => {
+  const [open, setOpen] = React.useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
+
   return (
-    <div>
-      <Button>Open modal</Button>
+    <>
+      <span onClick={handleOpen}>{icon}</span>
       <Modal
         open={open}
         onClose={handleClose}
@@ -29,12 +34,11 @@ export const BasicModal: FC<BasicModalPropsType> = ({ children, open, handleClos
       >
         <Box sx={style}>{children}</Box>
       </Modal>
-    </div>
+    </>
   )
 }
 
 type BasicModalPropsType = {
   children: ReactNode
-  open: boolean
-  handleClose: () => void
+  icon: ReactNode
 }
