@@ -5,14 +5,15 @@ import Table from '@mui/material/Table'
 import TableContainer from '@mui/material/TableContainer'
 import { useLocation, useSearchParams } from 'react-router-dom'
 
+import { AddNewPackType } from '../../s1-DAL/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { addNewPack, deletePack, getPacks } from '../../s2-BLL/packSlice'
 import { SearchField } from '../../s4-common/common/SearchField/SearchField'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
+import { AddPackModal } from '../Modals/PackModals/AddPackModal'
 import { SuperPagination } from '../Pagination/Pagination'
 
 import s from './Packs.module.scss'
-import { PacksHeader } from './PacksHeader/PacksHeader'
 import { PacksTableBody } from './PacksTableBody/PacksTableBody'
 import { PacksTableHead } from './PacksTableHead/PacksTableHead'
 
@@ -84,13 +85,16 @@ export const Packs = () => {
     setSearchParams({ ...paramsFromUrl, packName: value })
   }
 
-  const buttonOnClick = () => {
-    dispatch(addNewPack({ name: 'irina' }, paramsFromUrl))
+  const onAddPackHandle = (data: AddNewPackType) => {
+    dispatch(addNewPack(data, paramsFromUrl))
   }
 
   return (
-    <>
-      <PacksHeader buttonOnClick={buttonOnClick} />
+    <div className={s.block}>
+      <div className={s.header}>
+        <div className={s.title}>Packs list</div>
+        <AddPackModal onAddHandle={onAddPackHandle} />
+      </div>
       <TableContainer component={Paper}>
         <div className={s.filterContainer}>
           <SearchField
@@ -130,6 +134,6 @@ export const Packs = () => {
         rows={rows === 0 ? 4 : rows}
         page={pageNumber === 0 ? 0 : pageNumber - 1}
       />
-    </>
+    </div>
   )
 }

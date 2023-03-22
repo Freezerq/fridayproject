@@ -16,17 +16,17 @@ export const DeletePackModal = ({ pack, onDeleteHandle, ...props }: DeletePackMo
     <>
       <DeleteSweepIcon onClick={handleOpen} />
       <BasicModal open={open} handleClose={handleClose}>
-        <Typography id="modal-title" variant="h5" component="h2">
+        <Typography variant="h5" component="h2">
           DELETE PACK
         </Typography>
-        <Typography id="modal-description" sx={{ mt: 2 }}>
+        <Typography sx={{ mt: 2 }}>
           <div>
             Do you really want to remove <b>{pack.name}</b>?
           </div>
           <div>All cards will be deleted</div>
         </Typography>
         <Typography sx={{ mt: 2 }} display={'flex'} justifyContent={'space-between'}>
-          <Button variant={'contained'} onClick={handleClose}>
+          <Button variant={'outlined'} onClick={handleClose}>
             Cancel
           </Button>
           <Button variant={'contained'} color={'error'} onClick={() => onDeleteHandle(pack._id)}>
