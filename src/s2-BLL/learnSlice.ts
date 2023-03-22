@@ -6,7 +6,7 @@ const initialState = {
   isFirst: true,
   showAnswer: false,
   currentCard: {} as CardType,
-  grade: 0,
+  // grade: 0,
 }
 
 const learnSlice = createSlice({

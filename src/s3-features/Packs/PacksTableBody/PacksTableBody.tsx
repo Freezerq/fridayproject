@@ -6,9 +6,9 @@ import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppSelector } from '../../s1-DAL/store'
-import { ActionsForPacks } from '../Actions/ActionsForPacks'
-import { PATH } from '../Routes/AppRoutes'
+import { useAppSelector } from '../../../s1-DAL/store'
+import { ActionsForPacks } from '../../Actions/ActionsForPacks'
+import { PATH } from '../../Routes/AppRoutes'
 
 export const PacksTableBody = (props: PacksTableBodyType) => {
   const packs = useAppSelector(state => state.packs.packsData.cardPacks)
@@ -43,7 +43,7 @@ export const PacksTableBody = (props: PacksTableBodyType) => {
             <ActionsForPacks
               pack={pack}
               onDeletePackHandle={props.onDeletePackHandle}
-              packId={pack._id}
+              // packId={pack._id}
             />
           </TableCell>
         </TableRow>

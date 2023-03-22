@@ -13,9 +13,9 @@ import s from '../Packs/Packs.module.scss'
 import { SuperPagination } from '../Pagination/Pagination'
 import { PATH } from '../Routes/AppRoutes'
 
-import { CardsHeader } from './CardsHeader'
-import { CardsTableBody } from './CardsTableBody'
-import { CardsTableHead } from './CardsTableHead'
+import { CardsHeader } from './CardsHeader/CardsHeader'
+import { CardsTableBody } from './CardsTableBody/CardsTableBody'
+import { CardsTableHead } from './CardsTableHead/CardsTableHead'
 
 export const Cards = () => {
   const cards = useAppSelector(state => state.cards.cardsData.cards)
@@ -67,7 +67,7 @@ export const Cards = () => {
 
   return (
     <>
-      <CardsHeader packName={packName} onAddNewCard={onAddNewCardHandler} />
+      <CardsHeader packName={packName} onAddNewCard={onAddNewCardHandler} packId={cardsPack_id} />
       <TableContainer component={Paper}>
         <SearchField
           onSearchName={onSearchNameDebounce}

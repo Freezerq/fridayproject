@@ -12,7 +12,7 @@ import { PATH } from '../Routes/AppRoutes'
 
 type ActionsPropsType = {
   pack: PackType
-  packId: string
+  // packId: string
   onDeletePackHandle: (id: string) => void
 }
 

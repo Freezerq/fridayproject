@@ -12,9 +12,9 @@ import { FilterPanel } from '../FilterPanel/FilterPanel'
 import { SuperPagination } from '../Pagination/Pagination'
 
 import s from './Packs.module.scss'
-import { PacksHeader } from './PacksHeader'
-import { PacksTableBody } from './PacksTableBody'
-import { PacksTableHead } from './PacksTableHead'
+import { PacksHeader } from './PacksHeader/PacksHeader'
+import { PacksTableBody } from './PacksTableBody/PacksTableBody'
+import { PacksTableHead } from './PacksTableHead/PacksTableHead'
 
 export const Packs = () => {
   const packs = useAppSelector(state => state.packs.packsData.cardPacks)

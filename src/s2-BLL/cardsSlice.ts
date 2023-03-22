@@ -27,11 +27,6 @@ const cardsSlice = createSlice({
       state.cardsData = action.payload.cardsData
     },
   },
-  // extraReducers: builder => {
-  //   builder.addCase(setShowAnswer, (state, action) => {
-  //    state= action.payload.showAnswer
-  //   })
-  // },
 })
 
 export const { setCards } = cardsSlice.actions

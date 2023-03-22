@@ -1,14 +1,14 @@
 import React from 'react'
 
-import { HeadTable } from '../../s4-common/common/HeadTable/HeadTable'
-import { HeaderType } from '../Packs/PacksTableHead'
+import { HeadTable } from '../../../s4-common/common/HeadTable/HeadTable'
+import { HeaderType } from '../../Packs/PacksTableHead/PacksTableHead'
 
 export type CardData = {
   question: string
   answer: string
   updated: string
   grade: string
-  actions: string
+  empty: string
 }
 
 const headerCardsTable: HeaderType<CardData>[] = [
@@ -16,7 +16,7 @@ const headerCardsTable: HeaderType<CardData>[] = [
   { id: 'answer', label: 'Answer' },
   { id: 'updated', label: 'Last Updated' },
   { id: 'grade', label: 'Grade' },
-  { id: 'actions', label: 'Actions' },
+  { id: 'empty', label: '' },
 ]
 
 type CardsTableHeadType = {
@@ -29,11 +29,13 @@ export const CardsTableHead = (props: CardsTableHeadType) => {
   const sortOrder = props.sort ? props.sort[0] : '0'
 
   return (
-    <HeadTable
-      header={headerCardsTable}
-      setSort={props.setSort}
-      sortOrderStart={sortOrder}
-      sortBy={sortBy}
-    />
+    <>
+      <HeadTable
+        header={headerCardsTable}
+        setSort={props.setSort}
+        sortOrderStart={sortOrder}
+        sortBy={sortBy}
+      />
+    </>
   )
 }

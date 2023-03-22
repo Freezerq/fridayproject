@@ -6,12 +6,13 @@ import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 
-import { useAppSelector } from '../../s1-DAL/store'
-import { ActionsForCards } from '../Actions/ActionsForCards'
+import { useAppSelector } from '../../../s1-DAL/store'
+import { ActionsForCards } from '../../Actions/ActionsForCards'
 
 export const CardsTableBody = () => {
   const cards = useAppSelector(state => state.cards.cardsData.cards)
   const appStatus = useAppSelector(state => state.app.status)
+  const userId = useAppSelector(state => state.auth.profile._id)
   const onStudyClick = () => {
     console.log('study')
   }
@@ -34,9 +35,11 @@ export const CardsTableBody = () => {
               <Rating name="size-medium" value={card.grade} />
             )}
           </TableCell>
-          <TableCell align="left">
-            <ActionsForCards onStudyClick={onStudyClick} card={card} />
-          </TableCell>
+          {card.user_id === userId && (
+            <TableCell align="left">
+              <ActionsForCards onStudyClick={onStudyClick} />
+            </TableCell>
+          )}
         </TableRow>
       ))}
     </TableBody>

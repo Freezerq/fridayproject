@@ -1,11 +1,9 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 
-import { useAppSelector } from '../../s1-DAL/store'
-import { SuperButton } from '../../s4-common/common/SuperButton/SuperButton'
-import moreVertical from '../../s4-common/images/more-vertical.svg'
+import { useAppSelector } from '../../../s1-DAL/store'
+import { SuperButton } from '../../../s4-common/common/SuperButton/SuperButton'
 
-import { EditBar } from './editBar/EditBar'
-import s from './Packs.module.scss'
+import s from './PacksHeader.module.scss'
 
 type PackHeaderType = {
   buttonOnClick: () => void
@@ -13,19 +11,12 @@ type PackHeaderType = {
 
 export const PacksHeader: FC<PackHeaderType> = ({ buttonOnClick }) => {
   const appStatus = useAppSelector(state => state.app.status)
-  const [open, setOpen] = useState(false)
-  const handleClose = () => setOpen(false)
-  const handleOpen = () => setOpen(true)
 
   return (
     <div className={s.headerContainer}>
       <div className={s.header}>
         <div className={s.titleBlock}>
           <span className={s.title}>Packs list</span>
-          <div className={s.popUpBar}>
-            <img src={moreVertical} alt={'open menu'} onClick={handleOpen} className={s.moreImg} />
-            <EditBar open={open} handleClose={handleClose} />
-          </div>
         </div>
 
         <SuperButton

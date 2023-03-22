@@ -5,8 +5,9 @@ import { useLocation, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getCards } from '../../s2-BLL/cardsSlice'
-import { setCurrentCard, setIsFirst, setShowAnswer } from '../../s2-BLL/learnSlice'
+import { setCurrentCard, setIsFirst } from '../../s2-BLL/learnSlice'
 import { BackToPacksList } from '../../s4-common/common/BackToPacksList/BackToPacksList'
+import { LinearProgress } from '../../s4-common/common/LinearProgress/LinearProgress'
 import { getRandomCard } from '../../utils/getRandomCards'
 
 import { Answer } from './Answer/Answer'
@@ -19,6 +20,7 @@ export const Learn = () => {
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
   const first = useAppSelector(state => state.learn.isFirst)
   const showAnswer = useAppSelector(state => state.learn.showAnswer)
+  const appStatus = useAppSelector(state => state.app.status)
 
   const dispatch = useAppDispatch()
   const { search } = useLocation()
@@ -38,6 +40,10 @@ export const Learn = () => {
       dispatch(setCurrentCard(getRandomCard(cards)))
     }
   }, [isLoggedIn, packId, first, cards])
+
+  if (appStatus === 'loading') {
+    return <LinearProgress />
+  }
 
   return (
     <>
