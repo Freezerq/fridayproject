@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { PackType } from '../../s1-DAL/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
+import { DeletePackModal } from '../Modals/PackModals/DeletePackModal'
 import { PATH } from '../Routes/AppRoutes'
 
 type ActionsPropsType = {
@@ -16,7 +17,7 @@ type ActionsPropsType = {
   onDeletePackHandle: (id: string) => void
 }
 
-export const ActionsForPacks = (props: ActionsPropsType) => {
+export const ActionsForPacks = ({ pack, onDeletePackHandle, ...props }: ActionsPropsType) => {
   const userId = useAppSelector(state => state.auth.profile._id)
   const appStatus = useAppSelector(state => state.app.status)
   const dispatch = useAppDispatch()
@@ -24,9 +25,7 @@ export const ActionsForPacks = (props: ActionsPropsType) => {
   const onEditClick = () => {
     // dispatch(updatePack({ p }))
   }
-  const onTrashClick = () => {
-    // dispatch(deletePack(props.pack._id))
-  }
+
   const onStudyClick = (packId: string) => {
     navigate(`${PATH.LEARN}/${packId}`)
   }
@@ -37,21 +36,25 @@ export const ActionsForPacks = (props: ActionsPropsType) => {
 
   return (
     <div style={{ marginRight: '14px' }}>
-      {props.pack.cardsCount === 0 ? (
+      {pack.cardsCount === 0 ? (
         <SchoolIcon style={{ marginRight: '8px' }} color={'disabled'} />
       ) : (
-        <SchoolIcon style={{ marginRight: '8px' }} onClick={() => onStudyClick(props.pack._id)} />
+        <SchoolIcon style={{ marginRight: '8px' }} onClick={() => onStudyClick(pack._id)} />
       )}
-      {props.pack.user_id === userId && (
+      {pack.user_id === userId && (
         <>
           <BorderColorIcon style={{ marginRight: '8px' }} />
-          <DeleteSweepIcon
-            onClick={() => {
-              props.onDeletePackHandle(props.pack._id)
-            }}
-          />
+          {/*<DeleteSweepIcon*/}
+          {/*  onClick={() => (*/}
+          {/*    <DeletePackModal packId={pack._id} onDeleteHandle={onDeletePackHandle} />*/}
+          {/*  )}*/}
+          {/*/>*/}
+          <DeletePackModal packId={pack._id} onDeleteHandle={onDeletePackHandle} />
         </>
       )}
     </div>
   )
 }
+// onClick={() => {
+//   props.onDeletePackHandle(props.pack._id)
+// }}
