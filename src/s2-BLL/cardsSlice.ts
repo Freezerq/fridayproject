@@ -39,6 +39,9 @@ export const getCards = (attributes: GetCardsType) => async (dispatch: Dispatch)
   try {
     const result = await cardsAPI.getAllCards(attributes)
 
+    console.log(result)
+    debugger
+
     dispatch(setCards({ cardsData: result.data }))
     dispatch(setAppStatus({ status: 'succeeded' }))
   } catch (e: any) {

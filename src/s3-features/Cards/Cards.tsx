@@ -5,6 +5,7 @@ import Table from '@mui/material/Table'
 import TableContainer from '@mui/material/TableContainer'
 import { Navigate, useLocation, useSearchParams } from 'react-router-dom'
 
+import { AddNewCardType } from '../../s1-DAL/cardsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { addNewCard, getCards } from '../../s2-BLL/cardsSlice'
 import { SearchField } from '../../s4-common/common/SearchField/SearchField'
@@ -45,6 +46,7 @@ export const Cards = () => {
     if (!isLoggedIn) return
 
     dispatch(getCards({ ...paramsFromUrl, cardsPack_id: cardsPack_id }))
+    //dispatch(getCards({ cardsPack_id: cardsPack_id }))
   }, [searchParams, isLoggedIn])
 
   const onSearchNameDebounce = (value: string) => {
@@ -65,8 +67,8 @@ export const Cards = () => {
     })
   }
 
-  const onAddNewCardHandler = () => {
-    dispatch(addNewCard({ cardsPack_id }, { cardsPack_id }))
+  const onAddNewCardHandler = (data: AddNewCardType) => {
+    dispatch(addNewCard({ ...data, cardsPack_id }, { ...paramsFromUrl, cardsPack_id }))
   }
 
   if (cardsPack_id === null) return <Navigate to={PATH.PACKS} />
@@ -91,13 +93,6 @@ export const Cards = () => {
           </div>
         )}
       </TableContainer>
-      <SuperPagination
-        paginationTitle={'Cards per Page'}
-        setRowsAndPage={setRowsAndPage}
-        totalCount={cardsTotalCount ?? 0}
-        rows={rows === 0 ? 4 : rows}
-        page={pageNumber === 0 ? 0 : pageNumber - 1}
-      />
     </>
   )
 }

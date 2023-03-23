@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Typography from '@mui/material/Typography'
 import { useNavigate } from 'react-router-dom'
 
+import { AddNewCardType } from '../../../s1-DAL/cardsAPI'
 import { useAppSelector } from '../../../s1-DAL/store'
 import { BackToPacksList } from '../../../s4-common/common/BackToPacksList/BackToPacksList'
 import { SuperButton } from '../../../s4-common/common/SuperButton/SuperButton'
@@ -20,7 +21,7 @@ import s from './CardsHeader.module.scss'
 
 type CardsHeaderType = {
   packName: string
-  onAddNewCard: () => void
+  onAddNewCard: (data: AddNewCardType) => void
   packId: string
 }
 

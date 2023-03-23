@@ -15,8 +15,8 @@ export const PacksTableBody = (props: PacksTableBodyType) => {
   const packs = useAppSelector(state => state.packs.packsData.cardPacks)
   const appStatus = useAppSelector(state => state.app.status)
   const navigate = useNavigate()
-  const onNameClickHandler = (id: string) => {
-    navigate(PATH.CARDS + `?cardsPack_id=${id}`)
+  const onNameClickHandler = (id: string, cardsCount: number) => {
+    navigate(PATH.CARDS + `?cardsPack_id=${id}&pageCount=${cardsCount}`)
   }
 
   return (
@@ -25,7 +25,7 @@ export const PacksTableBody = (props: PacksTableBodyType) => {
         <TableRow key={pack._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
           <TableCell
             style={{ backgroundColor: 'gray' }}
-            onClick={() => onNameClickHandler(pack._id)}
+            onClick={() => onNameClickHandler(pack._id, pack.cardsCount)}
             component="th"
             scope="row"
           >
