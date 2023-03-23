@@ -23,7 +23,6 @@ import { CardsHeader } from './CardsHeader/CardsHeader'
 import { CardsTableBody } from './CardsTableBody/CardsTableBody'
 import { CardsTableHead } from './CardsTableHead/CardsTableHead'
 
-
 export const Cards = () => {
   const cards = useAppSelector(cardsSelector)
   const packName = useAppSelector(packNameSelector)

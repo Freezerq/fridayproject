@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+import Typography from '@mui/material/Typography'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppSelector } from '../../../s1-DAL/store'
@@ -47,8 +48,15 @@ export const CardsHeader = (props: CardsHeaderType) => {
       <BackToPacksList />
       <div className={s.headerContainer}>
         <div className={s.header}>
-          <span className={s.title}>{props.packName}</span>
-          {userId === packUserId && <EditBar packId={props.packId} />}
+          <Typography className={s.title}>{props.packName}</Typography>
+          {userId === packUserId && (
+            <EditBar
+              packId={props.packId}
+              packName={props.packName}
+              cardsTotalCount={cardsTotalCount}
+              packUserId={packUserId}
+            />
+          )}
         </div>
         {userId === packUserId ? (
           <SuperButton

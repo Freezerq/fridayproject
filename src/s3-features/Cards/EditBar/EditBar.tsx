@@ -1,56 +1,73 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-import { useNavigate } from 'react-router-dom'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
+import IconButton from '@mui/material/IconButton'
+import Popover from '@mui/material/Popover'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 
-import deleteImg from '../../../s4-common/images/delete.svg'
-import moreVertical from '../../../s4-common/images/more-vertical.svg'
-import editImg from '../../../s4-common/images/pencil.svg'
-import studyImg from '../../../s4-common/images/study.svg'
-import { PATH } from '../../Routes/AppRoutes'
+import { ActionsForPack } from '../../Actions/ActionsForPack'
 
-import s from './EditBar.module.scss'
+export const EditBar = ({
+  packId,
+  packName,
+  cardsTotalCount,
+  packUserId,
+  ...props
+}: EditBarType) => {
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
 
-export const EditBar = ({ packId }: EditBarType) => {
-  const [open, setOpen] = useState(false)
-  const handleClose = () => setOpen(false)
-  const handleOpen = () => setOpen(true)
-
-  const editBarClass = s.sidebar + (open ? ' ' + s.open : '')
-
-  const navigate = useNavigate()
-  const onLearnClickHandler = () => {
-    handleClose()
-    navigate(`${PATH.LEARN}/${packId}`)
+  const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget)
   }
 
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#000',
+      },
+    },
+  })
+
+  const open = Boolean(anchorEl)
+  const id = open ? 'simple-popover' : undefined
+
   return (
-    <div className={s.popUpBar}>
-      <img src={moreVertical} alt={'open menu'} onClick={handleOpen} className={s.moreImg} />
-
-      {open && <div className={s.background} onClick={handleClose} />}
-
-      <aside className={editBarClass}>
-        <div className={s.nav}>
-          <div className={s.menu}>
-            <div className={s.button} onClick={handleClose}>
-              <img src={editImg} className={s.image} alt={'editImg'} />
-              Edit
-            </div>
-            <div className={s.button} onClick={handleClose}>
-              <img src={deleteImg} className={s.image} alt={'deleteImg'} />
-              Delete
-            </div>
-            <div className={s.button} onClick={onLearnClickHandler}>
-              <img src={studyImg} className={s.image} alt={'stydyImg'} />
-              Learn
-            </div>
-          </div>
-        </div>
-      </aside>
-    </div>
+    <ThemeProvider theme={theme}>
+      <IconButton aria-describedby={id} onClick={handleOpen} color={'primary'}>
+        <MoreVertIcon style={{ marginRight: '4px' }} />
+      </IconButton>
+      <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+      >
+        <ActionsForPack
+          packId={packId}
+          packName={packName}
+          totalCardsInPack={cardsTotalCount}
+          id={packUserId}
+          hasText
+        />
+      </Popover>
+    </ThemeProvider>
   )
 }
 
 type EditBarType = {
   packId: string
+  packName: string
+  cardsTotalCount: number
+  packUserId: string
 }

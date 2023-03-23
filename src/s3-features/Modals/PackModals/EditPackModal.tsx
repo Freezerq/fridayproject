@@ -3,14 +3,15 @@ import React, { useEffect, useState } from 'react'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
+import IconButton from '@mui/material/IconButton'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
-import { PackType, UpdatePackType } from '../../../s1-DAL/packsAPI'
+import { UpdatePackType } from '../../../s1-DAL/packsAPI'
 import { BasicModal } from '../BasicModal'
 
-export const EditPackModal = ({ pack, onEditHandle, ...props }: AddPackModalType) => {
+export const EditPackModal = ({ packId, packName, onEditHandle, ...props }: AddPackModalType) => {
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => {
@@ -27,14 +28,18 @@ export const EditPackModal = ({ pack, onEditHandle, ...props }: AddPackModalType
 
   const onSubmit: SubmitHandler<UpdatePackType> = (data: UpdatePackType) => {
     console.log(data)
-    onEditHandle({ ...pack, ...data })
+    onEditHandle({ ...data, _id: packId })
 
     handleClose()
   }
 
   return (
     <>
-      <BorderColorIcon style={{ marginRight: '8px' }} onClick={handleOpen} />
+      <IconButton color={'primary'} onClick={handleOpen}>
+        <BorderColorIcon style={{ marginRight: '4px' }} />
+        {props.hasText && <span>Edit</span>}
+      </IconButton>
+
       <BasicModal open={open} handleClose={handleClose}>
         <Typography variant="h5" component="h2">
           EDIT PACK
@@ -46,7 +51,7 @@ export const EditPackModal = ({ pack, onEditHandle, ...props }: AddPackModalType
             label="Edit pack's name"
             variant="standard"
             margin="normal"
-            defaultValue={pack.name}
+            defaultValue={packName}
             {...register('name')}
           />
           <Typography>
@@ -71,5 +76,7 @@ export const EditPackModal = ({ pack, onEditHandle, ...props }: AddPackModalType
 //types
 type AddPackModalType = {
   onEditHandle: (data: UpdatePackType) => void
-  pack: PackType
+  packId: string
+  packName: string
+  hasText?: boolean
 }
