@@ -20,10 +20,9 @@ export const DeletePackModal = ({ pack, onDeleteHandle, ...props }: DeletePackMo
           DELETE PACK
         </Typography>
         <Typography sx={{ mt: 2 }}>
-          <div>
-            Do you really want to remove <b>{pack.name}</b>?
-          </div>
-          <div>All cards will be deleted</div>
+          Do you really want to remove <b>{pack.name}</b>?
+          <br />
+          All cards will be deleted
         </Typography>
         <Typography sx={{ mt: 2 }} display={'flex'} justifyContent={'space-between'}>
           <Button variant={'outlined'} onClick={handleClose}>

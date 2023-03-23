@@ -6,6 +6,7 @@ import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 import { useNavigate } from 'react-router-dom'
 
+import { UpdatePackType } from '../../../s1-DAL/packsAPI'
 import { useAppSelector } from '../../../s1-DAL/store'
 import { ActionsForPacks } from '../../Actions/ActionsForPacks'
 import { PATH } from '../../Routes/AppRoutes'
@@ -43,7 +44,7 @@ export const PacksTableBody = (props: PacksTableBodyType) => {
             <ActionsForPacks
               pack={pack}
               onDeletePackHandle={props.onDeletePackHandle}
-              // packId={pack._id}
+              onEditPackHandle={props.onEditPackHandle}
             />
           </TableCell>
         </TableRow>
@@ -54,4 +55,5 @@ export const PacksTableBody = (props: PacksTableBodyType) => {
 
 type PacksTableBodyType = {
   onDeletePackHandle: (id: string) => void
+  onEditPackHandle: (data: UpdatePackType) => void
 }

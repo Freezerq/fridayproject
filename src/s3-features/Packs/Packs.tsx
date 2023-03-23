@@ -5,9 +5,9 @@ import Table from '@mui/material/Table'
 import TableContainer from '@mui/material/TableContainer'
 import { useLocation, useSearchParams } from 'react-router-dom'
 
-import { AddNewPackType } from '../../s1-DAL/packsAPI'
+import { AddNewPackType, UpdatePackType } from '../../s1-DAL/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { addNewPack, deletePack, getPacks } from '../../s2-BLL/packSlice'
+import { addNewPack, deletePack, getPacks, updatePack } from '../../s2-BLL/packSlice'
 import { SearchField } from '../../s4-common/common/SearchField/SearchField'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
 import { AddPackModal } from '../Modals/PackModals/AddPackModal'
@@ -89,6 +89,10 @@ export const Packs = () => {
     dispatch(addNewPack(data, paramsFromUrl))
   }
 
+  const onEditPackHandle = (data: UpdatePackType) => {
+    dispatch(updatePack(data, paramsFromUrl))
+  }
+
   return (
     <div className={s.block}>
       <div className={s.header}>
@@ -118,7 +122,10 @@ export const Packs = () => {
         {packs?.length > 0 ? (
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <PacksTableHead sort={sortPacks ?? '0updated'} setSort={setSortPacks} />
-            <PacksTableBody onDeletePackHandle={onDeletePackHandle} />
+            <PacksTableBody
+              onDeletePackHandle={onDeletePackHandle}
+              onEditPackHandle={onEditPackHandle}
+            />
           </Table>
         ) : (
           <div className={s.container}>
