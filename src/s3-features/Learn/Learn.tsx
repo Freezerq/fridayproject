@@ -8,6 +8,10 @@ import { getCards } from '../../s2-BLL/cardsSlice'
 import { setCurrentCard, setIsFirst } from '../../s2-BLL/learnSlice'
 import { BackToPacksList } from '../../s4-common/common/BackToPacksList/BackToPacksList'
 import { LinearProgress } from '../../s4-common/common/LinearProgress/LinearProgress'
+import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
+import { isLoggedInSelector } from '../../s4-common/selectors/authSelectors'
+import { cardsSelector, packNameSelector } from '../../s4-common/selectors/cardsSelectors'
+import { firstSelector, showAnswerSelector } from '../../s4-common/selectors/learnSelectors'
 import { getRandomCard } from '../../utils/getRandomCards'
 
 import { Answer } from './Answer/Answer'
@@ -15,12 +19,12 @@ import s from './Learn.module.scss'
 import { Question } from './Question/Question'
 
 export const Learn = () => {
-  const cards = useAppSelector(state => state.cards.cardsData.cards)
-  const packName = useAppSelector(state => state.cards.cardsData.packName)
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
-  const first = useAppSelector(state => state.learn.isFirst)
-  const showAnswer = useAppSelector(state => state.learn.showAnswer)
-  const appStatus = useAppSelector(state => state.app.status)
+  const cards = useAppSelector(cardsSelector)
+  const packName = useAppSelector(packNameSelector)
+  const isLoggedIn = useAppSelector(isLoggedInSelector)
+  const first = useAppSelector(firstSelector)
+  const showAnswer = useAppSelector(showAnswerSelector)
+  const appStatus = useAppSelector(appStatusSelector)
 
   const dispatch = useAppDispatch()
   const { search } = useLocation()

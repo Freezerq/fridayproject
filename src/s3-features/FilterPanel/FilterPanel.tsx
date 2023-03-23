@@ -4,13 +4,14 @@ import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
 import Button from '@mui/material/Button'
 
 import { useAppSelector } from '../../s1-DAL/store'
-import { SuperRange } from '../../s4-common/common/SuperRange/SuperRange'
-import { SwitchButton } from '../../s4-common/common/SwitchButton/SwitchButton'
+import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
 
 import s from './FilterPanel.module.css'
+import { SuperRange } from './SuperRange/SuperRange'
+import { SwitchButton } from './SwitchButton/SwitchButton'
 
 export const FilterPanel = (props: FilterPanelType) => {
-  const appStatus = useAppSelector(state => state.app.status)
+  const appStatus = useAppSelector(appStatusSelector)
 
   return (
     <div className={s.mainContainer}>

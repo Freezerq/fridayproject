@@ -9,6 +9,7 @@ import { Navigate, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { createNewPassword } from '../../s2-BLL/authSlice'
 import { PasswordInput } from '../../s4-common/common/PasswordInput/PasswordInput'
+import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
 import { PATH } from '../Routes/AppRoutes'
 
 import s from './CreateNewPassword.module.css'
@@ -20,7 +21,7 @@ type NewPasswordType = {
 export const CreateNewPassword = () => {
   const dispatch = useAppDispatch()
   const isCreateNewPassword = useAppSelector(state => state.auth.isCreateNewPassword)
-  const appStatus = useAppSelector(state => state.app.status)
+  const appStatus = useAppSelector(appStatusSelector)
 
   const {
     register,

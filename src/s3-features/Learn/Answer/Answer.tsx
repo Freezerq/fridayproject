@@ -9,13 +9,18 @@ import { useAppDispatch, useAppSelector } from '../../../s1-DAL/store'
 import { updateCardGrade } from '../../../s2-BLL/cardsSlice'
 import { setGrade } from '../../../s2-BLL/learnSlice'
 import { SuperButton } from '../../../s4-common/common/SuperButton/SuperButton'
+import {
+  answerSelector,
+  card_idSelector,
+  gradeSelector,
+} from '../../../s4-common/selectors/learnSelectors'
 
 import s from './Answer.module.scss'
 
 export const Answer = () => {
-  const answer = useAppSelector(state => state.learn.currentCard.answer)
-  const grade = useAppSelector(state => state.learn.currentCard.grade)
-  const card_id = useAppSelector(state => state.learn.currentCard._id)
+  const answer = useAppSelector(answerSelector)
+  const grade = useAppSelector(gradeSelector)
+  const card_id = useAppSelector(card_idSelector)
   const dispatch = useAppDispatch()
   const grades = ['Did not know', 'Forgot', 'A lot of thought', 'Confused', 'Knew the answer']
 

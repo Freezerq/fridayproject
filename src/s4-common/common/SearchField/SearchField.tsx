@@ -6,13 +6,14 @@ import Paper from '@mui/material/Paper'
 
 import { useAppSelector } from '../../../s1-DAL/store'
 import { useDebounce } from '../../../utils/hooks/hooks'
+import { appStatusSelector } from '../../selectors/appSelectors'
 
 import s from './SearchField.module.scss'
 
 export function SearchField({ onSearchName, searchValue, classname, ...props }: SearchFieldTypes) {
   const [value, setValue] = useState<string>(searchValue)
   const debouncedValue = useDebounce<string>(value, 750)
-  const appStatus = useAppSelector(state => state.app.status)
+  const appStatus = useAppSelector(appStatusSelector)
 
   useEffect(() => {
     onSearchName(value)

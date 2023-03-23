@@ -8,6 +8,8 @@ import { registrationThunk } from '../../s2-BLL/authSlice'
 import { CommonInput } from '../../s4-common/common/CommonInput/CommonInput'
 import { SuperButton } from '../../s4-common/common/SuperButton/SuperButton'
 import eye from '../../s4-common/images/eyeIcon.svg'
+import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
+import { isLoggedInSelector } from '../../s4-common/selectors/authSelectors'
 import { emailCheck } from '../../utils/regularExpressions'
 
 import style from './registration.module.scss'
@@ -19,8 +21,8 @@ type FormValues = {
 }
 
 export const Registration = () => {
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
-  const appStatus = useAppSelector(state => state.app.status)
+  const isLoggedIn = useAppSelector(isLoggedInSelector)
+  const appStatus = useAppSelector(appStatusSelector)
 
   const dispatch = useAppDispatch()
   const {

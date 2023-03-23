@@ -3,11 +3,12 @@ import React, { SyntheticEvent, useEffect, useState } from 'react'
 import Slider from '@mui/material/Slider'
 
 import { useAppSelector } from '../../../s1-DAL/store'
+import { appStatusSelector } from '../../../s4-common/selectors/appSelectors'
 
 import s from './SuperRange.module.css'
 
 export const SuperRange = (props: SuperRangeType) => {
-  const appStatus = useAppSelector(state => state.app.status)
+  const appStatus = useAppSelector(appStatusSelector)
   const [value1, setValue1] = useState(props.min)
   const [value2, setValue2] = useState(props.maxValue)
 
