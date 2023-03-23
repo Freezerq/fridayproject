@@ -6,6 +6,7 @@ import Select from '@mui/material/Select'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import { Controller, useForm } from 'react-hook-form'
+import { useLocation } from 'react-router-dom'
 
 import { CardType } from '../../../s1-DAL/cardsAPI'
 import { useAppDispatch } from '../../../s1-DAL/store'
@@ -19,8 +20,12 @@ type AddCardModalPropsType = {
 
 export const DeleteCardModal = (props: AddCardModalPropsType) => {
   const dispatch = useAppDispatch()
+  const { search } = useLocation()
+  const paramsFromUrl = Object.fromEntries(new URLSearchParams(search))
   const onButtonClickHandler = () => {
-    dispatch(deleteCard(props.card._id, { cardsPack_id: props.card.cardsPack_id }))
+    dispatch(
+      deleteCard(props.card._id, { cardsPack_id: props.card.cardsPack_id, ...paramsFromUrl })
+    )
     props.handleClose()
   }
 

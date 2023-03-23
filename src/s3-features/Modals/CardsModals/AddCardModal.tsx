@@ -6,6 +6,7 @@ import Select from '@mui/material/Select'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import { Controller, useForm } from 'react-hook-form'
+import { useLocation } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../s1-DAL/store'
 import { addNewCard } from '../../../s2-BLL/cardsSlice'
@@ -26,7 +27,8 @@ const options = ['Text', 'Image']
 
 export const AddCardModal = (props: AddCardModalPropsType) => {
   const dispatch = useAppDispatch()
-
+  const { search } = useLocation()
+  const paramsFromUrl = Object.fromEntries(new URLSearchParams(search))
   const handleOpen = () => {
     submitFunc(getValues())
     props.handleClose()
@@ -39,12 +41,8 @@ export const AddCardModal = (props: AddCardModalPropsType) => {
   const submitFunc = (data: AddCardType) => {
     dispatch(
       addNewCard(
-        {
-          cardsPack_id: props.pack_id,
-          question: data.question,
-          answer: data.answer,
-        },
-        { cardsPack_id: props.pack_id }
+        { ...data, cardsPack_id: props.pack_id },
+        { cardsPack_id: props.pack_id, ...paramsFromUrl }
       )
     )
     reset({ selectValue: options[0], question: '', answer: '' })
