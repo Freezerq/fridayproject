@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
 import { useAppSelector } from '../../../s1-DAL/store'
 import { BackToPacksList } from '../../../s4-common/common/BackToPacksList/BackToPacksList'
 import { SuperButton } from '../../../s4-common/common/SuperButton/SuperButton'
+import { BasicModal } from '../../Modals/BasicModal'
+import { AddCardModal } from '../../Modals/CardsModals/AddCardModal'
 import { PATH } from '../../Routes/AppRoutes'
 import { EditBar } from '../EditBar/EditBar'
 
@@ -27,6 +29,14 @@ export const CardsHeader = (props: CardsHeaderType) => {
     navigate(`${PATH.LEARN}/${props.packId}`)
   }
 
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => {
+    setOpen(true)
+  }
+  const handleClose = () => {
+    setOpen(false)
+  }
+
   return (
     <>
       <BackToPacksList />
@@ -42,7 +52,7 @@ export const CardsHeader = (props: CardsHeaderType) => {
               fontSize: '16px',
               width: '175px',
             }}
-            onClick={props.onAddNewCard}
+            onClick={handleOpen}
           >
             Add new card
           </SuperButton>
@@ -60,6 +70,9 @@ export const CardsHeader = (props: CardsHeaderType) => {
           </SuperButton>
         )}
       </div>
+      <BasicModal handleClose={handleClose} open={open}>
+        <AddCardModal pack_id={props.packId} handleClose={handleClose} />
+      </BasicModal>
     </>
   )
 }

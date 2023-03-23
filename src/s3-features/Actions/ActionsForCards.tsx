@@ -1,35 +1,57 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep'
-import { Skeleton } from '@mui/material'
 
+import { CardType } from '../../s1-DAL/cardsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { deletePack, updatePack } from '../../s2-BLL/packSlice'
+import { BasicModal } from '../Modals/BasicModal'
+import { DeleteCardModal } from '../Modals/CardsModals/DeleteCardModal'
+import { EditCardModal } from '../Modals/CardsModals/EditCardModal'
 
 type ActionsPropsType = {
   onStudyClick: (id: string) => void
-  // card: CardType
+  card: CardType
 }
 
 export const ActionsForCards = (props: ActionsPropsType) => {
   const appStatus = useAppSelector(state => state.app.status)
   const dispatch = useAppDispatch()
-  const onEditClick = () => {
-    // dispatch(upd({ p }))
-  }
+
   const onTrashClick = () => {
     // dispatch(del(props.pack._id))
   }
 
-  if (appStatus === 'loading') {
-    return <Skeleton />
+  // if (appStatus === 'loading') {
+  //   return <Skeleton />
+  // }
+
+  const [openEditModal, setOpenEditModal] = useState(false)
+  const handleOpenEditModal = () => {
+    setOpenEditModal(true)
+  }
+  const handleCloseEditModal = () => {
+    setOpenEditModal(false)
+  }
+
+  const [openDeleteModal, setOpenDeleteModal] = useState(false)
+  const handleOpenDeleteModal = () => {
+    setOpenDeleteModal(true)
+  }
+  const handleCloseDeleteModal = () => {
+    setOpenDeleteModal(false)
   }
 
   return (
     <div style={{ marginRight: '14px' }}>
-      <BorderColorIcon style={{ marginRight: '8px' }} />
-      <DeleteSweepIcon />
+      <BorderColorIcon style={{ marginRight: '8px' }} onClick={handleOpenEditModal} />
+      <DeleteSweepIcon onClick={handleOpenDeleteModal} />
+      <BasicModal handleClose={handleCloseEditModal} open={openEditModal}>
+        <EditCardModal card={props.card} handleClose={handleCloseEditModal} />
+      </BasicModal>
+      <BasicModal handleClose={handleCloseDeleteModal} open={openDeleteModal}>
+        <DeleteCardModal card={props.card} handleClose={handleCloseDeleteModal} />
+      </BasicModal>
     </div>
   )
 }

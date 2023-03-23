@@ -37,7 +37,7 @@ export const CardsTableBody = () => {
           </TableCell>
           {card.user_id === userId && (
             <TableCell align="left">
-              <ActionsForCards onStudyClick={onStudyClick} />
+              <ActionsForCards card={card} onStudyClick={onStudyClick} />
             </TableCell>
           )}
         </TableRow>
