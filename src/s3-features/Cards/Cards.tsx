@@ -8,6 +8,12 @@ import { Navigate, useLocation, useSearchParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { addNewCard, getCards } from '../../s2-BLL/cardsSlice'
 import { SearchField } from '../../s4-common/common/SearchField/SearchField'
+import { isLoggedInSelector } from '../../s4-common/selectors/authSelectors'
+import {
+  cardsSelector,
+  cardsTotalCountSelector,
+  packNameSelector,
+} from '../../s4-common/selectors/cardsSelectors'
 import { BasicModal } from '../Modals/BasicModal'
 import s from '../Packs/Packs.module.scss'
 import { SuperPagination } from '../Pagination/Pagination'
@@ -17,12 +23,13 @@ import { CardsHeader } from './CardsHeader/CardsHeader'
 import { CardsTableBody } from './CardsTableBody/CardsTableBody'
 import { CardsTableHead } from './CardsTableHead/CardsTableHead'
 
+
 export const Cards = () => {
-  const cards = useAppSelector(state => state.cards.cardsData.cards)
-  const packName = useAppSelector(state => state.cards.cardsData.packName)
-  const cardsTotalCount = useAppSelector(state => state.cards.cardsData.cardsTotalCount)
+  const cards = useAppSelector(cardsSelector)
+  const packName = useAppSelector(packNameSelector)
+  const cardsTotalCount = useAppSelector(cardsTotalCountSelector)
   const dispatch = useAppDispatch()
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+  const isLoggedIn = useAppSelector(isLoggedInSelector)
   //set params into URL
   const [searchParams, setSearchParams] = useSearchParams()
   //get Single Params From URL

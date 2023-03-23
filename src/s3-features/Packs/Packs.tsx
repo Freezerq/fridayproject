@@ -9,6 +9,12 @@ import { AddNewPackType, UpdatePackType } from '../../s1-DAL/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { addNewPack, deletePack, getPacks, updatePack } from '../../s2-BLL/packSlice'
 import { SearchField } from '../../s4-common/common/SearchField/SearchField'
+import { isLoggedInSelector, userIdSelector } from '../../s4-common/selectors/authSelectors'
+import {
+  maxCardsValueSelector,
+  packsSelector,
+  packsTotalCountSelector,
+} from '../../s4-common/selectors/packsSelectors'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
 import { AddPackModal } from '../Modals/PackModals/AddPackModal'
 import { SuperPagination } from '../Pagination/Pagination'
@@ -18,12 +24,13 @@ import { PacksTableBody } from './PacksTableBody/PacksTableBody'
 import { PacksTableHead } from './PacksTableHead/PacksTableHead'
 
 export const Packs = () => {
-  const packs = useAppSelector(state => state.packs.packsData.cardPacks)
-  const packsTotalCount = useAppSelector(state => state.packs.packsData.cardPacksTotalCount)
-  const userId = useAppSelector(state => state.auth.profile._id)
-  const maxCardsValue = useAppSelector(state => state.packs.packsData.maxCardsCount)
+  const packs = useAppSelector(packsSelector)
+  const packsTotalCount = useAppSelector(packsTotalCountSelector)
+  const userId = useAppSelector(userIdSelector)
+  const maxCardsValue = useAppSelector(maxCardsValueSelector)
+  const isLoggedIn = useAppSelector(isLoggedInSelector)
+
   const dispatch = useAppDispatch()
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
 
   //set params into URL
   const [searchParams, setSearchParams] = useSearchParams()

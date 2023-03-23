@@ -12,14 +12,16 @@ import { LoginType } from '../../s1-DAL/authAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { loginTC } from '../../s2-BLL/authSlice'
 import { PasswordInput } from '../../s4-common/common/PasswordInput/PasswordInput'
+import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
+import { isLoggedInSelector } from '../../s4-common/selectors/authSelectors'
 import { PATH } from '../Routes/AppRoutes'
 
 import s from './Login.module.css'
 
 export const Login: FC = () => {
   const dispatch = useAppDispatch()
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
-  const appStatus = useAppSelector(state => state.app.status)
+  const isLoggedIn = useAppSelector(isLoggedInSelector)
+  const appStatus = useAppSelector(appStatusSelector)
   const {
     register,
     handleSubmit,

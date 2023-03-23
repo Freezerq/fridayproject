@@ -5,6 +5,11 @@ import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../../../s1-DAL/store'
 import { BackToPacksList } from '../../../s4-common/common/BackToPacksList/BackToPacksList'
 import { SuperButton } from '../../../s4-common/common/SuperButton/SuperButton'
+import { userIdSelector } from '../../../s4-common/selectors/authSelectors'
+import {
+  cardsTotalCountSelector,
+  packUserIdSelector,
+} from '../../../s4-common/selectors/cardsSelectors'
 import { BasicModal } from '../../Modals/BasicModal'
 import { AddCardModal } from '../../Modals/CardsModals/AddCardModal'
 import { PATH } from '../../Routes/AppRoutes'
@@ -19,9 +24,9 @@ type CardsHeaderType = {
 }
 
 export const CardsHeader = (props: CardsHeaderType) => {
-  const userId = useAppSelector(state => state.auth.profile._id)
-  const packUserId = useAppSelector(state => state.cards.cardsData.packUserId)
-  const cardsTotalCount = useAppSelector(state => state.cards.cardsData.cardsTotalCount)
+  const userId = useAppSelector(userIdSelector)
+  const packUserId = useAppSelector(packUserIdSelector)
+  const cardsTotalCount = useAppSelector(cardsTotalCountSelector)
 
   const navigate = useNavigate()
 

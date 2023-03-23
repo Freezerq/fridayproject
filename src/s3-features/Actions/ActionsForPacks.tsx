@@ -7,6 +7,8 @@ import { Skeleton } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 import { PackType, UpdatePackType } from '../../s1-DAL/packsAPI'
+import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
+import { userIdSelector } from '../../s4-common/selectors/authSelectors'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { DeletePackModal } from '../Modals/PackModals/DeletePackModal'
 import { EditPackModal } from '../Modals/PackModals/EditPackModal'
@@ -24,8 +26,8 @@ export const ActionsForPacks = ({
   onEditPackHandle,
   ...props
 }: ActionsPropsType) => {
-  const userId = useAppSelector(state => state.auth.profile._id)
-  const appStatus = useAppSelector(state => state.app.status)
+  const userId = useAppSelector(userIdSelector)
+  const appStatus = useAppSelector(appStatusSelector)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 

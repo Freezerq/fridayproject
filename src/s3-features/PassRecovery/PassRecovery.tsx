@@ -7,6 +7,8 @@ import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getNewToken } from '../../s2-BLL/authSlice'
 import { CommonInput } from '../../s4-common/common/CommonInput/CommonInput'
 import { SuperButton } from '../../s4-common/common/SuperButton/SuperButton'
+import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
+import { isSendedEmailSelector } from '../../s4-common/selectors/authSelectors'
 import { emailCheck } from '../../utils/regularExpressions'
 import { PATH } from '../Routes/AppRoutes'
 
@@ -15,8 +17,8 @@ import style from './PassRecovery.module.scss'
 export const PassRecovery = () => {
   const [email, setEmail] = useState('')
   const dispatch = useAppDispatch()
-  const isSendedEmail = useAppSelector(state => state.auth.isSendedEmail)
-  const appStatus = useAppSelector(state => state.app.status)
+  const isSendedEmail = useAppSelector(isSendedEmailSelector)
+  const appStatus = useAppSelector(appStatusSelector)
   const navigate = useNavigate()
 
   const {
@@ -62,7 +64,7 @@ export const PassRecovery = () => {
         />
 
         <p className={style.item}>
-          Enter you email adress and we will send you further instructions
+          Enter you email address and we will send you further instructions
         </p>
         <SuperButton
           style={{ marginTop: '60px', letterSpacing: '0.01em', fontSize: '1.3rem' }}
