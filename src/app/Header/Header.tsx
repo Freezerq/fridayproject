@@ -5,7 +5,7 @@ import { useAppSelector } from '../../s1-DAL/store'
 import { LogOutButton } from '../../s3-features/Login/LogOutButton/LogOutButton'
 import { PATH } from '../Routes/AppRoutes'
 
-import s from './Header.module.css'
+import s from './Header.module.scss'
 
 const Header = () => {
   const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)

@@ -6,10 +6,10 @@ import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 import { useNavigate } from 'react-router-dom'
 
+import { PATH } from '../../../app/Routes/AppRoutes'
 import { UpdatePackType } from '../../../s1-DAL/packsAPI'
 import { useAppSelector } from '../../../s1-DAL/store'
 import { ActionsForPack } from '../../Actions/ActionsForPack'
-import { PATH } from '../../../app/Routes/AppRoutes'
 
 export const PacksTableBody = (props: PacksTableBodyType) => {
   const packs = useAppSelector(state => state.packs.packsData.cardPacks)
@@ -24,12 +24,12 @@ export const PacksTableBody = (props: PacksTableBodyType) => {
       {packs?.map(pack => (
         <TableRow key={pack._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
           <TableCell
-            style={{ backgroundColor: 'gray' }}
+            style={{ backgroundColor: 'gray', width: '250px' }}
             onClick={() => onNameClickHandler(pack._id, pack.cardsCount)}
             component="th"
             scope="row"
           >
-            {appStatus === 'loading' ? <Skeleton /> : pack.name}
+            {appStatus === 'loading' ? <Skeleton width={250} height={40} /> : pack.name}
           </TableCell>
           <TableCell align="left">
             {appStatus === 'loading' ? <Skeleton /> : pack.cardsCount}

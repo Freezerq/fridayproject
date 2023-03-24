@@ -16,8 +16,8 @@ import {
   cardsTotalCountSelector,
   packNameSelector,
 } from '../../s4-common/selectors/cardsSelectors'
-import s from '../Packs/Packs.module.scss'
 
+import s from './Cards.module.scss'
 import { CardsHeader } from './CardsHeader/CardsHeader'
 import { CardsTableBody } from './CardsTableBody/CardsTableBody'
 import { CardsTableHead } from './CardsTableHead/CardsTableHead'

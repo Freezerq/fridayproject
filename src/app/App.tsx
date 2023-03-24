@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import './App.css'
+import './App.module.scss'
 
 import { useAppDispatch, useAppSelector } from '../s1-DAL/store'
 import { getAuthUserData } from '../s2-BLL/authSlice'
