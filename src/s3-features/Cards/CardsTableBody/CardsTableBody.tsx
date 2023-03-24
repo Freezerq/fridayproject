@@ -27,7 +27,9 @@ export const CardsTableBody = () => {
           <TableCell component="th" scope="row">
             {appStatus === 'loading' ? <Skeleton height={40} /> : card.question}
           </TableCell>
-          <TableCell align="left">{appStatus === 'loading' ? <Skeleton height={40} /> : card.answer}</TableCell>
+          <TableCell align="left">
+            {appStatus === 'loading' ? <Skeleton height={40} /> : card.answer}
+          </TableCell>
           <TableCell align="left">
             {appStatus === 'loading' ? <Skeleton height={40} /> : card.updated.substring(0, 10)}
           </TableCell>
