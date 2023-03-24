@@ -25,22 +25,26 @@ export const CardsTableBody = () => {
       {cards?.map(card => (
         <TableRow key={card._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
           <TableCell component="th" scope="row">
-            {appStatus === 'loading' ? <Skeleton /> : card.question}
+            {appStatus === 'loading' ? <Skeleton height={40} /> : card.question}
           </TableCell>
-          <TableCell align="left">{appStatus === 'loading' ? <Skeleton /> : card.answer}</TableCell>
+          <TableCell align="left">{appStatus === 'loading' ? <Skeleton height={40} /> : card.answer}</TableCell>
           <TableCell align="left">
-            {appStatus === 'loading' ? <Skeleton /> : card.updated.substring(0, 10)}
+            {appStatus === 'loading' ? <Skeleton height={40} /> : card.updated.substring(0, 10)}
           </TableCell>
           <TableCell align="left">
             {appStatus === 'loading' ? (
-              <Skeleton />
+              <Skeleton height={40} />
             ) : (
               <Rating name="size-medium" value={card.grade} />
             )}
           </TableCell>
           {card.user_id === userId && (
             <TableCell align="left">
-              <ActionsForCards card={card} onStudyClick={onStudyClick} />
+              {appStatus === 'loading' ? (
+                <Skeleton height={40} />
+              ) : (
+                <ActionsForCards card={card} onStudyClick={onStudyClick} />
+              )}
             </TableCell>
           )}
         </TableRow>

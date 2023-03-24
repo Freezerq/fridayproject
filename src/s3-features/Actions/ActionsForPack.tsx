@@ -44,7 +44,7 @@ export const ActionsForPack = ({
   }
 
   if (appStatus === 'loading') {
-    return <Skeleton />
+    return <Skeleton height={40} />
   }
 
   const onDeletePackHandle = (id: string) => {

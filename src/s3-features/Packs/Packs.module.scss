@@ -1,10 +1,8 @@
-
 .block {
   margin: 36px 40px;
   display: flex;
   flex-direction: column;
   position: relative;
-
   .header {
    margin: 40px;
     display: flex;
@@ -18,7 +16,6 @@
         font-weight: 600;
         line-height: 27px;
       }
-
   }
   .filterContainer {
     display: flex;
@@ -34,7 +31,6 @@
     display: flex;
     text-align: center;
     .message {
-
       font-family: Montserrat, sans-serif;
       font-weight: 400;
       font-size: 1rem;
@@ -43,7 +39,6 @@
       margin: 100px auto;
       color: #000000;
       opacity: 0.5;
-
     }
   }
 }

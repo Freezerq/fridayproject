@@ -32,13 +32,13 @@ export const PacksTableBody = (props: PacksTableBodyType) => {
             {appStatus === 'loading' ? <Skeleton width={250} height={40} /> : pack.name}
           </TableCell>
           <TableCell align="left">
-            {appStatus === 'loading' ? <Skeleton /> : pack.cardsCount}
+            {appStatus === 'loading' ? <Skeleton height={40}/> : pack.cardsCount}
           </TableCell>
           <TableCell align="left">
-            {appStatus === 'loading' ? <Skeleton /> : pack.updated.substring(0, 10)}
+            {appStatus === 'loading' ? <Skeleton height={40}/> : pack.updated.substring(0, 10)}
           </TableCell>
           <TableCell align="left">
-            {appStatus === 'loading' ? <Skeleton /> : pack.user_name}
+            {appStatus === 'loading' ? <Skeleton height={40}/> : pack.user_name}
           </TableCell>
           <TableCell align="left">
             <ActionsForPack
