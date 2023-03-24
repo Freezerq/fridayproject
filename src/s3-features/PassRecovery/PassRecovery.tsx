@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { NavLink, useNavigate } from 'react-router-dom'
 
+import { PATH } from '../../app/Routes/AppRoutes'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getNewToken } from '../../s2-BLL/authSlice'
 import { CommonInput } from '../../s4-common/common/CommonInput/CommonInput'
@@ -10,7 +11,6 @@ import { SuperButton } from '../../s4-common/common/SuperButton/SuperButton'
 import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
 import { isSendedEmailSelector } from '../../s4-common/selectors/authSelectors'
 import { emailCheck } from '../../utils/regularExpressions'
-import { PATH } from '../Routes/AppRoutes'
 
 import style from './PassRecovery.module.scss'
 

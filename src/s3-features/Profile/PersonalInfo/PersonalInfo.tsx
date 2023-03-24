@@ -2,11 +2,11 @@ import React from 'react'
 
 import { NavLink } from 'react-router-dom'
 
+import { PATH } from '../../../app/Routes/AppRoutes'
+import changePhotoIcon from '../../../assets/img/camera.svg'
 import { UserType } from '../../../s1-DAL/authAPI'
 import { SuperButton } from '../../../s4-common/common/SuperButton/SuperButton'
-import changePhotoIcon from '../../../s4-common/images/camera.svg'
-import { LogOutButton } from '../../Login/LogOutButton'
-import { PATH } from '../../Routes/AppRoutes'
+import { LogOutButton } from '../../Login/LogOutButton/LogOutButton'
 import { EditableSpan } from '../EditableSpan/EditableSpan'
 import style from '../Profile.module.scss'
 

@@ -8,13 +8,13 @@ import TextField from '@mui/material/TextField'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Navigate, NavLink } from 'react-router-dom'
 
+import { PATH } from '../../app/Routes/AppRoutes'
 import { LoginType } from '../../s1-DAL/authAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { loginTC } from '../../s2-BLL/authSlice'
 import { PasswordInput } from '../../s4-common/common/PasswordInput/PasswordInput'
 import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
 import { isLoggedInSelector } from '../../s4-common/selectors/authSelectors'
-import { PATH } from '../Routes/AppRoutes'
 
 import s from './Login.module.css'
 

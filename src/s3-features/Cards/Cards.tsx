@@ -5,6 +5,7 @@ import Table from '@mui/material/Table'
 import TableContainer from '@mui/material/TableContainer'
 import { Navigate, useLocation, useSearchParams } from 'react-router-dom'
 
+import { PATH } from '../../app/Routes/AppRoutes'
 import { AddNewCardType } from '../../s1-DAL/cardsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { addNewCard, getCards } from '../../s2-BLL/cardsSlice'
@@ -15,10 +16,7 @@ import {
   cardsTotalCountSelector,
   packNameSelector,
 } from '../../s4-common/selectors/cardsSelectors'
-import { BasicModal } from '../Modals/BasicModal'
 import s from '../Packs/Packs.module.scss'
-import { SuperPagination } from '../Pagination/Pagination'
-import { PATH } from '../Routes/AppRoutes'
 
 import { CardsHeader } from './CardsHeader/CardsHeader'
 import { CardsTableBody } from './CardsTableBody/CardsTableBody'

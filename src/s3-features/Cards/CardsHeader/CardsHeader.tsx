@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Typography from '@mui/material/Typography'
 import { useNavigate } from 'react-router-dom'
 
+import { PATH } from '../../../app/Routes/AppRoutes'
 import { AddNewCardType } from '../../../s1-DAL/cardsAPI'
 import { useAppSelector } from '../../../s1-DAL/store'
 import { BackToPacksList } from '../../../s4-common/common/BackToPacksList/BackToPacksList'
@@ -14,7 +15,6 @@ import {
 } from '../../../s4-common/selectors/cardsSelectors'
 import { BasicModal } from '../../Modals/BasicModal'
 import { AddCardModal } from '../../Modals/CardsModals/AddCardModal'
-import { PATH } from '../../Routes/AppRoutes'
 import { EditBar } from '../EditBar/EditBar'
 
 import s from './CardsHeader.module.scss'

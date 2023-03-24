@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { createNewPassword } from '../../s2-BLL/authSlice'
 import { PasswordInput } from '../../s4-common/common/PasswordInput/PasswordInput'
 import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
-import { PATH } from '../Routes/AppRoutes'
+import { PATH } from '../../app/Routes/AppRoutes'
 
 import s from './CreateNewPassword.module.css'
 

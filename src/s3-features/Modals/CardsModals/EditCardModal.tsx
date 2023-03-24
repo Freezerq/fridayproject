@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom'
 
 import { CardType } from '../../../s1-DAL/cardsAPI'
 import { useAppDispatch } from '../../../s1-DAL/store'
-import { addNewCard, updateCard } from '../../../s2-BLL/cardsSlice'
+import { updateCard } from '../../../s2-BLL/cardsSlice'
 import { SuperButton } from '../../../s4-common/common/SuperButton/SuperButton'
 
 type AddCardModalPropsType = {

@@ -3,7 +3,7 @@ import React from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { useNavigate } from 'react-router-dom'
 
-import { PATH } from '../../../s3-features/Routes/AppRoutes'
+import { PATH } from '../../../app/Routes/AppRoutes'
 
 export const BackToPacksList = () => {
   const navigate = useNavigate()

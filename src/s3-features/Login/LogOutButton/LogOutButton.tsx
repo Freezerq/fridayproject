@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { useAppDispatch } from '../../s1-DAL/store'
-import { logOutTC } from '../../s2-BLL/authSlice'
-import { SuperButton } from '../../s4-common/common/SuperButton/SuperButton'
-import logOutIcon from '../../s4-common/images/logout.svg'
+import logOutIcon from '../../../assets/img/logout.svg'
+import { useAppDispatch } from '../../../s1-DAL/store'
+import { logOutTC } from '../../../s2-BLL/authSlice'
+import { SuperButton } from '../../../s4-common/common/SuperButton/SuperButton'
 
 import style from './LogOutButton.module.scss'
 

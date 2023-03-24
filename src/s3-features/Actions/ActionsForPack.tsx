@@ -7,6 +7,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import { useLocation, useNavigate } from 'react-router-dom'
 
+import { PATH } from '../../app/Routes/AppRoutes'
 import { UpdatePackType } from '../../s1-DAL/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { deletePack, updatePack } from '../../s2-BLL/packSlice'
@@ -14,7 +15,6 @@ import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
 import { userIdSelector } from '../../s4-common/selectors/authSelectors'
 import { DeletePackModal } from '../Modals/PackModals/DeletePackModal'
 import { EditPackModal } from '../Modals/PackModals/EditPackModal'
-import { PATH } from '../Routes/AppRoutes'
 
 export const ActionsForPack = ({
   packId,

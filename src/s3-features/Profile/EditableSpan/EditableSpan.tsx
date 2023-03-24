@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState } from 'react'
 
 import TextField from '@mui/material/TextField'
 
-import pencil from '../../../s4-common/images/pencil.svg'
+import pencil from '../../../assets/img/pencil.svg'
 
 import s from './EditableSpan.module.scss'
 
