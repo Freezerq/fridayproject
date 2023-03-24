@@ -4,7 +4,7 @@ import './App.module.scss'
 
 import { useAppDispatch, useAppSelector } from '../s1-DAL/store'
 import { getAuthUserData } from '../s2-BLL/authSlice'
-import { LinearProgress } from '../s4-common/common/LinearProgress/LinearProgress'
+import { LinearProgress } from '../s4-common/commonComponents/LinearProgress/LinearProgress'
 
 import { ErrorSnackbar } from './ErrorSnackBar/ErrorSnackBar'
 import { Layout } from './Header/Layout'
