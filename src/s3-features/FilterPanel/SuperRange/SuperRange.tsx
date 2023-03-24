@@ -54,6 +54,7 @@ export const SuperRange = (props: SuperRangeType) => {
         onChangeCommitted={setValuesToUrl}
         value={[value1, value2]}
         disabled={appStatus === 'loading'}
+        max={props.maxValue}
       />
       <span className={s.number}>{value2}</span>
     </div>
