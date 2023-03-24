@@ -5,18 +5,12 @@
 
 }
 
-
 .disabled {
-
 }
 
 .secondary {
     background-color: white;
-
-
-
 }
-
 .default {
     width: 85%;
     height: 36px;
@@ -32,9 +26,7 @@
 
 .red {
     background-color: #CC1439;
-
 }
-
 .default:hover {
     background: #325dd3;
 }
@@ -47,20 +39,16 @@
     background-color: #E5F0FA
 }
 
-
 .default:active {
     background: #366EFF;
 }
-
 .secondary:active {
     background: #C9E5FF;
 }
-
 .red:active {
     background: #B31232;
 
 }
-
 .button:disabled {
     background-color: #004D99;
     color: #002E5C;

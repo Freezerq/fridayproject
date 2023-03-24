@@ -8,7 +8,7 @@ import Input from '@mui/material/Input'
 import InputAdornment from '@mui/material/InputAdornment'
 import InputLabel from '@mui/material/InputLabel'
 
-import s from './PasswordInput.module.css'
+import s from './PasswordInput.module.scss'
 
 type PasswordInputProps = {
   id: string

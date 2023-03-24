@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 import TablePagination from '@mui/material/TablePagination'
 
-import s from './Pagination.module.css'
+import s from './Pagination.module.scss'
 
 type PaginationPropsType = {
   paginationTitle: string

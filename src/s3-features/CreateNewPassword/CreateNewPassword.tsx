@@ -6,13 +6,13 @@ import Paper from '@mui/material/Paper'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Navigate, useParams } from 'react-router-dom'
 
+import { PATH } from '../../app/Routes/AppRoutes'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { createNewPassword } from '../../s2-BLL/authSlice'
 import { PasswordInput } from '../../s4-common/common/PasswordInput/PasswordInput'
 import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
-import { PATH } from '../../app/Routes/AppRoutes'
 
-import s from './CreateNewPassword.module.css'
+import s from './CreateNewPassword.module.scss'
 
 type NewPasswordType = {
   password: string

@@ -5,7 +5,7 @@ import Slider from '@mui/material/Slider'
 import { useAppSelector } from '../../../s1-DAL/store'
 import { appStatusSelector } from '../../../s4-common/selectors/appSelectors'
 
-import s from './SuperRange.module.css'
+import s from './SuperRange.module.scss'
 
 export const SuperRange = (props: SuperRangeType) => {
   const appStatus = useAppSelector(appStatusSelector)

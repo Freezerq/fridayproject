@@ -62,7 +62,7 @@ export const Registration = () => {
   return (
     <div className={style.container}>
       <form className={style.form} onSubmit={handleSubmit(submitFunc)}>
-        <h1 className={style.Title}>Sign Up</h1>
+        <h1 className={style.title}>Sign Up</h1>
         <Controller
           rules={{
             pattern: {

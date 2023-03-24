@@ -6,7 +6,7 @@ import Button from '@mui/material/Button'
 import { useAppSelector } from '../../s1-DAL/store'
 import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
 
-import s from './FilterPanel.module.css'
+import s from './FilterPanel.module.scss'
 import { SuperRange } from './SuperRange/SuperRange'
 import { SwitchButton } from './SwitchButton/SwitchButton'
 

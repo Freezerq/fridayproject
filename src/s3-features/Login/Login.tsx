@@ -13,10 +13,11 @@ import { LoginType } from '../../s1-DAL/authAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { loginTC } from '../../s2-BLL/authSlice'
 import { PasswordInput } from '../../s4-common/common/PasswordInput/PasswordInput'
+import { SuperButton } from '../../s4-common/common/SuperButton/SuperButton'
 import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
 import { isLoggedInSelector } from '../../s4-common/selectors/authSelectors'
 
-import s from './Login.module.css'
+import s from './Login.module.scss'
 
 export const Login: FC = () => {
   const dispatch = useAppDispatch()
@@ -70,21 +71,18 @@ export const Login: FC = () => {
             <NavLink to={PATH.PASSWORD_RESTORE} className={s.forgot}>
               Forgot Password?
             </NavLink>
-            <Button
-              sx={{
+            <SuperButton
+              style={{
+                marginTop: '69px',
+                letterSpacing: '0.01em',
+                fontSize: '1.3rem',
                 width: '347px',
-                borderRadius: '30px',
-                mt: '69px',
-                background: '#366EFF',
-                textTransform: 'none',
               }}
-              type={'submit'}
-              variant={'contained'}
-              color={'primary'}
+              type="submit"
               disabled={appStatus === 'loading'}
             >
               Sign In
-            </Button>
+            </SuperButton>
           </form>
           <div className={s.already}>Already have an account?</div>
           <NavLink to={'/registration'} className={s.singUp}>

@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import emailImg from '../../../assets/img/emailImg.svg'
 
-import s from './CheckEmail.module.css'
+import s from './CheckEmail.module.scss'
 
 export const CheckEmail: FC = () => {
   const navigate = useNavigate()
