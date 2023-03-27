@@ -25,8 +25,11 @@ const learnSlice = createSlice({
     setGrade(state, action: PayloadAction<{ grade: number }>) {
       state.currentCard.grade = action.payload.grade
     },
+    setShots(state, action: PayloadAction<{ shots: number }>) {
+      state.currentCard.shots = action.payload.shots
+    },
   },
 })
 
-export const { setIsFirst, setShowAnswer, setCurrentCard, setGrade } = learnSlice.actions
+export const { setIsFirst, setShowAnswer, setCurrentCard, setGrade, setShots } = learnSlice.actions
 export const learnReducer = learnSlice.reducer

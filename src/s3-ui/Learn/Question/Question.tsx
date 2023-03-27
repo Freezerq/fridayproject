@@ -15,9 +15,11 @@ export const Question = () => {
   const showAnswer = useAppSelector(showAnswerSelector)
   const question = useAppSelector(questionSelector)
   const shots = useAppSelector(shotsSelector)
+
   const dispatch = useAppDispatch()
+
   const onClickHandler = () => {
-    dispatch(setShowAnswer({ showAnswer: true }))
+    dispatch(setShowAnswer({ showAnswer: true })) //added shots in state
   }
 
   return (

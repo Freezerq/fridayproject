@@ -39,6 +39,8 @@ export const Learn = () => {
   useEffect(() => {
     if (first) {
       dispatch(setIsFirst({ isFirst: false }))
+
+      return
     }
     if (cards && cards.length > 0) {
       dispatch(setCurrentCard(getRandomCard(cards)))

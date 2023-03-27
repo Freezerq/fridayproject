@@ -5,7 +5,7 @@ import InputBase from '@mui/material/InputBase'
 import Paper from '@mui/material/Paper'
 
 import { useAppSelector } from '../../../s1-DAL/store'
-import { useDebounce } from '../../../utils/hooks/hooks'
+import { useDebounce } from '../../../hooks/useDebounce'
 import { appStatusSelector } from '../../selectors/appSelectors'
 
 import s from './SearchField.module.scss'
