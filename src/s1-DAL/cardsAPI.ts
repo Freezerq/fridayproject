@@ -43,7 +43,7 @@ export const cardsAPI = {
     return instance.put('cards/card', { card: data })
   },
   updateCardGrade(data: UpdateCardGradeType) {
-    return instance.put<UpdateCardGradeReturnType>('cards/grade', data)
+    return instance.put<{ updatedGrade: UpdateCardGradeReturnType }>('cards/grade', data)
   },
 }
 
@@ -102,7 +102,7 @@ export type UpdateCardGradeType = {
   grade: number
   card_id: string
 }
-type UpdateCardGradeReturnType = {
+export type UpdateCardGradeReturnType = {
   _id: string
   cardsPack_id: string
   card_id: string

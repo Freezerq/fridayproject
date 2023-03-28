@@ -5,13 +5,13 @@ import { useLocation, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { getCards } from '../../s2-BLL/cardsSlice'
-import { setCurrentCard, setIsFirst } from '../../s2-BLL/learnSlice'
+import { setCurrentCard } from '../../s2-BLL/learnSlice'
 import { BackToPacksList } from '../../s4-common/commonComponents/BackToPacksList/BackToPacksList'
 import { LinearProgress } from '../../s4-common/commonComponents/LinearProgress/LinearProgress'
 import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
 import { isLoggedInSelector } from '../../s4-common/selectors/authSelectors'
 import { cardsSelector, packNameSelector } from '../../s4-common/selectors/cardsSelectors'
-import { firstSelector, showAnswerSelector } from '../../s4-common/selectors/learnSelectors'
+import { showAnswerSelector } from '../../s4-common/selectors/learnSelectors'
 import { getRandomCard } from '../../utils/getRandomCards'
 
 import { Answer } from './Answer/Answer'
@@ -22,7 +22,6 @@ export const Learn = () => {
   const cards = useAppSelector(cardsSelector)
   const packName = useAppSelector(packNameSelector)
   const isLoggedIn = useAppSelector(isLoggedInSelector)
-  const first = useAppSelector(firstSelector)
   const showAnswer = useAppSelector(showAnswerSelector)
   const appStatus = useAppSelector(appStatusSelector)
 
@@ -37,15 +36,10 @@ export const Learn = () => {
   }, [packId, isLoggedIn])
 
   useEffect(() => {
-    if (first) {
-      dispatch(setIsFirst({ isFirst: false }))
-
-      return
-    }
     if (cards && cards.length > 0) {
       dispatch(setCurrentCard(getRandomCard(cards)))
     }
-  }, [isLoggedIn, packId, first, cards])
+  }, [isLoggedIn, packId, cards])
 
   if (appStatus === 'loading') {
     return <LinearProgress />

@@ -7,13 +7,12 @@ import RadioGroup from '@mui/material/RadioGroup'
 
 import { useAppDispatch, useAppSelector } from '../../../s1-DAL/store'
 import { updateCardGrade } from '../../../s2-BLL/cardsSlice'
-import { setGrade, setShots } from '../../../s2-BLL/learnSlice'
+import { setGrade } from '../../../s2-BLL/learnSlice'
 import { SuperButton } from '../../../s4-common/commonComponents/SuperButton/SuperButton'
 import {
   answerSelector,
   card_idSelector,
   gradeSelector,
-  shotsSelector,
 } from '../../../s4-common/selectors/learnSelectors'
 
 import s from './Answer.module.scss'
@@ -22,7 +21,6 @@ export const Answer = () => {
   const answer = useAppSelector(answerSelector)
   const grade = useAppSelector(gradeSelector)
   const card_id = useAppSelector(card_idSelector)
-  const shots = useAppSelector(shotsSelector)
   const dispatch = useAppDispatch()
   const grades = ['Did not know', 'Forgot', 'A lot of thought', 'Confused', 'Knew the answer']
 
@@ -32,7 +30,6 @@ export const Answer = () => {
 
   const onChangeGrade = (grade: number) => {
     dispatch(setGrade({ grade: grade + 1 }))
-    dispatch(setShots({ shots: shots + 1 }))
   }
   const onNextClickHandler = () => {
     dispatch(updateCardGrade({ grade, card_id }))

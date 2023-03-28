@@ -6,14 +6,16 @@ import {
   cardsAPI,
   CardsReturnType,
   GetCardsType,
+  UpdateCardGradeReturnType,
   UpdateCardGradeType,
   UpdateCardType,
 } from '../s1-DAL/cardsAPI'
 import { AppDispatch, RootState } from '../s1-DAL/store'
 import { errorUtils } from '../utils/errorUtils'
+import { getRandomCard } from '../utils/getRandomCards'
 
 import { setAppStatus } from './appSlice'
-import { setShowAnswer } from './learnSlice'
+import { setCurrentCard, setShowAnswer } from './learnSlice'
 
 const initialState = {
   cardsData: {} as CardsReturnType,
@@ -26,10 +28,23 @@ const cardsSlice = createSlice({
     setCards: (state, action: PayloadAction<{ cardsData: CardsReturnType }>) => {
       state.cardsData = action.payload.cardsData
     },
+    setUpdateGrade: (
+      state,
+      { payload }: PayloadAction<{ updatedGrade: UpdateCardGradeReturnType }>
+    ) => {
+      const card = state.cardsData.cards.find(card => card._id === payload.updatedGrade.card_id)
+
+      if (card) {
+        card.grade = payload.updatedGrade.grade
+        card.shots = payload.updatedGrade.shots
+      }
+
+      return state
+    },
   },
 })
 
-export const { setCards } = cardsSlice.actions
+export const { setCards, setUpdateGrade } = cardsSlice.actions
 
 export const cardsReducer = cardsSlice.reducer
 
@@ -39,7 +54,6 @@ export const getCards = (attributes: GetCardsType) => async (dispatch: Dispatch)
   try {
     const result = await cardsAPI.getAllCards(attributes)
 
-    console.log(result)
     dispatch(setCards({ cardsData: result.data }))
     dispatch(setAppStatus({ status: 'succeeded' }))
   } catch (e: any) {
@@ -87,24 +101,15 @@ export const updateCard =
 
 export const updateCardGrade =
   (data: UpdateCardGradeType) => async (dispatch: AppDispatch, getState: () => RootState) => {
-    const cardsData = getState().cards.cardsData
-
     dispatch(setAppStatus({ status: 'loading' }))
     try {
       const res = await cardsAPI.updateCardGrade(data)
 
-      dispatch(
-        setCards({
-          cardsData: {
-            ...cardsData,
-            cards: cardsData.cards.map(card =>
-              card._id === res.data.card_id
-                ? { ...card, grade: res.data.grade, shots: res.data.shots }
-                : card
-            ),
-          },
-        })
-      )
+      dispatch(setUpdateGrade(res.data))
+
+      const cards = getState().cards.cardsData.cards
+
+      dispatch(setCurrentCard(getRandomCard(cards)))
       dispatch(setAppStatus({ status: 'succeeded' }))
       dispatch(setShowAnswer({ showAnswer: false }))
     } catch (e: any) {
