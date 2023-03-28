@@ -4,8 +4,8 @@ import SearchIcon from '@mui/icons-material/Search'
 import InputBase from '@mui/material/InputBase'
 import Paper from '@mui/material/Paper'
 
-import { useAppSelector } from '../../../s1-DAL/store'
 import { useDebounce } from '../../../hooks/useDebounce'
+import { useAppSelector } from '../../../s1-DAL/store'
 import { appStatusSelector } from '../../selectors/appSelectors'
 
 import s from './SearchField.module.scss'

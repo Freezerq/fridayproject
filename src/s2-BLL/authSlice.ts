@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import axios, { AxiosError } from 'axios'
 import { Dispatch } from 'redux'
 
 import { UserType, LoginType, NewPasswordType, authAPI } from '../s1-DAL/authAPI'
@@ -69,7 +68,6 @@ export const getAuthUserData = () => async (dispatch: Dispatch) => {
     dispatch(setIsLoggedIn({ value: true }))
     dispatch(setAppStatus({ status: 'succeeded' }))
   } catch (e) {
-    console.error(e)
     dispatch(setIsLoggedIn({ value: false }))
     dispatch(setAppStatus({ status: 'failed' }))
   } finally {
@@ -77,35 +75,26 @@ export const getAuthUserData = () => async (dispatch: Dispatch) => {
   }
 }
 export const changeProfileName = (name: string) => async (dispatch: Dispatch) => {
-  const result = await authAPI.changeName(name)
+  dispatch(setAppStatus({ status: 'loading' }))
 
   try {
-    dispatch(changeName({ name }))
-  } catch (e) {
-    const err = e as Error | AxiosError<{ error: string }>
+    const result = await authAPI.changeName(name)
 
-    if (axios.isAxiosError(err)) {
-      const error = err.response?.data ? err.response.data.error : err.message
-      //dispatch(setError(error))
-    } else {
-      //dispatch(setError(`Native error ${err.message}`))
-    }
+    dispatch(changeName({ name }))
+    dispatch(setAppStatus({ status: 'succeeded' }))
+  } catch (e: any) {
+    errorUtils(dispatch, e)
   }
 }
 export const changeProfileImage = (avatar: string) => async (dispatch: Dispatch) => {
-  const result = await authAPI.changeImage(avatar)
-
+  dispatch(setAppStatus({ status: 'loading' }))
   try {
-    dispatch(changeAvatar({ avatar }))
-  } catch (e) {
-    const err = e as Error | AxiosError<{ error: string }>
+    const result = await authAPI.changeImage(avatar)
 
-    if (axios.isAxiosError(err)) {
-      const error = err.response?.data ? err.response.data.error : err.message
-      //dispatch(setError(error))
-    } else {
-      //dispatch(setError(`Native error ${err.message}`))
-    }
+    dispatch(changeAvatar({ avatar }))
+    dispatch(setAppStatus({ status: 'succeeded' }))
+  } catch (e: any) {
+    errorUtils(dispatch, e)
   }
 }
 
