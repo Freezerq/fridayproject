@@ -8,8 +8,8 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 
 import { AddNewPackType } from '../../../s1-DAL/packsAPI'
 import { useAppSelector } from '../../../s1-DAL/store'
+import { SuperButton } from '../../../s4-common'
 import { BasicModal } from '../BasicModal'
-import {SuperButton} from "../../../s4-common";
 
 type AddPackModalType = {
   onAddHandle: (data: AddNewPackType) => void

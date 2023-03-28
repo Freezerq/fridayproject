@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import Button from '@mui/material/Button'
