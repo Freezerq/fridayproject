@@ -4,6 +4,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import { IconButton } from '@mui/material'
 import Avatar from '@mui/material/Avatar'
 
+import defaultAvatar from '../../../assets/img/defaultAvatar.svg'
 import { useAppDispatch, useAppSelector } from '../../../s1-DAL/store'
 import { changeProfileImage } from '../../../s2-BLL/authSlice'
 import { avatarSelector } from '../../../s4-common/selectors/authSelectors'
@@ -38,7 +39,11 @@ export const ProfileAvatar = () => {
 
   return (
     <div className={s.container}>
-      <Avatar src={avatar ? avatar : ''} style={{ width: '100px', height: '100px' }} alt="ava" />
+      <Avatar
+        src={avatar ? avatar : defaultAvatar}
+        style={{ width: '100px', height: '100px' }}
+        alt="ava"
+      />
       <label>
         <input
           type="file"
