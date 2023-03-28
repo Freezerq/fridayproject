@@ -20,22 +20,22 @@ export const Question = () => {
 
   const onClickHandler = () => {
     dispatch(setShowAnswer({ showAnswer: true }))
-
-    return (
-      <div className={s.questionContainer}>
-        <div className={s.question}>
-          <b>Question: </b>
-          {question}
-        </div>
-        <span
-          className={s.numberOfAnswer}
-        >{`Number of attempts to answer the question: ${shots}`}</span>
-        {!showAnswer && (
-          <SuperButton className={s.button} onClick={onClickHandler}>
-            Show answer
-          </SuperButton>
-        )}
-      </div>
-    )
   }
+
+  return (
+    <div className={s.questionContainer}>
+      <div className={s.question}>
+        <b>Question: </b>
+        {question}
+      </div>
+      <span
+        className={s.numberOfAnswer}
+      >{`Number of attempts to answer the question: ${shots}`}</span>
+      {!showAnswer && (
+        <SuperButton className={s.button} onClick={onClickHandler}>
+          Show answer
+        </SuperButton>
+      )}
+    </div>
+  )
 }
