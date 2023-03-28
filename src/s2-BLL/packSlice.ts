@@ -8,7 +8,7 @@ import {
   UpdatePackType,
 } from '../s1-DAL/packsAPI'
 import { AppDispatch, RootState } from '../s1-DAL/store'
-import { errorUtils } from '../utils/errorUtils'
+import { errorUtils } from '../s4-common/utils/errorUtils'
 
 import { setAppStatus } from './appSlice'
 

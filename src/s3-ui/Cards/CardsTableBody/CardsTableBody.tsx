@@ -7,9 +7,7 @@ import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 
 import { useAppSelector } from '../../../s1-DAL/store'
-import { appStatusSelector } from '../../../s4-common/selectors/appSelectors'
-import { userIdSelector } from '../../../s4-common/selectors/authSelectors'
-import { cardsSelector } from '../../../s4-common/selectors/cardsSelectors'
+import { appStatusSelector, cardsSelector, userIdSelector } from '../../../s4-common'
 import { ActionsForCards } from '../../Actions/ActionsForCards'
 
 export const CardsTableBody = () => {

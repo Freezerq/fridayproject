@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { HeadTable } from '../../../s4-common/commonComponents/HeadTable/HeadTable'
+import { HeadTable } from '../../../s4-common'
 import { HeaderType } from '../../Packs/PacksTableHead/PacksTableHead'
 
 export type CardData = {

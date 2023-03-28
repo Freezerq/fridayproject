@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from 'react-router-dom'
 
 import { useAppSelector } from '../../s1-DAL/store'
-import { isLoggedInSelector } from '../../s4-common/selectors/authSelectors'
+import { isLoggedInSelector } from '../../s4-common'
 
 import { PATH } from './AppRoutes'
 

@@ -5,14 +5,20 @@ import { NavLink, useNavigate } from 'react-router-dom'
 
 import { PATH } from '../../app/Routes/AppRoutes'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { getNewToken } from '../../s2-BLL/authSlice'
-import { CommonInput } from '../../s4-common/commonComponents/CommonInput/CommonInput'
-import { SuperButton } from '../../s4-common/commonComponents/SuperButton/SuperButton'
-import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
-import { isSendedEmailSelector } from '../../s4-common/selectors/authSelectors'
-import { emailCheck } from '../../utils/regularExpressions'
+import { getNewToken } from '../../s2-BLL'
+import {
+  appStatusSelector,
+  CommonInput,
+  emailCheck,
+  isSendedEmailSelector,
+  SuperButton,
+} from '../../s4-common'
 
 import style from './PassRecovery.module.scss'
+
+interface FormValues {
+  email: string
+}
 
 export const PassRecovery = () => {
   const [email, setEmail] = useState('')
@@ -81,9 +87,4 @@ export const PassRecovery = () => {
       </form>
     </div>
   )
-}
-
-//types
-interface FormValues {
-  email: string
 }

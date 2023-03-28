@@ -4,11 +4,22 @@ import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
 import Button from '@mui/material/Button'
 
 import { useAppSelector } from '../../s1-DAL/store'
-import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
+import { appStatusSelector } from '../../s4-common'
 
 import s from './FilterPanel.module.scss'
 import { SuperRange } from './SuperRange/SuperRange'
 import { SwitchButton } from './SwitchButton/SwitchButton'
+
+type FilterPanelType = {
+  minSearchCardsNumber: number
+  maxSearchCardsNumber: number
+  maxCardsValue: number
+  showMyPacks: () => void
+  showAllPacks: () => void
+  resetFilters: () => void
+  onChangeSlider: (min: number, max: number) => void
+  searchId: string
+}
 
 export const FilterPanel = (props: FilterPanelType) => {
   const appStatus = useAppSelector(appStatusSelector)
@@ -49,15 +60,4 @@ export const FilterPanel = (props: FilterPanelType) => {
       </Button>
     </div>
   )
-}
-
-type FilterPanelType = {
-  minSearchCardsNumber: number
-  maxSearchCardsNumber: number
-  maxCardsValue: number
-  showMyPacks: () => void
-  showAllPacks: () => void
-  resetFilters: () => void
-  onChangeSlider: (min: number, max: number) => void
-  searchId: string
 }

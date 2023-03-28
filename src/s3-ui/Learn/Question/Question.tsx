@@ -1,13 +1,13 @@
 import React from 'react'
 
 import { useAppDispatch, useAppSelector } from '../../../s1-DAL/store'
-import { setShowAnswer } from '../../../s2-BLL/learnSlice'
-import { SuperButton } from '../../../s4-common/commonComponents/SuperButton/SuperButton'
+import { setShowAnswer } from '../../../s2-BLL'
 import {
   questionSelector,
   shotsSelector,
   showAnswerSelector,
-} from '../../../s4-common/selectors/learnSelectors'
+  SuperButton,
+} from '../../../s4-common'
 
 import s from './Question.module.scss'
 
@@ -19,23 +19,23 @@ export const Question = () => {
   const dispatch = useAppDispatch()
 
   const onClickHandler = () => {
-    dispatch(setShowAnswer({ showAnswer: true })) //added shots in state
-  }
+    dispatch(setShowAnswer({ showAnswer: true }))
 
-  return (
-    <div className={s.questionContainer}>
-      <div className={s.question}>
-        <b>Question: </b>
-        {question}
+    return (
+      <div className={s.questionContainer}>
+        <div className={s.question}>
+          <b>Question: </b>
+          {question}
+        </div>
+        <span
+          className={s.numberOfAnswer}
+        >{`Number of attempts to answer the question: ${shots}`}</span>
+        {!showAnswer && (
+          <SuperButton className={s.button} onClick={onClickHandler}>
+            Show answer
+          </SuperButton>
+        )}
       </div>
-      <span
-        className={s.numberOfAnswer}
-      >{`Number of attempts to answer the question: ${shots}`}</span>
-      {!showAnswer && (
-        <SuperButton className={s.button} onClick={onClickHandler}>
-          Show answer
-        </SuperButton>
-      )}
-    </div>
-  )
+    )
+  }
 }

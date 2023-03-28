@@ -1,8 +1,6 @@
 import React from 'react'
 
-import { SuperButton } from '../../s4-common/commonComponents/SuperButton/SuperButton'
-import { SuperCheckbox } from '../../s4-common/commonComponents/SuperCheckbox/SuperCheckbox'
-import { SuperInputText } from '../../s4-common/commonComponents/SuperInputText/SuperInputText'
+import { SuperButton, SuperCheckbox, SuperInputText } from '../../s4-common'
 
 export const ComponentTest = () => {
   return (

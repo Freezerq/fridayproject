@@ -7,9 +7,8 @@ import { useLocation, useSearchParams } from 'react-router-dom'
 
 import { AddNewPackType, UpdatePackType } from '../../s1-DAL/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { addNewPack, deletePack, getPacks, updatePack } from '../../s2-BLL/packSlice'
-import { SearchField } from '../../s4-common/commonComponents/SearchField/SearchField'
-import { isLoggedInSelector, userIdSelector } from '../../s4-common/selectors/authSelectors'
+import { addNewPack, deletePack, getPacks, updatePack } from '../../s2-BLL'
+import { isLoggedInSelector, SearchField, userIdSelector } from '../../s4-common'
 import {
   maxCardsValueSelector,
   packsSelector,

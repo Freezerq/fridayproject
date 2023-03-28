@@ -6,9 +6,8 @@ import Avatar from '@mui/material/Avatar'
 
 import defaultAvatar from '../../../assets/img/defaultAvatar.svg'
 import { useAppDispatch, useAppSelector } from '../../../s1-DAL/store'
-import { changeProfileImage } from '../../../s2-BLL/authSlice'
-import { avatarSelector } from '../../../s4-common/selectors/authSelectors'
-import { convertFileToBase64 } from '../../../utils/convertFileToBase64'
+import { changeProfileImage } from '../../../s2-BLL'
+import { avatarSelector, convertFileToBase64 } from '../../../s4-common'
 
 import s from './ProfileAvatar.module.scss'
 

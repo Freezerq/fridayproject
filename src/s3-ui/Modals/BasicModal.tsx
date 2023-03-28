@@ -16,16 +16,16 @@ const style = {
   p: 4,
 }
 
+type BasicModalPropsType = {
+  children: ReactNode
+  handleClose: () => void
+  open: boolean
+}
+
 export const BasicModal: FC<BasicModalPropsType> = ({ children, handleClose, open, ...props }) => {
   return (
     <Modal open={open} onClose={handleClose}>
       <Box sx={style}>{children}</Box>
     </Modal>
   )
-}
-
-type BasicModalPropsType = {
-  children: ReactNode
-  handleClose: () => void
-  open: boolean
 }

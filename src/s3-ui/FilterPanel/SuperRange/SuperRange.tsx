@@ -3,9 +3,16 @@ import React, { SyntheticEvent, useEffect, useState } from 'react'
 import Slider from '@mui/material/Slider'
 
 import { useAppSelector } from '../../../s1-DAL/store'
-import { appStatusSelector } from '../../../s4-common/selectors/appSelectors'
+import { appStatusSelector } from '../../../s4-common'
 
 import s from './SuperRange.module.scss'
+
+type SuperRangeType = {
+  min: number
+  max: number
+  setToUrlCardValues: (min: number, max: number) => void
+  maxValue: number
+}
 
 export const SuperRange = (props: SuperRangeType) => {
   const appStatus = useAppSelector(appStatusSelector)
@@ -59,11 +66,4 @@ export const SuperRange = (props: SuperRangeType) => {
       <span className={s.number}>{value2}</span>
     </div>
   )
-}
-
-type SuperRangeType = {
-  min: number
-  max: number
-  setToUrlCardValues: (min: number, max: number) => void
-  maxValue: number
 }

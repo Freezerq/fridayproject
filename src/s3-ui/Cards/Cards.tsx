@@ -8,14 +8,14 @@ import { Navigate, useLocation, useSearchParams } from 'react-router-dom'
 import { PATH } from '../../app/Routes/AppRoutes'
 import { AddNewCardType } from '../../s1-DAL/cardsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { addNewCard, getCards } from '../../s2-BLL/cardsSlice'
-import { SearchField } from '../../s4-common/commonComponents/SearchField/SearchField'
-import { isLoggedInSelector } from '../../s4-common/selectors/authSelectors'
+import { addNewCard, getCards } from '../../s2-BLL'
 import {
   cardsSelector,
   cardsTotalCountSelector,
+  isLoggedInSelector,
   packNameSelector,
-} from '../../s4-common/selectors/cardsSelectors'
+  SearchField,
+} from '../../s4-common'
 
 import s from './Cards.module.scss'
 import { CardsHeader } from './CardsHeader/CardsHeader'

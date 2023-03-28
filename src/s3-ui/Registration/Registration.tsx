@@ -5,12 +5,14 @@ import { Navigate, NavLink } from 'react-router-dom'
 
 import eye from '../../assets/img/eyeIcon.svg'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { registrationThunk } from '../../s2-BLL/authSlice'
-import { CommonInput } from '../../s4-common/commonComponents/CommonInput/CommonInput'
-import { SuperButton } from '../../s4-common/commonComponents/SuperButton/SuperButton'
-import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
-import { isLoggedInSelector } from '../../s4-common/selectors/authSelectors'
-import { emailCheck } from '../../utils/regularExpressions'
+import { registrationThunk } from '../../s2-BLL'
+import {
+  appStatusSelector,
+  CommonInput,
+  emailCheck,
+  isLoggedInSelector,
+  SuperButton,
+} from '../../s4-common'
 
 import style from './registration.module.scss'
 

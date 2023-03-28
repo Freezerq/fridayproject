@@ -11,6 +11,13 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { UpdatePackType } from '../../../s1-DAL/packsAPI'
 import { BasicModal } from '../BasicModal'
 
+type AddPackModalType = {
+  onEditHandle: (data: UpdatePackType) => void
+  packId: string
+  packName: string
+  hasText?: boolean
+}
+
 export const EditPackModal = ({ packId, packName, onEditHandle, ...props }: AddPackModalType) => {
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
@@ -71,12 +78,4 @@ export const EditPackModal = ({ packId, packName, onEditHandle, ...props }: AddP
       </BasicModal>
     </>
   )
-}
-
-//types
-type AddPackModalType = {
-  onEditHandle: (data: UpdatePackType) => void
-  packId: string
-  packName: string
-  hasText?: boolean
 }

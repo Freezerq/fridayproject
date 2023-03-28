@@ -3,8 +3,8 @@ import React, { useEffect } from 'react'
 import './App.module.scss'
 
 import { useAppDispatch, useAppSelector } from '../s1-DAL/store'
-import { getAuthUserData } from '../s2-BLL/authSlice'
-import { LinearProgress } from '../s4-common/commonComponents/LinearProgress/LinearProgress'
+import { getAuthUserData } from '../s2-BLL'
+import { LinearProgress } from '../s4-common'
 
 import { ErrorSnackbar } from './ErrorSnackBar/ErrorSnackBar'
 import { Layout } from './Header/Layout'

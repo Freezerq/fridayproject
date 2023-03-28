@@ -7,6 +7,13 @@ import Typography from '@mui/material/Typography'
 
 import { BasicModal } from '../BasicModal'
 
+type DeletePackModalType = {
+  packId: string
+  packName: string
+  onDeleteHandle: (id: string) => void
+  hasText?: boolean
+}
+
 export const DeletePackModal = ({
   packId,
   packName,
@@ -43,11 +50,4 @@ export const DeletePackModal = ({
       </BasicModal>
     </>
   )
-}
-
-type DeletePackModalType = {
-  packId: string
-  packName: string
-  onDeleteHandle: (id: string) => void
-  hasText?: boolean
 }

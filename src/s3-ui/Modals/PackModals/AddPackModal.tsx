@@ -8,8 +8,12 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 
 import { AddNewPackType } from '../../../s1-DAL/packsAPI'
 import { useAppSelector } from '../../../s1-DAL/store'
-import { SuperButton } from '../../../s4-common/commonComponents/SuperButton/SuperButton'
 import { BasicModal } from '../BasicModal'
+import {SuperButton} from "../../../s4-common";
+
+type AddPackModalType = {
+  onAddHandle: (data: AddNewPackType) => void
+}
 
 export const AddPackModal = ({ onAddHandle, ...props }: AddPackModalType) => {
   const [open, setOpen] = useState(false)
@@ -80,9 +84,4 @@ export const AddPackModal = ({ onAddHandle, ...props }: AddPackModalType) => {
       </BasicModal>
     </div>
   )
-}
-
-//types
-type AddPackModalType = {
-  onAddHandle: (data: AddNewPackType) => void
 }

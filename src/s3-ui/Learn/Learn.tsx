@@ -4,15 +4,17 @@ import Paper from '@mui/material/Paper'
 import { useLocation, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { getCards } from '../../s2-BLL/cardsSlice'
-import { setCurrentCard } from '../../s2-BLL/learnSlice'
-import { BackToPacksList } from '../../s4-common/commonComponents/BackToPacksList/BackToPacksList'
-import { LinearProgress } from '../../s4-common/commonComponents/LinearProgress/LinearProgress'
-import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
-import { isLoggedInSelector } from '../../s4-common/selectors/authSelectors'
-import { cardsSelector, packNameSelector } from '../../s4-common/selectors/cardsSelectors'
-import { showAnswerSelector } from '../../s4-common/selectors/learnSelectors'
-import { getRandomCard } from '../../utils/getRandomCards'
+import { getCards, setCurrentCard } from '../../s2-BLL'
+import {
+  appStatusSelector,
+  BackToPacksList,
+  cardsSelector,
+  getRandomCard,
+  isLoggedInSelector,
+  LinearProgress,
+  packNameSelector,
+  showAnswerSelector,
+} from '../../s4-common'
 
 import { Answer } from './Answer/Answer'
 import s from './Learn.module.scss'

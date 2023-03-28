@@ -11,11 +11,8 @@ import { Navigate, NavLink } from 'react-router-dom'
 import { PATH } from '../../app/Routes/AppRoutes'
 import { LoginType } from '../../s1-DAL/authAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { loginTC } from '../../s2-BLL/authSlice'
-import { PasswordInput } from '../../s4-common/commonComponents/PasswordInput/PasswordInput'
-import { SuperButton } from '../../s4-common/commonComponents/SuperButton/SuperButton'
-import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
-import { isLoggedInSelector } from '../../s4-common/selectors/authSelectors'
+import { loginTC } from '../../s2-BLL'
+import { appStatusSelector, isLoggedInSelector, PasswordInput, SuperButton } from '../../s4-common'
 
 import s from './Login.module.scss'
 

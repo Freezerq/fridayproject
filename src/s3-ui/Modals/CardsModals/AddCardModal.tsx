@@ -9,8 +9,8 @@ import { Controller, useForm } from 'react-hook-form'
 import { useLocation } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../s1-DAL/store'
-import { addNewCard } from '../../../s2-BLL/cardsSlice'
-import { SuperButton } from '../../../s4-common/commonComponents/SuperButton/SuperButton'
+import { addNewCard } from '../../../s2-BLL'
+import { SuperButton } from '../../../s4-common'
 
 type AddCardModalPropsType = {
   pack_id: string

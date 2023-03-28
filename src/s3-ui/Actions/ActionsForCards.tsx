@@ -5,7 +5,7 @@ import DeleteSweepIcon from '@mui/icons-material/DeleteSweep'
 
 import { CardType } from '../../s1-DAL/cardsAPI'
 import { useAppSelector } from '../../s1-DAL/store'
-import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
+import { appStatusSelector } from '../../s4-common'
 import { BasicModal } from '../Modals/BasicModal'
 import { DeleteCardModal } from '../Modals/CardsModals/DeleteCardModal'
 import { EditCardModal } from '../Modals/CardsModals/EditCardModal'

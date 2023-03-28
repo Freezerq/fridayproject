@@ -10,11 +10,18 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { PATH } from '../../app/Routes/AppRoutes'
 import { UpdatePackType } from '../../s1-DAL/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { deletePack, updatePack } from '../../s2-BLL/packSlice'
-import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
-import { userIdSelector } from '../../s4-common/selectors/authSelectors'
+import { deletePack, updatePack } from '../../s2-BLL'
+import { appStatusSelector, userIdSelector } from '../../s4-common'
 import { DeletePackModal } from '../Modals/PackModals/DeletePackModal'
 import { EditPackModal } from '../Modals/PackModals/EditPackModal'
+
+type ActionsPropsType = {
+  packId: string
+  packName: string
+  totalCardsInPack: number
+  id: string
+  hasText?: boolean
+}
 
 export const ActionsForPack = ({
   packId,
@@ -96,12 +103,4 @@ export const ActionsForPack = ({
       </ThemeProvider>
     </Typography>
   )
-}
-
-type ActionsPropsType = {
-  packId: string
-  packName: string
-  totalCardsInPack: number
-  id: string
-  hasText?: boolean
 }

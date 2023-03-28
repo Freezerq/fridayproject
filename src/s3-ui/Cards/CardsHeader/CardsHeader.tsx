@@ -6,13 +6,13 @@ import { useNavigate } from 'react-router-dom'
 import { PATH } from '../../../app/Routes/AppRoutes'
 import { AddNewCardType } from '../../../s1-DAL/cardsAPI'
 import { useAppSelector } from '../../../s1-DAL/store'
-import { BackToPacksList } from '../../../s4-common/commonComponents/BackToPacksList/BackToPacksList'
-import { SuperButton } from '../../../s4-common/commonComponents/SuperButton/SuperButton'
-import { userIdSelector } from '../../../s4-common/selectors/authSelectors'
 import {
+  BackToPacksList,
   cardsTotalCountSelector,
   packUserIdSelector,
-} from '../../../s4-common/selectors/cardsSelectors'
+  SuperButton,
+  userIdSelector,
+} from '../../../s4-common'
 import { BasicModal } from '../../Modals/BasicModal'
 import { AddCardModal } from '../../Modals/CardsModals/AddCardModal'
 import { EditBar } from '../EditBar/EditBar'

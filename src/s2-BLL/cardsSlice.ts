@@ -11,8 +11,7 @@ import {
   UpdateCardType,
 } from '../s1-DAL/cardsAPI'
 import { AppDispatch, RootState } from '../s1-DAL/store'
-import { errorUtils } from '../utils/errorUtils'
-import { getRandomCard } from '../utils/getRandomCards'
+import { errorUtils, getRandomCard } from '../s4-common'
 
 import { setAppStatus } from './appSlice'
 import { setCurrentCard, setShowAnswer } from './learnSlice'

@@ -11,6 +11,11 @@ import { UpdatePackType } from '../../../s1-DAL/packsAPI'
 import { useAppSelector } from '../../../s1-DAL/store'
 import { ActionsForPack } from '../../Actions/ActionsForPack'
 
+type PacksTableBodyType = {
+  onDeletePackHandle: (id: string) => void
+  onEditPackHandle: (data: UpdatePackType) => void
+}
+
 export const PacksTableBody = (props: PacksTableBodyType) => {
   const packs = useAppSelector(state => state.packs.packsData.cardPacks)
   const appStatus = useAppSelector(state => state.app.status)
@@ -52,9 +57,4 @@ export const PacksTableBody = (props: PacksTableBodyType) => {
       ))}
     </TableBody>
   )
-}
-
-type PacksTableBodyType = {
-  onDeletePackHandle: (id: string) => void
-  onEditPackHandle: (data: UpdatePackType) => void
 }
