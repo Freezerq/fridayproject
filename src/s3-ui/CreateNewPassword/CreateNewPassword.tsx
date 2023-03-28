@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { createNewPassword } from '../../s2-BLL/authSlice'
 import { PasswordInput } from '../../s4-common/commonComponents/PasswordInput/PasswordInput'
 import { appStatusSelector } from '../../s4-common/selectors/appSelectors'
+import { isCreateNewPasswordSelector } from '../../s4-common/selectors/authSelectors'
 
 import s from './CreateNewPassword.module.scss'
 
@@ -20,7 +21,7 @@ type NewPasswordType = {
 
 export const CreateNewPassword = () => {
   const dispatch = useAppDispatch()
-  const isCreateNewPassword = useAppSelector(state => state.auth.isCreateNewPassword)
+  const isCreateNewPassword = useAppSelector(isCreateNewPasswordSelector)
   const appStatus = useAppSelector(appStatusSelector)
 
   const {
