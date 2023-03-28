@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
 import Paper from '@mui/material/Paper'
 import TextField from '@mui/material/TextField'
@@ -11,7 +10,7 @@ import { Navigate, NavLink } from 'react-router-dom'
 import { PATH } from '../../app/Routes/AppRoutes'
 import { LoginType } from '../../s1-DAL/authAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { loginTC } from '../../s2-BLL'
+import { loginTC } from '../../s2-BLL/authSlice'
 import { appStatusSelector, isLoggedInSelector, PasswordInput, SuperButton } from '../../s4-common'
 
 import s from './Login.module.scss'

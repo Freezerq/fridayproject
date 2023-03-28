@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useAppDispatch, useAppSelector } from '../../../s1-DAL/store'
-import { setShowAnswer } from '../../../s2-BLL'
+import { setShowAnswer } from '../../../s2-BLL/learnSlice'
 import {
   questionSelector,
   shotsSelector,

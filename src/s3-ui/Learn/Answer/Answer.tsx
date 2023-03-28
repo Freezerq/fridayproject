@@ -6,7 +6,8 @@ import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 
 import { useAppDispatch, useAppSelector } from '../../../s1-DAL/store'
-import { setGrade, updateCardGrade } from '../../../s2-BLL'
+import { updateCardGrade } from '../../../s2-BLL/cardsSlice'
+import { setGrade } from '../../../s2-BLL/learnSlice'
 import { answerSelector, card_idSelector, gradeSelector, SuperButton } from '../../../s4-common'
 
 import s from './Answer.module.scss'

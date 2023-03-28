@@ -8,7 +8,7 @@ import { Navigate, useLocation, useSearchParams } from 'react-router-dom'
 import { PATH } from '../../app/Routes/AppRoutes'
 import { AddNewCardType } from '../../s1-DAL/cardsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { addNewCard, getCards } from '../../s2-BLL'
+import { addNewCard, getCards } from '../../s2-BLL/cardsSlice'
 import {
   cardsSelector,
   cardsTotalCountSelector,

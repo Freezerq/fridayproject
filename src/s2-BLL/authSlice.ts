@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Dispatch } from 'redux'
 
 import { UserType, LoginType, NewPasswordType, authAPI } from '../s1-DAL/authAPI'
-import { errorUtils } from '../s4-common/utils/errorUtils'
+import { errorUtils } from '../s4-common'
 
 import { setAppError, setAppStatus, setIsInitializedAC } from './appSlice'
 

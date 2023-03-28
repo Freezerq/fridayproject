@@ -4,7 +4,8 @@ import Paper from '@mui/material/Paper'
 import { useLocation, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { getCards, setCurrentCard } from '../../s2-BLL'
+import { getCards } from '../../s2-BLL/cardsSlice'
+import { setCurrentCard } from '../../s2-BLL/learnSlice'
 import {
   appStatusSelector,
   BackToPacksList,

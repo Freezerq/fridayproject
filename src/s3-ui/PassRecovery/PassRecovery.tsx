@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 
 import { PATH } from '../../app/Routes/AppRoutes'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { getNewToken } from '../../s2-BLL'
+import { getNewToken } from '../../s2-BLL/authSlice'
 import {
   appStatusSelector,
   CommonInput,

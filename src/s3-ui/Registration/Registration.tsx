@@ -5,7 +5,7 @@ import { Navigate, NavLink } from 'react-router-dom'
 
 import eye from '../../assets/img/eyeIcon.svg'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { registrationThunk } from '../../s2-BLL'
+import { registrationThunk } from '../../s2-BLL/authSlice'
 import {
   appStatusSelector,
   CommonInput,
