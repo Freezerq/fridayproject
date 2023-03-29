@@ -2,19 +2,7 @@
     display: flex;
     flex-flow: row wrap;
 }
-
-.nav a {
-    padding: 0 1.8rem;
-    font-size: 0.8rem;
-    color: #041e21;
-    text-decoration: none;
-}
-
-.nav a:hover {
-    color: #12852b;
-    cursor: pointer;
-}
-
-.nav a.active {
-    text-decoration: underline;
+.toolBar{
+    display: flex;
+    justify-content: flex-end;
 }

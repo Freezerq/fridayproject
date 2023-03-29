@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, FC } from 'react'
 
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import { IconButton } from '@mui/material'
@@ -11,7 +11,12 @@ import { avatarSelector, convertFileToBase64 } from '../../../s4-common'
 
 import s from './ProfileAvatar.module.scss'
 
-export const ProfileAvatar = () => {
+type ProfileAvatarPropsType = {
+  size: number
+  withButton?: boolean
+}
+
+export const ProfileAvatar: FC<ProfileAvatarPropsType> = ({ size, withButton }) => {
   const avatar = useAppSelector(avatarSelector)
 
   const dispatch = useAppDispatch()
@@ -40,27 +45,29 @@ export const ProfileAvatar = () => {
     <div className={s.container}>
       <Avatar
         src={avatar ? avatar : defaultAvatar}
-        style={{ width: '100px', height: '100px' }}
+        style={{ width: `${size}px`, height: `${size}px` }}
         alt="ava"
       />
-      <label>
-        <input
-          type="file"
-          onChange={e => uploadHandler(e, onChangeAvatar)}
-          style={{ display: 'none' }}
-          accept="image/png, image/jpeg, image/svg"
-        />
-        <IconButton
-          component="span"
-          style={{
-            position: 'absolute',
-            bottom: '-12px',
-            right: '-15px',
-          }}
-        >
-          <CloudUploadIcon />
-        </IconButton>
-      </label>
+      {withButton && (
+        <label>
+          <input
+            type="file"
+            onChange={e => uploadHandler(e, onChangeAvatar)}
+            style={{ display: 'none' }}
+            accept="image/png, image/jpeg, image/svg"
+          />
+          <IconButton
+            component="span"
+            style={{
+              position: 'absolute',
+              bottom: '-12px',
+              right: '-15px',
+            }}
+          >
+            <CloudUploadIcon />
+          </IconButton>
+        </label>
+      )}
     </div>
   )
 }

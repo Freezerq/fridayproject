@@ -25,7 +25,7 @@ const PersonalInfo = ({ profile, onChangeHandler, ...props }: PersonalInfoPropsT
 
       <h2 className={style.title}>Personal Information</h2>
 
-      <ProfileAvatar />
+      <ProfileAvatar size={100} withButton />
 
       <div className={style.name}>
         <EditableSpan value={profile.name} onChange={onChangeHandler} />
