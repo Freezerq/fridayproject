@@ -12,8 +12,7 @@ import { UpdatePackType } from '../../s1-DAL/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { deletePack, updatePack } from '../../s2-BLL/packSlice'
 import { appStatusSelector, userIdSelector } from '../../s4-common'
-import { DeletePackModal } from '../Modals/PackModals/DeletePackModal'
-import { EditPackModal } from '../Modals/PackModals/EditPackModal'
+import { DeletePackModal, EditPackModal } from '../Modals'
 
 type ActionsPropsType = {
   packId: string

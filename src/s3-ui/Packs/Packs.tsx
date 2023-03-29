@@ -15,12 +15,12 @@ import {
   packsTotalCountSelector,
 } from '../../s4-common/selectors/packsSelectors'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
-import { AddPackModal } from '../Modals/PackModals/AddPackModal'
+import { AddPackModal } from '../Modals'
 import { SuperPagination } from '../Pagination/Pagination'
 
 import s from './Packs.module.scss'
-import { PacksTableBody } from './PacksTableBody/PacksTableBody'
-import { PacksTableHead } from './PacksTableHead/PacksTableHead'
+import { PacksTableBody } from './PacksTableBody'
+import { PacksTableHead } from './PacksTableHead'
 
 export const Packs = () => {
   const packs = useAppSelector(packsSelector)

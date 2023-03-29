@@ -2,7 +2,6 @@ import React, { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes } from 'reac
 
 import s from './SuperCheckbox.module.scss'
 
-// тип пропсов обычного инпута
 type DefaultInputPropsType = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
@@ -18,10 +17,10 @@ export const SuperCheckbox: React.FC<SuperCheckboxPropsType> = ({
   onChangeChecked,
   className,
   spanClassName,
-  children, // в эту переменную попадёт текст, типизировать не нужно так как он затипизирован в React.FC
+  children,
   id,
 
-  ...restProps // все остальные пропсы попадут в объект restProps
+  ...restProps
 }) => {
   const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
     if (onChangeChecked !== undefined) {
@@ -44,13 +43,13 @@ export const SuperCheckbox: React.FC<SuperCheckboxPropsType> = ({
         type={'checkbox'}
         onChange={onChangeCallback}
         className={finalInputClassName}
-        {...restProps} // отдаём инпуту остальные пропсы если они есть (checked например там внутри)
+        {...restProps}
       />
       {children && (
         <span id={id ? id + '-span' : undefined} className={s.spanClassName}>
           {children}
         </span>
       )}
-    </label> // благодаря label нажатие на спан передастся в инпут
+    </label>
   )
 }

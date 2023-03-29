@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { PATH } from '../../../app/Routes/AppRoutes'
 import { UpdatePackType } from '../../../s1-DAL/packsAPI'
 import { useAppSelector } from '../../../s1-DAL/store'
-import { ActionsForPack } from '../../Actions/ActionsForPack'
+import { ActionsForPack } from '../../Actions'
 
 type PacksTableBodyType = {
   onDeletePackHandle: (id: string) => void

@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react'
 
 import { useAppSelector } from '../../../s1-DAL/store'
-import { ProfileAvatar } from '../../../s3-ui/Profile/ProfileAvatar/ProfileAvatar'
+import { ProfileAvatar } from '../../../s3-ui/Profile'
 import { userNameSelector } from '../../../s4-common'
 
-import { MenuEditBar } from './MenuEditBar'
+import { MenuEditBar } from './MenuEditBar/MenuEditBar'
 import s from './ProfileMenu.module.scss'
 
 export const ProfileMenu = () => {

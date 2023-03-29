@@ -11,9 +11,9 @@ import Popover from '@mui/material/Popover'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch } from '../../../s1-DAL/store'
-import { logOutTC } from '../../../s2-BLL/authSlice'
-import { PATH } from '../../Routes/AppRoutes'
+import { useAppDispatch } from '../../../../s1-DAL/store'
+import { logOutTC } from '../../../../s2-BLL/authSlice'
+import { PATH } from '../../../Routes/AppRoutes'
 
 type MenuEditBarPropsType = {
   open: boolean
@@ -25,6 +25,10 @@ type MenuEditBarPropsType = {
 export const MenuEditBar: FC<MenuEditBarPropsType> = ({ id, open, handleMenuClose, anchorEl }) => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
+  const profileOnclick = () => {
+    navigate(PATH.PROFILE)
+    handleMenuClose()
+  }
   const theme = createTheme({
     palette: {
       primary: {
@@ -51,7 +55,7 @@ export const MenuEditBar: FC<MenuEditBarPropsType> = ({ id, open, handleMenuClos
       >
         <Paper sx={{ width: 122, maxWidth: '100%' }}>
           <MenuList>
-            <MenuItem onClick={() => navigate(PATH.PROFILE)}>
+            <MenuItem onClick={profileOnclick}>
               <ListItemIcon>
                 <PersonIcon fontSize="small" />
               </ListItemIcon>

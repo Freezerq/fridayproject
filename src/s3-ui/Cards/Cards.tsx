@@ -9,23 +9,16 @@ import { PATH } from '../../app/Routes/AppRoutes'
 import { AddNewCardType } from '../../s1-DAL/cardsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { addNewCard, getCards } from '../../s2-BLL/cardsSlice'
-import {
-  cardsSelector,
-  cardsTotalCountSelector,
-  isLoggedInSelector,
-  packNameSelector,
-  SearchField,
-} from '../../s4-common'
+import { cardsSelector, isLoggedInSelector, packNameSelector, SearchField } from '../../s4-common'
 
 import s from './Cards.module.scss'
-import { CardsHeader } from './CardsHeader/CardsHeader'
-import { CardsTableBody } from './CardsTableBody/CardsTableBody'
-import { CardsTableHead } from './CardsTableHead/CardsTableHead'
+import { CardsHeader } from './CardsHeader'
+import { CardsTableBody } from './CardsTableBody'
+import { CardsTableHead } from './CardsTableHead'
 
 export const Cards = () => {
   const cards = useAppSelector(cardsSelector)
   const packName = useAppSelector(packNameSelector)
-  const cardsTotalCount = useAppSelector(cardsTotalCountSelector)
   const dispatch = useAppDispatch()
   const isLoggedIn = useAppSelector(isLoggedInSelector)
   //set params into URL
@@ -33,8 +26,6 @@ export const Cards = () => {
   //get Single Params From URL
   const searchValue = searchParams.get('cardQuestion')
   const sortCards = searchParams.get('sortCards')
-  const rows = Number(searchParams.get('pageCount'))
-  const pageNumber = Number(searchParams.get('page'))
   const cardsPack_id = searchParams.get('cardsPack_id')
   //to get params from URL after Question Mark
   const { search } = useLocation()
@@ -44,7 +35,6 @@ export const Cards = () => {
     if (!isLoggedIn) return
 
     dispatch(getCards({ ...paramsFromUrl, cardsPack_id: cardsPack_id }))
-    //dispatch(getCards({ cardsPack_id: cardsPack_id }))
   }, [searchParams, isLoggedIn])
 
   const onSearchNameDebounce = (value: string) => {
@@ -54,14 +44,6 @@ export const Cards = () => {
     setSearchParams({
       ...paramsFromUrl,
       sortCards,
-    })
-  }
-
-  const setRowsAndPage = (rowsPerPage: number, pageNumber: number) => {
-    setSearchParams({
-      ...paramsFromUrl,
-      pageCount: rowsPerPage.toString(),
-      page: pageNumber.toString(),
     })
   }
 

@@ -13,8 +13,7 @@ import {
   SuperButton,
   userIdSelector,
 } from '../../../s4-common'
-import { BasicModal } from '../../Modals/BasicModal'
-import { AddCardModal } from '../../Modals/CardsModals/AddCardModal'
+import { AddCardModal, BasicModal } from '../../Modals'
 import { EditBar } from '../EditBar/EditBar'
 
 import s from './CardsHeader.module.scss'

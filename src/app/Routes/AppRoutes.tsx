@@ -3,7 +3,6 @@ import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { Cards } from '../../s3-ui/Cards/Cards'
-import { ComponentTest } from '../../s3-ui/ComponentTest/ComponentTest'
 import { CreateNewPassword } from '../../s3-ui/CreateNewPassword/CreateNewPassword'
 import { ErrorPage } from '../../s3-ui/ErrorPage/ErrorPage'
 import { Learn } from '../../s3-ui/Learn/Learn'
@@ -23,7 +22,6 @@ export const PATH = {
   ERROR404: '/errorPage',
   PASSWORD_RESTORE: '/passRecovery',
   NEW_PASSWORD: '/set-new-password/:token',
-  TEST_SUPER_COMPONENTS: '/componentTest',
   CARDS: '/cards',
   PACKS: '/packs',
   CHECK_EMAIL: '/check-email',
@@ -47,8 +45,6 @@ const AppRoutes = () => {
       <Route path={PATH.PACKS} element={<Packs />} />
       <Route path={PATH.CHECK_EMAIL} element={<CheckEmail />} />
       <Route path={PATH.LEARN + '/:packId'} element={<Learn />} />
-
-      <Route path={PATH.TEST_SUPER_COMPONENTS} element={<ComponentTest />} />
 
       <Route path={'/*'} element={<ErrorPage />} />
     </Routes>

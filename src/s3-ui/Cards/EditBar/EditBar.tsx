@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton'
 import Popover from '@mui/material/Popover'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
-import { ActionsForPack } from '../../Actions/ActionsForPack'
+import { ActionsForPack } from '../../Actions'
 
 export const EditBar = ({
   packId,
