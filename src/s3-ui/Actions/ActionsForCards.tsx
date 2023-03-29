@@ -4,8 +4,6 @@ import BorderColorIcon from '@mui/icons-material/BorderColor'
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep'
 
 import { CardType } from '../../s1-DAL/cardsAPI'
-import { useAppSelector } from '../../s1-DAL/store'
-import { appStatusSelector } from '../../s4-common'
 import { BasicModal, DeleteCardModal, EditCardModal } from '../Modals'
 
 type ActionsPropsType = {
@@ -14,12 +12,6 @@ type ActionsPropsType = {
 }
 
 export const ActionsForCards = (props: ActionsPropsType) => {
-  const appStatus = useAppSelector(appStatusSelector)
-
-  // if (appStatus === 'loading') {
-  //   return <Skeleton />
-  // }
-
   const [openEditModal, setOpenEditModal] = useState(false)
   const handleOpenEditModal = () => {
     setOpenEditModal(true)
