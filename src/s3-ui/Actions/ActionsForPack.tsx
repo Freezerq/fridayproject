@@ -43,7 +43,7 @@ export const ActionsForPack = ({
 
   const theme = createTheme({
     palette: {
-      primary: {
+      secondary: {
         main: '#000',
       },
     },
@@ -82,8 +82,8 @@ export const ActionsForPack = ({
             {props.hasText && <span>Learn</span>}
           </IconButton>
         ) : (
-          <IconButton color={'primary'} onClick={onStudyClick}>
-            <SchoolIcon color={'primary'} style={{ marginRight: '4px' }} />
+          <IconButton color={'secondary'} onClick={onStudyClick}>
+            <SchoolIcon color={'secondary'} style={{ marginRight: '4px' }} />
             {props.hasText && <span color={'black'}>Learn</span>}
           </IconButton>
         )}
