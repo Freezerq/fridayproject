@@ -32,19 +32,19 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path={'/'} element={<Navigate to={PATH.LOGIN} />} />
-
-      <Route element={<PrivateRoutes />}>
-        <Route path={PATH.PROFILE} element={<Profile />} />
-      </Route>
       <Route path={PATH.LOGIN} element={<Login />} />
       <Route path={PATH.REGISTRATION} element={<Registration />} />
       <Route path={PATH.ERROR404} element={<ErrorPage />} />
       <Route path={PATH.PASSWORD_RESTORE} element={<PassRecovery />} />
       <Route path={PATH.NEW_PASSWORD} element={<CreateNewPassword />} />
-      <Route path={PATH.CARDS} element={<Cards />} />
-      <Route path={PATH.PACKS} element={<Packs />} />
       <Route path={PATH.CHECK_EMAIL} element={<CheckEmail />} />
-      <Route path={PATH.LEARN + '/:packId'} element={<Learn />} />
+
+      <Route element={<PrivateRoutes />}>
+        <Route path={PATH.PROFILE} element={<Profile />} />
+        <Route path={PATH.CARDS} element={<Cards />} />
+        <Route path={PATH.PACKS} element={<Packs />} />
+        <Route path={PATH.LEARN + '/:packId'} element={<Learn />} />
+      </Route>
 
       <Route path={'/*'} element={<ErrorPage />} />
     </Routes>
