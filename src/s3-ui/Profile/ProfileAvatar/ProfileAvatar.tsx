@@ -5,11 +5,12 @@ import { IconButton } from '@mui/material'
 import Avatar from '@mui/material/Avatar'
 
 import defaultAvatar from '../../../assets/img/defaultAvatar.svg'
-import { useAppDispatch, useAppSelector } from '../../../s1-DAL/store'
-import { changeProfileImage } from '../../../s2-BLL/authSlice'
-import { avatarSelector, convertFileToBase64 } from '../../../s4-common'
 
 import s from './ProfileAvatar.module.scss'
+
+import { useAppDispatch, useAppSelector } from 's1-DAL/store'
+import { changeProfileImage } from 's2-BLL/authSlice'
+import { avatarSelector, convertFileToBase64 } from 's4-common'
 
 export const ProfileAvatar = () => {
   const avatar = useAppSelector(avatarSelector)

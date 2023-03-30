@@ -5,15 +5,6 @@ import Table from '@mui/material/Table'
 import TableContainer from '@mui/material/TableContainer'
 import { useLocation, useSearchParams } from 'react-router-dom'
 
-import { AddNewPackType, UpdatePackType } from '../../s1-DAL/packsAPI'
-import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { addNewPack, deletePack, getPacks, updatePack } from '../../s2-BLL/packSlice'
-import { isLoggedInSelector, SearchField, userIdSelector } from '../../s4-common'
-import {
-  maxCardsValueSelector,
-  packsSelector,
-  packsTotalCountSelector,
-} from '../../s4-common/selectors/packsSelectors'
 import { FilterPanel } from '../FilterPanel/FilterPanel'
 import { AddPackModal } from '../Modals/PackModals/AddPackModal'
 import { SuperPagination } from '../Pagination/Pagination'
@@ -21,6 +12,16 @@ import { SuperPagination } from '../Pagination/Pagination'
 import s from './Packs.module.scss'
 import { PacksTableBody } from './PacksTableBody/PacksTableBody'
 import { PacksTableHead } from './PacksTableHead/PacksTableHead'
+
+import { AddNewPackType, UpdatePackType } from 's1-DAL/packsAPI'
+import { useAppDispatch, useAppSelector } from 's1-DAL/store'
+import { addNewPack, deletePack, getPacks, updatePack } from 's2-BLL/packSlice'
+import { isLoggedInSelector, SearchField, userIdSelector } from 's4-common'
+import {
+  maxCardsValueSelector,
+  packsSelector,
+  packsTotalCountSelector,
+} from 's4-common/selectors/packsSelectors'
 
 export const Packs = () => {
   const packs = useAppSelector(packsSelector)

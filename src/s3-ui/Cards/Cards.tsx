@@ -5,22 +5,22 @@ import Table from '@mui/material/Table'
 import TableContainer from '@mui/material/TableContainer'
 import { Navigate, useLocation, useSearchParams } from 'react-router-dom'
 
-import { PATH } from '../../app/Routes/AppRoutes'
-import { AddNewCardType } from '../../s1-DAL/cardsAPI'
-import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { addNewCard, getCards } from '../../s2-BLL/cardsSlice'
+import s from './Cards.module.scss'
+import { CardsHeader } from './CardsHeader/CardsHeader'
+import { CardsTableBody } from './CardsTableBody/CardsTableBody'
+import { CardsTableHead } from './CardsTableHead/CardsTableHead'
+
+import { PATH } from 'app/Routes/AppRoutes'
+import { AddNewCardType } from 's1-DAL/cardsAPI'
+import { useAppDispatch, useAppSelector } from 's1-DAL/store'
+import { addNewCard, getCards } from 's2-BLL/cardsSlice'
 import {
   cardsSelector,
   cardsTotalCountSelector,
   isLoggedInSelector,
   packNameSelector,
   SearchField,
-} from '../../s4-common'
-
-import s from './Cards.module.scss'
-import { CardsHeader } from './CardsHeader/CardsHeader'
-import { CardsTableBody } from './CardsTableBody/CardsTableBody'
-import { CardsTableHead } from './CardsTableHead/CardsTableHead'
+} from 's4-common'
 
 export const Cards = () => {
   const cards = useAppSelector(cardsSelector)
