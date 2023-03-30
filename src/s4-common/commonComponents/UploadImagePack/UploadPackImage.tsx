@@ -73,16 +73,14 @@ export const UploadPackImage = ({
           {buttonName}
         </Button>
       </label>
-      <div style={{ width: '100%', height: '150px' }}>
-        {image && (
-          <img
-            src={image}
-            style={{ width: '100%', height: '150px', margin: '10px' }}
-            onError={errorHandler}
-            alt="packImage"
-          />
-        )}
-      </div>
+      {image && (
+        <img
+          src={image}
+          style={{ width: '100%', height: '150px', margin: '10px' }}
+          onError={errorHandler}
+          alt="packImage"
+        />
+      )}
     </>
   )
 }

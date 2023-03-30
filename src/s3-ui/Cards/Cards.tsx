@@ -56,7 +56,7 @@ export const Cards = () => {
 
   return (
     <>
-      <CardsHeader packName={packName} onAddNewCard={onAddNewCardHandler} packId={cardsPack_id} />
+      <CardsHeader onAddNewCard={onAddNewCardHandler} packId={cardsPack_id} />
       <TableContainer component={Paper}>
         <SearchField
           onSearchName={onSearchNameDebounce}
