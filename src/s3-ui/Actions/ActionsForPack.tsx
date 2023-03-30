@@ -7,8 +7,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import { useLocation, useNavigate } from 'react-router-dom'
 
+import { DeletePackModal } from '../Modals/PackModals/DeletePackModal'
+import { EditPackModal } from '../Modals/PackModals/EditPackModal'
 import { PATH } from '../../app/Routes/AppRoutes'
-import { UpdatePackType } from '../../s1-DAL/packsAPI'
+import { PackType, UpdatePackType } from '../../s1-DAL/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
 import { deletePack, updatePack } from '../../s2-BLL/packSlice'
 import { appStatusSelector, userIdSelector } from '../../s4-common'
@@ -20,6 +22,7 @@ type ActionsPropsType = {
   totalCardsInPack: number
   id: string
   hasText?: boolean
+  packCover: string | undefined
 }
 
 export const ActionsForPack = ({
@@ -27,6 +30,7 @@ export const ActionsForPack = ({
   packName,
   totalCardsInPack,
   id,
+  packCover,
   ...props
 }: ActionsPropsType) => {
   const userId = useAppSelector(userIdSelector)
@@ -39,7 +43,7 @@ export const ActionsForPack = ({
 
   const theme = createTheme({
     palette: {
-      primary: {
+      secondary: {
         main: '#000',
       },
     },
@@ -78,8 +82,8 @@ export const ActionsForPack = ({
             {props.hasText && <span>Learn</span>}
           </IconButton>
         ) : (
-          <IconButton color={'primary'} onClick={onStudyClick}>
-            <SchoolIcon color={'primary'} style={{ marginRight: '4px' }} />
+          <IconButton color={'secondary'} onClick={onStudyClick}>
+            <SchoolIcon color={'secondary'} style={{ marginRight: '4px' }} />
             {props.hasText && <span color={'black'}>Learn</span>}
           </IconButton>
         )}
@@ -89,6 +93,7 @@ export const ActionsForPack = ({
             packId={packId}
             packName={packName}
             hasText={props.hasText}
+            packCover={packCover}
           />
         )}
         {id === userId && (

@@ -26,7 +26,7 @@ export const DeletePackModal = ({
 
   return (
     <>
-      <IconButton color={'primary'} onClick={handleOpen}>
+      <IconButton color={'secondary'} onClick={handleOpen}>
         <DeleteSweepIcon style={{ marginRight: '4px' }} />
         {props.hasText && <span>Delete</span>}
       </IconButton>

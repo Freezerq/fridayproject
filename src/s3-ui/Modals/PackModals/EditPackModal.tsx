@@ -8,41 +8,44 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
-import { UpdatePackType } from '../../../s1-DAL/packsAPI'
 import { BasicModal } from '../BasicModal'
+
+import { UpdatePackType } from 's1-DAL/packsAPI'
+import { UploadPackImage } from 's4-common/commonComponents/UploadImagePack/UploadPackImage'
 
 type AddPackModalType = {
   onEditHandle: (data: UpdatePackType) => void
   packId: string
   packName: string
   hasText?: boolean
+  packCover: string | undefined
 }
 
-export const EditPackModal = ({ packId, packName, onEditHandle, ...props }: AddPackModalType) => {
+export const EditPackModal = ({
+  packId,
+  packName,
+  onEditHandle,
+  packCover,
+  ...props
+}: AddPackModalType) => {
   const [open, setOpen] = useState(false)
+
   const handleOpen = () => setOpen(true)
   const handleClose = () => {
     setOpen(false)
     reset()
   }
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<UpdatePackType>()
+  const { register, handleSubmit, reset, setValue } = useForm<UpdatePackType>()
 
   const onSubmit: SubmitHandler<UpdatePackType> = (data: UpdatePackType) => {
-    console.log(data)
     onEditHandle({ ...data, _id: packId })
-
     handleClose()
   }
 
   return (
     <>
-      <IconButton color={'primary'} onClick={handleOpen}>
+      <IconButton color={'secondary'} onClick={handleOpen}>
         <BorderColorIcon style={{ marginRight: '4px' }} />
         {props.hasText && <span>Edit</span>}
       </IconButton>
@@ -52,6 +55,7 @@ export const EditPackModal = ({ packId, packName, onEditHandle, ...props }: AddP
           EDIT PACK
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
+          <UploadPackImage buttonName={'Update cover'} setValue={setValue} packCover={packCover} />
           <TextField
             sx={{ mt: 2, width: '100%' }}
             id="pack-name"

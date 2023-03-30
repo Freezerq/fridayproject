@@ -1,16 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+import { setAppStatus } from './appSlice'
+
 import {
   AddNewPackType,
   GetPacksType,
   PackReturnType,
   packsAPI,
   UpdatePackType,
-} from '../s1-DAL/packsAPI'
-import { AppDispatch, RootState } from '../s1-DAL/store'
-import { errorUtils } from '../s4-common'
-
-import { setAppStatus } from './appSlice'
+} from 's1-DAL/packsAPI'
+import { AppDispatch, RootState } from 's1-DAL/store'
+import { errorUtils } from 's4-common'
 
 const initialState = {
   packsData: {} as PackReturnType,

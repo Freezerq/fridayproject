@@ -40,6 +40,7 @@ export const Cards = () => {
   const onSearchNameDebounce = (value: string) => {
     setSearchParams({ ...paramsFromUrl, cardQuestion: value })
   }
+
   const setSortCards = (sortCards: string) => {
     setSearchParams({
       ...paramsFromUrl,
