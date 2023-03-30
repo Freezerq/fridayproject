@@ -30,12 +30,7 @@ export const AddPackModal = ({ onAddHandle, ...props }: AddPackModalPropsType) =
     reset()
   }
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<AddNewPackType>()
+  const { register, handleSubmit, reset } = useForm<AddNewPackType>()
 
   const onSubmit: SubmitHandler<AddNewPackType> = (data: AddNewPackType) => {
     data = { ...data, deckCover: image }
@@ -108,7 +103,7 @@ export const AddPackModal = ({ onAddHandle, ...props }: AddPackModalPropsType) =
               onChange={imageUploadHandler}
             />
             <Button variant="outlined" component="span">
-              Upload cover picture
+              Update cover picture
             </Button>
           </label>
           {image && (
@@ -125,8 +120,6 @@ export const AddPackModal = ({ onAddHandle, ...props }: AddPackModalPropsType) =
             label="Enter pack's name"
             variant="standard"
             margin="normal"
-            error={!!errors.name}
-            helperText={errors.name?.message}
             {...register('name')}
           />
           <Typography>

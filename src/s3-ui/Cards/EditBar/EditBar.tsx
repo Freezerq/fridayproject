@@ -7,6 +7,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 import { ActionsForPack } from '../../Actions/ActionsForPack'
 
+import { useAppSelector } from 's1-DAL/store'
+import { packDeckCoverSelector } from 's4-common'
+
 export const EditBar = ({
   packId,
   packName,
@@ -15,6 +18,7 @@ export const EditBar = ({
   ...props
 }: EditBarType) => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
+  const packCoverImage = useAppSelector(packDeckCoverSelector)
 
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
@@ -58,6 +62,7 @@ export const EditBar = ({
           packName={packName}
           totalCardsInPack={cardsTotalCount}
           id={packUserId}
+          packCover={packCoverImage}
           hasText
         />
       </Popover>

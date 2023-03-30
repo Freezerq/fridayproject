@@ -9,6 +9,8 @@ import { useAppSelector } from '../../../s1-DAL/store'
 import {
   BackToPacksList,
   cardsTotalCountSelector,
+  packDeckCoverSelector,
+  packNameSelector,
   packUserIdSelector,
   SuperButton,
   userIdSelector,
@@ -20,7 +22,6 @@ import { EditBar } from '../EditBar/EditBar'
 import s from './CardsHeader.module.scss'
 
 type CardsHeaderType = {
-  packName: string
   onAddNewCard: (data: AddNewCardType) => void
   packId: string
 }
@@ -29,6 +30,7 @@ export const CardsHeader = (props: CardsHeaderType) => {
   const userId = useAppSelector(userIdSelector)
   const packUserId = useAppSelector(packUserIdSelector)
   const cardsTotalCount = useAppSelector(cardsTotalCountSelector)
+  const packName = useAppSelector(packNameSelector)
 
   const navigate = useNavigate()
 
@@ -49,11 +51,11 @@ export const CardsHeader = (props: CardsHeaderType) => {
       <BackToPacksList />
       <div className={s.headerContainer}>
         <div className={s.header}>
-          <Typography className={s.title}>{props.packName}</Typography>
+          <Typography className={s.title}>{packName}</Typography>
           {userId === packUserId && (
             <EditBar
               packId={props.packId}
-              packName={props.packName}
+              packName={packName}
               cardsTotalCount={cardsTotalCount}
               packUserId={packUserId}
             />

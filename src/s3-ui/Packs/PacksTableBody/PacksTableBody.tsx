@@ -69,6 +69,7 @@ export const PacksTableBody = (props: PacksTableBodyType) => {
               packId={pack._id}
               id={pack.user_id}
               totalCardsInPack={pack.cardsCount}
+              packCover={pack.deckCover}
             />
           </TableCell>
         </TableRow>

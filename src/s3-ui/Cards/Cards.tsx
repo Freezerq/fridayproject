@@ -14,27 +14,18 @@ import { PATH } from 'app/Routes/AppRoutes'
 import { AddNewCardType } from 's1-DAL/cardsAPI'
 import { useAppDispatch, useAppSelector } from 's1-DAL/store'
 import { addNewCard, getCards } from 's2-BLL/cardsSlice'
-import {
-  cardsSelector,
-  cardsTotalCountSelector,
-  isLoggedInSelector,
-  packNameSelector,
-  SearchField,
-} from 's4-common'
+import { cardsSelector, isLoggedInSelector, SearchField } from 's4-common'
 
 export const Cards = () => {
   const cards = useAppSelector(cardsSelector)
-  const packName = useAppSelector(packNameSelector)
-  const cardsTotalCount = useAppSelector(cardsTotalCountSelector)
-  const dispatch = useAppDispatch()
+
   const isLoggedIn = useAppSelector(isLoggedInSelector)
+  const dispatch = useAppDispatch()
   //set params into URL
   const [searchParams, setSearchParams] = useSearchParams()
   //get Single Params From URL
   const searchValue = searchParams.get('cardQuestion')
   const sortCards = searchParams.get('sortCards')
-  const rows = Number(searchParams.get('pageCount'))
-  const pageNumber = Number(searchParams.get('page'))
   const cardsPack_id = searchParams.get('cardsPack_id')
   //to get params from URL after Question Mark
   const { search } = useLocation()
@@ -44,24 +35,16 @@ export const Cards = () => {
     if (!isLoggedIn) return
 
     dispatch(getCards({ ...paramsFromUrl, cardsPack_id: cardsPack_id }))
-    //dispatch(getCards({ cardsPack_id: cardsPack_id }))
   }, [searchParams, isLoggedIn])
 
   const onSearchNameDebounce = (value: string) => {
     setSearchParams({ ...paramsFromUrl, cardQuestion: value })
   }
+
   const setSortCards = (sortCards: string) => {
     setSearchParams({
       ...paramsFromUrl,
       sortCards,
-    })
-  }
-
-  const setRowsAndPage = (rowsPerPage: number, pageNumber: number) => {
-    setSearchParams({
-      ...paramsFromUrl,
-      pageCount: rowsPerPage.toString(),
-      page: pageNumber.toString(),
     })
   }
 
@@ -73,7 +56,7 @@ export const Cards = () => {
 
   return (
     <>
-      <CardsHeader packName={packName} onAddNewCard={onAddNewCardHandler} packId={cardsPack_id} />
+      <CardsHeader onAddNewCard={onAddNewCardHandler} packId={cardsPack_id} />
       <TableContainer component={Paper}>
         <SearchField
           onSearchName={onSearchNameDebounce}
