@@ -6,36 +6,32 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
-import { AddNewPackType } from '../../../s1-DAL/packsAPI'
-import { useAppSelector } from '../../../s1-DAL/store'
-import { SuperButton } from '../../../s4-common'
 import { BasicModal } from '../BasicModal'
 
-type AddPackModalType = {
+import { AddNewPackType } from 's1-DAL/packsAPI'
+import { useAppSelector } from 's1-DAL/store'
+import { SuperButton } from 's4-common'
+import { UploadPackImage } from 's4-common/commonComponents/UploadImagePack/UploadPackImage'
+
+type AddPackModalPropsType = {
   onAddHandle: (data: AddNewPackType) => void
 }
 
-export const AddPackModal = ({ onAddHandle, ...props }: AddPackModalType) => {
+export const AddPackModal = ({ onAddHandle, ...props }: AddPackModalPropsType) => {
   const [open, setOpen] = useState(false)
+
+  const appStatus = useAppSelector(state => state.app.status)
+
   const handleOpen = () => setOpen(true)
   const handleClose = () => {
     setOpen(false)
     reset()
   }
 
-  const appStatus = useAppSelector(state => state.app.status)
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<AddNewPackType>()
+  const { setValue, register, handleSubmit, reset } = useForm<AddNewPackType>()
 
   const onSubmit: SubmitHandler<AddNewPackType> = (data: AddNewPackType) => {
-    console.log(data)
     onAddHandle(data)
-    reset()
     handleClose()
   }
 
@@ -57,14 +53,13 @@ export const AddPackModal = ({ onAddHandle, ...props }: AddPackModalType) => {
           ADD NEW PACK
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
+          <UploadPackImage setValue={setValue} buttonName={'Update cover picture'} />
           <TextField
             sx={{ mt: 2, width: '100%' }}
             id="pack-name"
             label="Enter pack's name"
             variant="standard"
             margin="normal"
-            error={!!errors.name}
-            helperText={errors.name?.message}
             {...register('name')}
           />
           <Typography>

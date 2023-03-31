@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { SyntheticEvent } from 'react'
 
 import { Skeleton } from '@mui/material'
 import TableBody from '@mui/material/TableBody'
@@ -7,6 +7,7 @@ import TableRow from '@mui/material/TableRow'
 import { useNavigate } from 'react-router-dom'
 
 import { PATH } from '../../../app/Routes/AppRoutes'
+import defaultCover from '../../../assets/img/defaultCover.svg'
 import { UpdatePackType } from '../../../s1-DAL/packsAPI'
 import { useAppSelector } from '../../../s1-DAL/store'
 import { ActionsForPack } from '../../Actions'
@@ -24,16 +25,32 @@ export const PacksTableBody = (props: PacksTableBodyType) => {
     navigate(PATH.CARDS + `?cardsPack_id=${id}&pageCount=${cardsCount}`)
   }
 
+  /**
+   * https://stackoverflow.com/a/48222599
+   */
+  const errorHandler = (event: SyntheticEvent<HTMLImageElement, Event>) => {
+    event.currentTarget.onerror = null
+    event.currentTarget.src = defaultCover
+  }
+
   return (
     <TableBody>
       {packs?.map(pack => (
         <TableRow key={pack._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
           <TableCell
-            style={{ backgroundColor: 'gray', width: '250px' }}
+            style={{ cursor: 'pointer', width: '350px' }}
             onClick={() => onNameClickHandler(pack._id, pack.cardsCount)}
             component="th"
             scope="row"
           >
+            {appStatus !== 'loading' && (
+              <img
+                src={pack.deckCover ? pack.deckCover : defaultCover}
+                style={{ width: '100px', height: '36px', marginRight: '10px' }}
+                onError={errorHandler}
+                alt="packImage"
+              />
+            )}
             {appStatus === 'loading' ? <Skeleton width={250} height={40} /> : pack.name}
           </TableCell>
           <TableCell align="left">
@@ -51,6 +68,7 @@ export const PacksTableBody = (props: PacksTableBodyType) => {
               packId={pack._id}
               id={pack.user_id}
               totalCardsInPack={pack.cardsCount}
+              packCover={pack.deckCover}
             />
           </TableCell>
         </TableRow>

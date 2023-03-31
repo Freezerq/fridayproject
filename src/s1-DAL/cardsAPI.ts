@@ -70,7 +70,7 @@ export type CardsReturnType = {
   pageCount: number
   packUserId: string
   packName: string
-  packDeckCover?: string | null
+  packDeckCover?: string
 }
 //все из этого не обязательно, Partial делает атрибуты необязательными
 export type GetCardsType = Partial<GetCardsAttributesType> &
