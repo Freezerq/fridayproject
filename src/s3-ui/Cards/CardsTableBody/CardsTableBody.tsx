@@ -22,8 +22,12 @@ export const CardsTableBody = () => {
     <TableBody>
       {cards?.map(card => (
         <TableRow key={card._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-          <TableCell component="th" scope="row">
-            {appStatus === 'loading' ? <Skeleton height={40} /> : card.question}
+          <TableCell style={{ width: '100px, height: 25px' }} component="th" scope="row">
+            {card.questionImg ? (
+              <img style={{ width: 100, height: 25 }} src={card.questionImg} />
+            ) : (
+              card.question
+            )}
           </TableCell>
           <TableCell align="left">
             {appStatus === 'loading' ? <Skeleton height={40} /> : card.answer}

@@ -1,6 +1,7 @@
 import React from 'react'
 
 import CloseIcon from '@mui/icons-material/Close'
+import Button from '@mui/material/Button'
 import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
 import TextField from '@mui/material/TextField'
@@ -11,6 +12,7 @@ import { useLocation } from 'react-router-dom'
 import { useAppDispatch } from '../../../s1-DAL/store'
 import { addNewCard } from '../../../s2-BLL/cardsSlice'
 import { SuperButton } from '../../../s4-common'
+import { fileToBasePromise } from '../../../s4-common/utils/fileToBasePromise'
 
 type AddCardModalPropsType = {
   pack_id: string
@@ -20,6 +22,7 @@ type AddCardModalPropsType = {
 export type AddCardType = {
   selectValue: string
   question: string
+  questionImg: string
   answer: string
 }
 
@@ -34,11 +37,12 @@ export const AddCardModal = (props: AddCardModalPropsType) => {
     props.handleClose()
   }
 
-  const { control, getValues, reset } = useForm<AddCardType>({
-    defaultValues: { selectValue: options[0], question: '', answer: '' },
+  const { control, getValues, reset, setValue } = useForm<AddCardType>({
+    defaultValues: { selectValue: options[0], question: '', answer: '', questionImg: '' },
   })
 
   const submitFunc = (data: AddCardType) => {
+    console.log(data)
     dispatch(
       addNewCard(
         { ...data, cardsPack_id: props.pack_id },
@@ -46,6 +50,14 @@ export const AddCardModal = (props: AddCardModalPropsType) => {
       )
     )
     reset({ selectValue: options[0], question: '', answer: '' })
+  }
+
+  const uploadHandler = (files: FileList | null) => {
+    if (files && files.length) {
+      fileToBasePromise(files[0]).then(res => {
+        setValue('questionImg', res as string)
+      })
+    }
   }
 
   return (
@@ -83,13 +95,36 @@ export const AddCardModal = (props: AddCardModalPropsType) => {
           <div>Choose a question format</div>
           <Controller
             render={({ field }) => (
-              <Select sx={{ width: '100%', height: '36px' }} {...field}>
-                {options.map((option, index) => (
-                  <MenuItem key={index} sx={{ width: '347px', height: '36px' }} value={option}>
-                    {option}
-                  </MenuItem>
-                ))}
-              </Select>
+              <div>
+                <Select sx={{ width: '100%', height: '36px' }} {...field}>
+                  {options.map((option, index) => (
+                    <MenuItem key={index} sx={{ width: '347px', height: '36px' }} value={option}>
+                      {option}
+                    </MenuItem>
+                  ))}
+                </Select>
+                {field.value === 'Image' ? (
+                  <Controller
+                    control={control}
+                    name="questionImg"
+                    render={({ field: { onChange } }) => (
+                      <label>
+                        <input
+                          type="file"
+                          onChange={event => {
+                            return uploadHandler(event.target.files)
+                          }}
+                          style={{ display: 'none' }}
+                          accept="image/png, image/jpeg, image/svg"
+                        />
+                        <Button style={{ marginLeft: '95px' }} variant="contained" component="span">
+                          Upload button
+                        </Button>
+                      </label>
+                    )}
+                  />
+                ) : null}
+              </div>
             )}
             name="selectValue"
             control={control}
@@ -134,3 +169,20 @@ export const AddCardModal = (props: AddCardModalPropsType) => {
     </div>
   )
 }
+
+// const InputTypeFile = () => {
+//   return (
+//     <label>
+//       <input
+//         accept="image/png, image/jpeg, image/svg"
+//         alt="upload"
+//         type="file"
+//         onChange={uploadHandler}
+//         style={{ display: 'none' }}
+//       />
+//       <Button variant="contained" component="span">
+//         Upload button
+//       </Button>
+//     </label>
+//   )
+// }
