@@ -11,9 +11,9 @@ import Popover from '@mui/material/Popover'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { useNavigate } from 'react-router-dom'
 
+import { PATH } from 'app/Routes/AppRoutes'
 import { useAppDispatch } from 's1-DAL/store'
 import { logOutTC } from 's2-BLL/authSlice'
-import { PATH } from 'app/Routes/AppRoutes'
 
 type MenuEditBarPropsType = {
   open: boolean

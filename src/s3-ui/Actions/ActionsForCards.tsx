@@ -3,8 +3,9 @@ import React, { useState } from 'react'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep'
 
-import { CardType } from 's1-DAL/cardsAPI'
 import { BasicModal, DeleteCardModal, EditCardModal } from '../Modals'
+
+import { CardType } from 's1-DAL/cardsAPI'
 
 type ActionsPropsType = {
   onStudyClick: (id: string) => void
