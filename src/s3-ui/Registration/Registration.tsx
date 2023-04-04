@@ -4,17 +4,18 @@ import { useForm, Controller } from 'react-hook-form'
 import { Navigate, NavLink } from 'react-router-dom'
 
 import eye from '../../assets/img/eyeIcon.svg'
-import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { registrationThunk } from '../../s2-BLL/authSlice'
+
+import style from './registration.module.scss'
+
+import { useAppDispatch, useAppSelector } from 's1-DAL/store'
+import { registrationThunk } from 's2-BLL/authSlice'
 import {
   appStatusSelector,
   CommonInput,
   emailCheck,
   isLoggedInSelector,
   SuperButton,
-} from '../../s4-common'
-
-import style from './registration.module.scss'
+} from 's4-common'
 
 type FormValues = {
   email: string

@@ -7,12 +7,13 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { PATH } from '../../app/Routes/AppRoutes'
-import { PackType, UpdatePackType } from '../../s1-DAL/packsAPI'
-import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { deletePack, updatePack } from '../../s2-BLL/packSlice'
-import { appStatusSelector, userIdSelector } from '../../s4-common'
 import { DeletePackModal, EditPackModal } from '../Modals'
+
+import { PATH } from 'app/Routes/AppRoutes'
+import { UpdatePackType } from 's1-DAL/packsAPI'
+import { useAppDispatch, useAppSelector } from 's1-DAL/store'
+import { deletePack, updatePack } from 's2-BLL/packSlice'
+import { appStatusSelector, userIdSelector } from 's4-common'
 
 type ActionsPropsType = {
   packId: string

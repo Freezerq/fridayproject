@@ -6,9 +6,10 @@ import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 
-import { useAppSelector } from '../../../s1-DAL/store'
-import { appStatusSelector, cardsSelector, userIdSelector } from '../../../s4-common'
 import { ActionsForCards } from '../../Actions'
+
+import { useAppSelector } from 's1-DAL/store'
+import { appStatusSelector, cardsSelector, userIdSelector } from 's4-common'
 
 export const CardsTableBody = () => {
   const cards = useAppSelector(cardsSelector)

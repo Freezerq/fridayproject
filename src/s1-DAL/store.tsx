@@ -3,11 +3,11 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AnyAction, combineReducers } from 'redux'
 import { ThunkAction } from 'redux-thunk'
 
-import { appReducer } from '../s2-BLL/appSlice'
-import { authReducer } from '../s2-BLL/authSlice'
-import { cardsReducer } from '../s2-BLL/cardsSlice'
-import { learnReducer } from '../s2-BLL/learnSlice'
-import { packReducer } from '../s2-BLL/packSlice'
+import { appReducer } from 's2-BLL/appSlice'
+import { authReducer } from 's2-BLL/authSlice'
+import { cardsReducer } from 's2-BLL/cardsSlice'
+import { learnReducer } from 's2-BLL/learnSlice'
+import { packReducer } from 's2-BLL/packSlice'
 
 export const rootReducer = combineReducers({
   app: appReducer,

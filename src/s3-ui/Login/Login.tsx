@@ -7,13 +7,13 @@ import TextField from '@mui/material/TextField'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Navigate, NavLink } from 'react-router-dom'
 
-import { PATH } from '../../app/Routes/AppRoutes'
-import { LoginType } from '../../s1-DAL/authAPI'
-import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { loginTC } from '../../s2-BLL/authSlice'
-import { appStatusSelector, isLoggedInSelector, PasswordInput, SuperButton } from '../../s4-common'
-
 import s from './Login.module.scss'
+
+import { PATH } from 'app/Routes/AppRoutes'
+import { LoginType } from 's1-DAL/authAPI'
+import { useAppDispatch, useAppSelector } from 's1-DAL/store'
+import { loginTC } from 's2-BLL/authSlice'
+import { appStatusSelector, isLoggedInSelector, PasswordInput, SuperButton } from 's4-common'
 
 export const Login: FC = () => {
   const dispatch = useAppDispatch()

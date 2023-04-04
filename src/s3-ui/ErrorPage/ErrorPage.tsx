@@ -2,11 +2,12 @@ import React from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import { PATH } from '../../app/Routes/AppRoutes'
 import errorImg from '../../assets/img/404.svg'
-import { SuperButton } from '../../s4-common'
 
 import s from './ErrorPage.module.scss'
+
+import { PATH } from 'app/Routes/AppRoutes'
+import { SuperButton } from 's4-common'
 
 export const ErrorPage = () => {
   const navigate = useNavigate()

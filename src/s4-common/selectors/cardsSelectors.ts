@@ -1,4 +1,4 @@
-import { RootState } from '../../s1-DAL/store'
+import { RootState } from 's1-DAL/store'
 
 export const packNameSelector = (state: RootState) => state.cards.cardsData.packName
 export const cardsSelector = (state: RootState) => state.cards.cardsData.cards

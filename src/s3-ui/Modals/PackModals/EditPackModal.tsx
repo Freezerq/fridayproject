@@ -11,7 +11,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { BasicModal } from '../BasicModal'
 
 import { UpdatePackType } from 's1-DAL/packsAPI'
-import { UploadPackImage } from 's4-common/commonComponents/UploadImagePack/UploadPackImage'
+import { UploadPackImage } from 's4-common'
 
 type AddPackModalType = {
   onEditHandle: (data: UpdatePackType) => void

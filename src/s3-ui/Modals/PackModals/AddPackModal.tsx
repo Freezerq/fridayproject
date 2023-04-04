@@ -10,8 +10,7 @@ import { BasicModal } from '../BasicModal'
 
 import { AddNewPackType } from 's1-DAL/packsAPI'
 import { useAppSelector } from 's1-DAL/store'
-import { SuperButton } from 's4-common'
-import { UploadPackImage } from 's4-common/commonComponents/UploadImagePack/UploadPackImage'
+import { SuperButton, UploadPackImage } from 's4-common'
 
 type AddPackModalPropsType = {
   onAddHandle: (data: AddNewPackType) => void

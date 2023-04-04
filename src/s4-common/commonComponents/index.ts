@@ -7,6 +7,7 @@ import { SearchField } from './SearchField/SearchField'
 import { SuperButton } from './SuperButton/SuperButton'
 import { SuperCheckbox } from './SuperCheckbox/SuperCheckbox'
 import { SuperInputText } from './SuperInputText/SuperInputText'
+import { UploadPackImage } from './UploadImagePack/UploadPackImage'
 
 export {
   BackToPacksList,
@@ -18,4 +19,5 @@ export {
   SuperButton,
   SuperCheckbox,
   SuperInputText,
+  UploadPackImage,
 }

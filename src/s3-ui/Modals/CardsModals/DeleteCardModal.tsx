@@ -2,10 +2,10 @@ import React from 'react'
 
 import { useLocation } from 'react-router-dom'
 
-import { CardType } from '../../../s1-DAL/cardsAPI'
-import { useAppDispatch } from '../../../s1-DAL/store'
-import { deleteCard } from '../../../s2-BLL/cardsSlice'
-import { SuperButton } from '../../../s4-common'
+import { CardType } from 's1-DAL/cardsAPI'
+import { useAppDispatch } from 's1-DAL/store'
+import { deleteCard } from 's2-BLL/cardsSlice'
+import { SuperButton } from 's4-common'
 
 type AddCardModalPropsType = {
   card: CardType

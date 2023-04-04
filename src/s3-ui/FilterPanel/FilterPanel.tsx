@@ -3,12 +3,12 @@ import React from 'react'
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
 import Button from '@mui/material/Button'
 
-import { useAppSelector } from '../../s1-DAL/store'
-import { appStatusSelector } from '../../s4-common'
-
 import s from './FilterPanel.module.scss'
 import { SuperRange } from './SuperRange/SuperRange'
 import { SwitchButton } from './SwitchButton/SwitchButton'
+
+import { useAppSelector } from 's1-DAL/store'
+import { appStatusSelector } from 's4-common'
 
 type FilterPanelType = {
   minSearchCardsNumber: number

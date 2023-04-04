@@ -4,11 +4,12 @@ import SearchIcon from '@mui/icons-material/Search'
 import InputBase from '@mui/material/InputBase'
 import Paper from '@mui/material/Paper'
 
-import { useDebounce } from '../../../hooks/useDebounce'
-import { useAppSelector } from '../../../s1-DAL/store'
 import { appStatusSelector } from '../../selectors/appSelectors'
 
 import s from './SearchField.module.scss'
+
+import { useDebounce } from 'hooks/useDebounce'
+import { useAppSelector } from 's1-DAL/store'
 
 export function SearchField({ onSearchName, searchValue, classname, ...props }: SearchFieldTypes) {
   const [value, setValue] = useState<string>(searchValue)

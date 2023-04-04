@@ -3,9 +3,13 @@ import React, { useEffect } from 'react'
 import Paper from '@mui/material/Paper'
 import { useLocation, useParams } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { getCards } from '../../s2-BLL/cardsSlice'
-import { setCurrentCard } from '../../s2-BLL/learnSlice'
+import { Answer } from './Answer/Answer'
+import s from './Learn.module.scss'
+import { Question } from './Question/Question'
+
+import { useAppDispatch, useAppSelector } from 's1-DAL/store'
+import { getCards } from 's2-BLL/cardsSlice'
+import { setCurrentCard } from 's2-BLL/learnSlice'
 import {
   appStatusSelector,
   BackToPacksList,
@@ -15,11 +19,7 @@ import {
   LinearProgress,
   packNameSelector,
   showAnswerSelector,
-} from '../../s4-common'
-
-import { Answer } from './Answer/Answer'
-import s from './Learn.module.scss'
-import { Question } from './Question/Question'
+} from 's4-common'
 
 export const Learn = () => {
   const cards = useAppSelector(cardsSelector)

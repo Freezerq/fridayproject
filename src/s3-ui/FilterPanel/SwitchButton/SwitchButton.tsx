@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 import Button from '@mui/material/Button'
 
-import { useAppSelector } from '../../../s1-DAL/store'
+import { useAppSelector } from 's1-DAL/store'
 
 type SwitchButtonPropsType = {
   showMyPacks: () => void

@@ -1,4 +1,4 @@
-import { RootState } from '../../s1-DAL/store'
+import { RootState } from 's1-DAL/store'
 
 export const showAnswerSelector = (state: RootState) => state.learn.showAnswer
 export const questionSelector = (state: RootState) => state.learn.currentCard.question

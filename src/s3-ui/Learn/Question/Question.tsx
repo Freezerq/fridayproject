@@ -1,15 +1,10 @@
 import React from 'react'
 
-import { useAppDispatch, useAppSelector } from '../../../s1-DAL/store'
-import { setShowAnswer } from '../../../s2-BLL/learnSlice'
-import {
-  questionSelector,
-  shotsSelector,
-  showAnswerSelector,
-  SuperButton,
-} from '../../../s4-common'
-
 import s from './Question.module.scss'
+
+import { useAppDispatch, useAppSelector } from 's1-DAL/store'
+import { setShowAnswer } from 's2-BLL/learnSlice'
+import { questionSelector, shotsSelector, showAnswerSelector, SuperButton } from 's4-common'
 
 export const Question = () => {
   const showAnswer = useAppSelector(showAnswerSelector)

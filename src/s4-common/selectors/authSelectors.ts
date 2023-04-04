@@ -1,4 +1,4 @@
-import { RootState } from '../../s1-DAL/store'
+import { RootState } from 's1-DAL/store'
 
 export const isLoggedInSelector = (state: RootState) => state.auth.isLoggedIn
 export const userIdSelector = (state: RootState) => state.auth.profile._id

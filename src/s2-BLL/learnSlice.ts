@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { CardType } from '../s1-DAL/cardsAPI'
+import { CardType } from 's1-DAL/cardsAPI'
 
 const initialState = {
   showAnswer: false,

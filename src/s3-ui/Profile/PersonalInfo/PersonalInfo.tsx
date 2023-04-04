@@ -2,13 +2,14 @@ import React from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import { PATH } from '../../../app/Routes/AppRoutes'
-import { UserType } from '../../../s1-DAL/authAPI'
-import { SuperButton } from '../../../s4-common'
 import { LogOutButton } from '../../Login/LogOutButton/LogOutButton'
 import { EditableSpan } from '../EditableSpan/EditableSpan'
 import style from '../Profile.module.scss'
 import { ProfileAvatar } from '../ProfileAvatar/ProfileAvatar'
+
+import { PATH } from 'app/Routes/AppRoutes'
+import { UserType } from 's1-DAL/authAPI'
+import { SuperButton } from 's4-common'
 
 type PersonalInfoPropsTypes = {
   profile: UserType

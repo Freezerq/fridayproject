@@ -3,18 +3,18 @@ import React, { useState } from 'react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { NavLink, useNavigate } from 'react-router-dom'
 
-import { PATH } from '../../app/Routes/AppRoutes'
-import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { getNewToken } from '../../s2-BLL/authSlice'
+import style from './PassRecovery.module.scss'
+
+import { PATH } from 'app/Routes/AppRoutes'
+import { useAppDispatch, useAppSelector } from 's1-DAL/store'
+import { getNewToken } from 's2-BLL/authSlice'
 import {
   appStatusSelector,
   CommonInput,
   emailCheck,
   isSendedEmailSelector,
   SuperButton,
-} from '../../s4-common'
-
-import style from './PassRecovery.module.scss'
+} from 's4-common'
 
 interface FormValues {
   email: string

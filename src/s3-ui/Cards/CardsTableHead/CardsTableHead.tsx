@@ -1,7 +1,8 @@
 import React from 'react'
 
-import { HeadTable } from '../../../s4-common'
 import { HeaderType } from '../../Packs'
+
+import { HeadTable } from 's4-common'
 
 export type CardData = {
   question: string

@@ -2,12 +2,13 @@ import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppSelector } from '../../s1-DAL/store'
-import { isLoggedInSelector, SuperButton } from '../../s4-common'
 import { PATH } from '../Routes/AppRoutes'
 
 import s from './Header.module.scss'
 import { ProfileMenu } from './ProfileMenu/ProfileMenu'
+
+import { useAppSelector } from 's1-DAL/store'
+import { isLoggedInSelector, SuperButton } from 's4-common'
 
 const Header = () => {
   const isLoggedIn = useAppSelector<boolean>(isLoggedInSelector)

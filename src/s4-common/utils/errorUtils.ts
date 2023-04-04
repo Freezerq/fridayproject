@@ -1,7 +1,7 @@
 import { Dispatch } from '@reduxjs/toolkit'
 import axios, { AxiosError } from 'axios'
 
-import { setAppError, setAppStatus } from '../../s2-BLL/appSlice'
+import { setAppError, setAppStatus } from 's2-BLL/appSlice'
 
 export const errorUtils = (dispatch: Dispatch, e: any) => {
   const err = e as Error | AxiosError<{ error: string }>

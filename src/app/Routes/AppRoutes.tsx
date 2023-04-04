@@ -2,18 +2,18 @@ import React from 'react'
 
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-import { Cards } from '../../s3-ui/Cards/Cards'
-import { CreateNewPassword } from '../../s3-ui/CreateNewPassword/CreateNewPassword'
-import { ErrorPage } from '../../s3-ui/ErrorPage/ErrorPage'
-import { Learn } from '../../s3-ui/Learn/Learn'
-import { Login } from '../../s3-ui/Login/Login'
-import { Packs } from '../../s3-ui/Packs/Packs'
-import { CheckEmail } from '../../s3-ui/PassRecovery/checkEmail/CheckEmail'
-import { PassRecovery } from '../../s3-ui/PassRecovery/PassRecovery'
-import { Profile } from '../../s3-ui/Profile/Profile'
-import { Registration } from '../../s3-ui/Registration/Registration'
-
 import { PrivateRoutes } from './PrivateRoutes'
+
+import { Cards } from 's3-ui/Cards/Cards'
+import { CreateNewPassword } from 's3-ui/CreateNewPassword/CreateNewPassword'
+import { ErrorPage } from 's3-ui/ErrorPage/ErrorPage'
+import { Learn } from 's3-ui/Learn/Learn'
+import { Login } from 's3-ui/Login/Login'
+import { Packs } from 's3-ui/Packs/Packs'
+import { CheckEmail } from 's3-ui/PassRecovery/checkEmail/CheckEmail'
+import { PassRecovery } from 's3-ui/PassRecovery/PassRecovery'
+import { Profile } from 's3-ui/Profile/Profile'
+import { Registration } from 's3-ui/Registration/Registration'
 
 export const PATH = {
   LOGIN: '/login',

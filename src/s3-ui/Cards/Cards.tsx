@@ -5,20 +5,19 @@ import Table from '@mui/material/Table'
 import TableContainer from '@mui/material/TableContainer'
 import { Navigate, useLocation, useSearchParams } from 'react-router-dom'
 
-import { PATH } from '../../app/Routes/AppRoutes'
-import { AddNewCardType } from '../../s1-DAL/cardsAPI'
-import { useAppDispatch, useAppSelector } from '../../s1-DAL/store'
-import { addNewCard, getCards } from '../../s2-BLL/cardsSlice'
-import { cardsSelector, isLoggedInSelector, packNameSelector, SearchField } from '../../s4-common'
-
 import s from './Cards.module.scss'
 import { CardsHeader } from './CardsHeader'
 import { CardsTableBody } from './CardsTableBody'
 import { CardsTableHead } from './CardsTableHead'
 
+import { PATH } from 'app/Routes/AppRoutes'
+import { AddNewCardType } from 's1-DAL/cardsAPI'
+import { useAppDispatch, useAppSelector } from 's1-DAL/store'
+import { addNewCard, getCards } from 's2-BLL/cardsSlice'
+import { cardsSelector, isLoggedInSelector, SearchField } from 's4-common'
+
 export const Cards = () => {
   const cards = useAppSelector(cardsSelector)
-  const packName = useAppSelector(packNameSelector)
   const dispatch = useAppDispatch()
   const isLoggedIn = useAppSelector(isLoggedInSelector)
   //set params into URL

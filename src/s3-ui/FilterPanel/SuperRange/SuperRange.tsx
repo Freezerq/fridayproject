@@ -2,10 +2,10 @@ import React, { SyntheticEvent, useEffect, useState } from 'react'
 
 import Slider from '@mui/material/Slider'
 
-import { useAppSelector } from '../../../s1-DAL/store'
-import { appStatusSelector } from '../../../s4-common'
-
 import s from './SuperRange.module.scss'
+
+import { useAppSelector } from 's1-DAL/store'
+import { appStatusSelector } from 's4-common'
 
 type SuperRangeType = {
   min: number
